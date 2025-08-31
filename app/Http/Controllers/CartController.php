@@ -21,15 +21,15 @@ class CartController extends Controller
                 $productData = $product->toArray();
                 $productData['image_url'] = $product->image_url;
                 $productData['formatted_price'] = $product->formatted_price;
-                
-                // إعداد بيانات المطعم
+
+                // إعداد بيانات المطعمa
                 if ($product->restaurant) {
                     $restaurantData = $product->restaurant->toArray();
                     $restaurantData['logo_url'] = $product->restaurant->logo_url;
                     $restaurantData['cover_image_url'] = $product->restaurant->cover_image_url;
                     $productData['restaurant'] = $restaurantData;
                 }
-                
+
                 $item['product'] = $productData;
                 $item['subtotal'] = (float) $product->price * (int) $item['quantity'];
                 $cartItems[] = $item;
