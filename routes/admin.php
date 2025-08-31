@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use Illuminate\Support\Facades\Route;
 
-// Admin routes
+// Admin routess
 Route::prefix('admin')->name('admin.')->group(function () {
     // Guest routes (login)
     Route::middleware('guest')->group(function () {
