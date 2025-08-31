@@ -22,7 +22,7 @@ use Inertia\Inertia;
 require __DIR__.'/admin.php';
 
 Route::get('/', function () {
-    return redirect()->route('restaurants.index');
+    return Inertia::render('Home');
 });
 
 // Restaurant routes
