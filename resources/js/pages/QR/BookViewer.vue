@@ -8,7 +8,7 @@
     <div class="py-8">
       <div class="max-w-4xl mx-auto px-4">
         <!-- Main Book Panel -->
-        <div class="relative bg-gradient-to-br from-amber-800 to-amber-900 rounded-3xl shadow-2xl overflow-hidden">
+        <div class="relative rounded-3xl shadow-2xl overflow-hidden" style="background-color: #662b37;">
           <!-- Book Content -->
           <div class="p-8">
             <!-- Image Display -->
