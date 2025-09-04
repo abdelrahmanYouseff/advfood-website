@@ -85,7 +85,7 @@
                   <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105">
                     <!-- Image -->
                     <img
-                      :src="`/${currentImage.path}`"
+                      :src="`/asset/${currentImage.filename}`"
                       :alt="currentImage.name"
                       class="w-full h-auto max-h-[70vh] object-contain"
                       @load="onImageLoad"
@@ -191,7 +191,7 @@
                 :class="index + 1 === currentIndex ? 'ring-4 ring-red-500' : ''"
               >
                 <img
-                  :src="`/${image.path}`"
+                  :src="`/asset/${image.filename}`"
                   :alt="image.name"
                   class="w-full h-24 object-cover group-hover:scale-110 transition-transform duration-300"
                 />
