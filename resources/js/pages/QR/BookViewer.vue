@@ -66,6 +66,11 @@
             <!-- Book Spine -->
             <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-b from-amber-800 to-amber-900 shadow-lg"></div>
             
+            <!-- Book Binding Holes -->
+            <div class="absolute left-4 top-1/4 w-1 h-1 bg-amber-700 rounded-full"></div>
+            <div class="absolute left-4 top-1/2 w-1 h-1 bg-amber-700 rounded-full"></div>
+            <div class="absolute left-4 top-3/4 w-1 h-1 bg-amber-700 rounded-full"></div>
+            
             <!-- Book Pages -->
             <div class="ml-8 mr-4 py-8">
               <!-- Page Header -->
@@ -81,13 +86,28 @@
               <!-- Image Container -->
               <div class="relative max-w-4xl mx-auto">
                 <div v-if="currentImage" class="relative group">
+                  <!-- Page Turn Effect -->
+                  <div v-if="isFlipping" class="absolute inset-0 z-10 pointer-events-none">
+                    <div class="w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 animate-pulse"></div>
+                  </div>
+                  
                   <!-- Image Frame -->
-                  <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105">
+                  <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 book-shadow" :class="{ 'flip-animation': isFlipping }">
+                    <!-- Page Corner -->
+                    <div class="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-amber-200 to-amber-300 rounded-bl-2xl shadow-md"></div>
+                    
+                    <!-- Page Lines -->
+                    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+                      <div class="absolute top-8 left-8 w-1 h-full bg-gradient-to-b from-transparent via-amber-100 to-transparent opacity-50"></div>
+                      <div class="absolute top-8 right-8 w-1 h-full bg-gradient-to-b from-transparent via-amber-100 to-transparent opacity-50"></div>
+                    </div>
+                    
                     <!-- Image -->
                     <img
                       :src="`/asset/${currentImage.filename}`"
                       :alt="currentImage.name"
-                      class="w-full h-auto max-h-[70vh] object-contain"
+                      class="w-full h-auto max-h-[70vh] object-contain transition-all duration-500"
+                      :class="{ 'transform scale-95 opacity-80': isFlipping }"
                       @load="onImageLoad"
                       @error="onImageError"
                     />
@@ -187,7 +207,7 @@
                 v-for="(image, index) in allImages"
                 :key="index"
                 :href="`/qrs/${index + 1}`"
-                class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                class="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 book-page"
                 :class="index + 1 === currentIndex ? 'ring-4 ring-red-500' : ''"
               >
                 <img
@@ -222,6 +242,7 @@ const props = defineProps({
 
 const isLoading = ref(true)
 const hasError = ref(false)
+const isFlipping = ref(false)
 
 const onImageLoad = () => {
   isLoading.value = false
@@ -231,6 +252,13 @@ const onImageLoad = () => {
 const onImageError = () => {
   isLoading.value = false
   hasError.value = true
+}
+
+const triggerFlipEffect = () => {
+  isFlipping.value = true
+  setTimeout(() => {
+    isFlipping.value = false
+  }, 600)
 }
 
 onMounted(() => {
@@ -244,17 +272,67 @@ onMounted(() => {
 <style scoped>
 /* Custom animations */
 @keyframes flip {
-  0% { transform: rotateY(0deg); }
-  50% { transform: rotateY(-90deg); }
-  100% { transform: rotateY(0deg); }
+  0% { 
+    transform: rotateY(0deg) scale(1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  25% { 
+    transform: rotateY(-15deg) scale(0.98);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  }
+  50% { 
+    transform: rotateY(-30deg) scale(0.95);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  75% { 
+    transform: rotateY(-15deg) scale(0.98);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  }
+  100% { 
+    transform: rotateY(0deg) scale(1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+}
+
+@keyframes pageTurn {
+  0% { 
+    transform: translateX(0) rotateY(0deg);
+    opacity: 1;
+  }
+  50% { 
+    transform: translateX(-20px) rotateY(-10deg);
+    opacity: 0.8;
+  }
+  100% { 
+    transform: translateX(0) rotateY(0deg);
+    opacity: 1;
+  }
 }
 
 .flip-animation {
-  animation: flip 0.6s ease-in-out;
+  animation: flip 0.8s ease-in-out;
+}
+
+.page-turn {
+  animation: pageTurn 0.6s ease-in-out;
+}
+
+/* Book-like shadows */
+.book-shadow {
+  box-shadow: 
+    0 0 0 1px rgba(0,0,0,0.1),
+    0 10px 30px rgba(0,0,0,0.3),
+    0 0 0 1px rgba(255,255,255,0.1) inset;
 }
 
 /* Smooth transitions */
 * {
   transition: all 0.3s ease;
+}
+
+/* Hover effects for book pages */
+.book-page:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
 }
 </style>
