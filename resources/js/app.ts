@@ -8,7 +8,7 @@ import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 import i18n from './i18n';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Welcome to AdvFood';
 
 createInertiaApp({
     title: (title) => (title ? `${title} - ${appName}` : appName),

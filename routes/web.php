@@ -28,6 +28,23 @@ Route::get('/', function () {
 // QR Image Book Viewer Routeee
 Route::get('/qrs/{id}', [App\Http\Controllers\QRController::class, 'show']);
 
+// PDF file serving route
+Route::get('/pdf/{filename}', function ($filename) {
+    $filePath = public_path('asset/bakiza-pdf/' . $filename);
+
+    if (!file_exists($filePath)) {
+        abort(404, 'PDF file not found');
+    }
+
+    return response()->file($filePath, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="' . $filename . '"',
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET',
+        'Access-Control-Allow-Headers' => 'Content-Type',
+    ]);
+});
+
 // Test route
 Route::get('/test-qr', function () {
     return response()->json(['message' => 'QR test route works']);
