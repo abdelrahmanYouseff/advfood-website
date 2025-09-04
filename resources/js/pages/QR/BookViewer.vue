@@ -2,156 +2,64 @@
   <div class="min-h-screen bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50" dir="rtl">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-200 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-4">
-          <!-- Logo -->
-          <div class="flex items-center space-x-4 space-x-reverse">
-            <div class="relative">
-              <img src="/Foods Logo.png" alt="ADVFOOD" class="w-12 h-12 rounded-lg shadow-lg" />
-              <div class="absolute -inset-1 bg-gradient-to-r from-amber-500 to-orange-500 rounded-lg opacity-20 blur-sm"></div>
-            </div>
-            <div>
-              <h1 class="text-xl font-bold text-amber-800">ADVFOOD</h1>
-              <p class="text-xs text-amber-600 -mt-1">معرض الصور</p>
-            </div>
-          </div>
-
-          <!-- Page Info -->
-          <div class="text-center">
-            <div class="text-amber-800 font-bold text-lg">
-              {{ currentIndex }} / {{ totalImages }}
-            </div>
-            <div class="text-amber-600 text-sm">
-              {{ currentImage?.name || 'صورة غير متوفرة' }}
-            </div>
-          </div>
-
-          <!-- Navigation -->
-          <div class="flex items-center space-x-4 space-x-reverse">
-            <Link
-              v-if="previousImage"
-              :href="`/qrs/${currentIndex - 1}`"
-              class="flex items-center px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white rounded-lg transition-all duration-200"
-            >
-              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-              </svg>
-              السابق
-            </Link>
-            <Link
-              v-if="nextImage"
-              :href="`/qrs/${currentIndex + 1}`"
-              class="flex items-center px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-lg transition-all duration-200"
-            >
-              التالي
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </div>
-    </header>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Main Content -->
-    <div class="pt-20 pb-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Book Container -->
-        <div class="relative max-w-4xl mx-auto">
-          <!-- Book Shadow -->
-          <div class="absolute inset-0 bg-gradient-to-r from-amber-800 to-amber-900 rounded-3xl shadow-2xl transform rotate-1 scale-105 opacity-30"></div>
-          
-          <!-- Main Book Panel -->
-          <div class="relative bg-gradient-to-br from-amber-800 to-amber-900 rounded-3xl shadow-2xl overflow-hidden">
-            <!-- Book Content -->
-            <div class="p-8">
-              <!-- Image Title -->
-              <div class="text-center mb-6">
-                <h2 class="text-3xl font-bold text-white mb-2" style="font-family: 'Dancing Script', cursive;">
-                  {{ currentImage?.name || 'معرض الصور' }}
-                </h2>
-                <p class="text-amber-200 text-lg">صفحة {{ currentIndex }} من {{ totalImages }}</p>
-              </div>
-
-              <!-- Image Container -->
-              <div class="relative max-w-4xl mx-auto">
-                <div v-if="currentImage" class="relative group">
-                  <!-- Page Turn Effect -->
-                  <div v-if="isFlipping" class="absolute inset-0 z-10 pointer-events-none">
-                    <div class="w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 animate-pulse"></div>
+    <div class="py-8">
+      <div class="max-w-4xl mx-auto px-4">
+        <!-- Main Book Panel -->
+        <div class="relative bg-gradient-to-br from-amber-800 to-amber-900 rounded-3xl shadow-2xl overflow-hidden">
+          <!-- Book Content -->
+          <div class="p-8">
+            <!-- Product Entry -->
+            <div v-if="currentImage" class="flex items-start space-x-6 space-x-reverse mb-8">
+              <!-- Product Image -->
+              <div class="flex-shrink-0">
+                <div class="relative">
+                  <img
+                    :src="`/asset/${currentImage.filename}`"
+                    :alt="currentImage.name"
+                    class="w-32 h-32 object-cover rounded-2xl shadow-lg"
+                    @load="onImageLoad"
+                    @error="onImageError"
+                  />
+                  <!-- Brand Watermark -->
+                  <div class="absolute -left-2 top-4 w-1 h-24 bg-gradient-to-b from-amber-200 to-amber-300 rounded-full"></div>
+                  <div class="absolute -left-2 top-8 text-amber-200 text-xs font-medium transform -rotate-90 origin-center" style="font-family: 'Playfair Display', serif;">
+                    ADVFOOD
                   </div>
-                  
-                  <!-- Image Frame -->
-                  <div class="relative bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105" :class="{ 'flip-animation': isFlipping }">
-                    <!-- Image -->
-                    <img
-                      :src="`/asset/${currentImage.filename}`"
-                      :alt="currentImage.name"
-                      class="w-full h-auto max-h-[50vh] object-contain transition-all duration-500"
-                      :class="{ 'transform scale-95 opacity-80': isFlipping }"
-                      @load="onImageLoad"
-                      @error="onImageError"
-                    />
-                    
-                    <!-- Loading Overlay -->
-                    <div v-if="isLoading" class="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                      <div class="flex flex-col items-center">
-                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
-                        <p class="mt-4 text-gray-600">جاري تحميل الصورة...</p>
-                      </div>
-                    </div>
-                    
-                    <!-- Error Overlay -->
-                    <div v-if="hasError" class="absolute inset-0 bg-gray-200 flex items-center justify-center">
-                      <div class="text-center">
-                        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                        </svg>
-                        <p class="text-gray-600">خطأ في تحميل الصورة</p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <!-- Image Info -->
-                  <div class="mt-6 text-center">
-                    <p class="text-white text-lg leading-relaxed">
-                      صورة عالية الجودة من معرض الصور التفاعلي. يمكنك تصفح جميع الصور باستخدام أزرار التنقل أدناه.
-                    </p>
-                  </div>
-                </div>
-                
-                <!-- No Image Message -->
-                <div v-else class="text-center py-20">
-                  <svg class="w-24 h-24 text-gray-400 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-1.009-5.824-2.709M15 6.291A7.962 7.962 0 0012 5c-2.34 0-4.29 1.009-5.824 2.709"></path>
-                  </svg>
-                  <h2 class="text-2xl font-bold text-gray-800 mb-2">الصورة غير متوفرة</h2>
-                  <p class="text-gray-600 mb-6">لا توجد صورة بهذا الرقم</p>
-                  <Link
-                    href="/qrs/1"
-                    class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full hover:from-red-600 hover:to-orange-600 transition-all duration-200"
-                  >
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
-                    </svg>
-                    العودة للصفحة الأولى
-                  </Link>
                 </div>
               </div>
               
-              <!-- Pricing Section -->
-              <div class="mt-8 pt-6 border-t border-amber-600">
-                <div class="grid grid-cols-2 gap-8 text-center">
-                  <div>
-                    <div class="text-amber-200 text-sm mb-2">عرض عادي</div>
-                    <div class="text-white text-2xl font-bold">مجاني</div>
-                  </div>
-                  <div>
-                    <div class="text-amber-200 text-sm mb-2">عرض مميز</div>
-                    <div class="text-white text-2xl font-bold">مجاني</div>
-                  </div>
+              <!-- Product Info -->
+              <div class="flex-1">
+                <h2 class="text-3xl font-bold text-white mb-3" style="font-family: 'Dancing Script', cursive;">
+                  {{ currentImage.name }}
+                </h2>
+                <p class="text-amber-100 text-lg leading-relaxed mb-4">
+                  صورة عالية الجودة من معرض الصور التفاعلي. يمكنك تصفح جميع الصور باستخدام أزرار التنقل أدناه. هذه الصورة جزء من مجموعة صور احترافية تم اختيارها بعناية.
+                </p>
+                <!-- Separator Line -->
+                <div class="border-b border-dashed border-amber-600 mb-4"></div>
+              </div>
+            </div>
+
+            <!-- No Image Message -->
+            <div v-else class="text-center py-20">
+              <h2 class="text-2xl font-bold text-white mb-2">الصورة غير متوفرة</h2>
+              <p class="text-amber-200 mb-6">لا توجد صورة بهذا الرقم</p>
+            </div>
+            
+            <!-- Pricing Section -->
+            <div class="mt-8 pt-6 border-t border-amber-600">
+              <div class="grid grid-cols-2 gap-8 text-center">
+                <div>
+                  <div class="text-amber-200 text-sm mb-2">عرض عادي</div>
+                  <div class="text-white text-2xl font-bold">مجاني</div>
+                </div>
+                <div>
+                  <div class="text-amber-200 text-sm mb-2">عرض مميز</div>
+                  <div class="text-white text-2xl font-bold">مجاني</div>
                 </div>
               </div>
             </div>
