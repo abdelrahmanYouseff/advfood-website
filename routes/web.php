@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Include admin routes
+// Include admin routesss
 require __DIR__.'/admin.php';
 
 Route::get('/', function () {
