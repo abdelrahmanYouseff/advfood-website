@@ -10,7 +10,7 @@
         <!-- Book Title -->
         <div class="text-center mb-8">
           <h1 class="text-3xl font-bold mb-2" style="font-family: 'Playfair Display', serif; color: #662a37;">
-            منيو بكيزه بيك اب
+            منيو ديلاوة
           </h1>
           <div class="w-24 h-1 mx-auto rounded-full" style="background-color: #662a37;"></div>
         </div>
