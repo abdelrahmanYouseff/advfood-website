@@ -224,8 +224,8 @@
           :key="restaurant.id"
           class="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 overflow-hidden transform hover:-translate-y-6 border border-red-100"
         >
-          <!-- Restaurant Image with Enhanced Overlay -->
-          <div class="relative h-80 bg-gradient-to-br from-red-100 to-orange-100 overflow-hidden">
+          <!-- Restaurant Image -->
+          <div class="relative h-64 bg-gradient-to-br from-red-100 to-orange-100 overflow-hidden">
             <img
               v-if="restaurant.cover_image_url"
               :src="restaurant.cover_image_url"
@@ -236,124 +236,61 @@
             />
             <div v-else class="w-full h-full bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
               <div class="text-center">
-                <svg class="w-20 h-20 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-16 h-16 text-red-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
-                <p class="text-red-500 font-medium">صورة المطعم</p>
-              </div>
-            </div>
-            
-            <!-- Enhanced Gradient Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-            
-            <!-- Animated Background Pattern -->
-            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <div class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full blur-xl"></div>
-              <div class="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full blur-xl"></div>
-            </div>
-
-            <!-- Enhanced Status Badge -->
-            <div class="absolute top-6" :class="$i18n.locale === 'ar' ? 'left-6' : 'right-6'">
-              <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-2xl backdrop-blur-sm border border-white/20">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" :class="$i18n.locale === 'ar' ? 'ml-2' : 'mr-2'">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                {{ restaurant.delivery_time }} دقيقة
-              </span>
-            </div>
-
-            <!-- Enhanced Rating Badge -->
-            <div class="absolute top-6" :class="$i18n.locale === 'ar' ? 'right-6' : 'left-6'">
-              <div class="flex items-center bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl border border-white/20">
-                <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                </svg>
-                <span class="text-lg font-bold text-gray-900" :class="$i18n.locale === 'ar' ? 'mr-2' : 'ml-2'">{{ restaurant.rating }}</span>
+                <p class="text-red-500 font-medium text-sm">صورة المطعم</p>
               </div>
             </div>
 
-            <!-- Floating Action Button -->
-            <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0" :class="$i18n.locale === 'ar' ? 'left-6' : 'right-6'">
-              <Link
-                :href="route('restaurants.show', restaurant.id)"
-                class="w-14 h-14 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-200"
-              >
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'rotate-180' : ''">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                </svg>
-              </Link>
-            </div>
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <!-- Enhanced Restaurant Info -->
-          <div class="p-10">
-            <!-- Restaurant Header -->
-            <div class="flex items-start justify-between mb-8">
-              <div class="flex items-center">
-                <div class="relative">
-                  <img
-                    v-if="restaurant.logo_url"
-                    :src="restaurant.logo_url"
-                    :alt="restaurant.name"
-                    class="w-24 h-24 rounded-3xl object-cover border-4 border-red-100 shadow-2xl"
-                    @error="console.log('Logo failed to load:', restaurant.logo_url)"
-                    @load="console.log('Logo loaded successfully:', restaurant.logo_url)"
-                  />
-                  <div v-else class="w-24 h-24 rounded-3xl bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center border-4 border-red-100 shadow-2xl">
-                    <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                    </svg>
-                  </div>
-                  <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
-                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                  </div>
+          <!-- Restaurant Info - Simplified -->
+          <div class="p-8 text-center">
+            <!-- Restaurant Logo -->
+            <div class="flex justify-center mb-6">
+              <div class="relative">
+                <img
+                  v-if="restaurant.logo_url"
+                  :src="restaurant.logo_url"
+                  :alt="restaurant.name"
+                  class="w-20 h-20 rounded-2xl object-cover border-4 border-red-100 shadow-xl"
+                  @error="console.log('Logo failed to load:', restaurant.logo_url)"
+                  @load="console.log('Logo loaded successfully:', restaurant.logo_url)"
+                />
+                <div v-else class="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center border-4 border-red-100 shadow-xl">
+                  <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                  </svg>
                 </div>
-                <div :class="$i18n.locale === 'ar' ? 'mr-8' : 'ml-8'">
-                  <h3 class="text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-300 mb-3">
-                    {{ restaurant.name }}
-                  </h3>
-                  <p class="text-gray-600 flex items-center text-lg">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                    {{ restaurant.address }}
-                  </p>
+                <!-- Status Icon -->
+                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
+                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
                 </div>
               </div>
             </div>
 
-            <!-- Restaurant Description -->
-            <p class="text-gray-600 text-lg mb-10 line-clamp-3 leading-relaxed">
-              {{ restaurant.description }}
-            </p>
+            <!-- Restaurant Name -->
+            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-300 mb-4">
+              {{ restaurant.name }}
+            </h3>
 
-            <!-- Enhanced Restaurant Stats -->
-            <div class="grid grid-cols-2 gap-6 mb-10">
-              <div class="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl border border-red-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div class="text-3xl font-bold text-red-600 mb-2">{{ restaurant.delivery_fee }} ريال</div>
-                <div class="text-sm text-gray-600 font-medium">رسوم التوصيل</div>
-              </div>
-              <div class="text-center p-6 bg-gradient-to-br from-gray-50 to-slate-50 rounded-3xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                <div class="text-3xl font-bold text-gray-700 mb-2">{{ restaurant.minimum_order }} ريال</div>
-                <div class="text-sm text-gray-600 font-medium">الحد الأدنى للطلب</div>
-              </div>
-            </div>
-
-            <!-- Enhanced Action Button -->
+            <!-- Action Button -->
             <Link
               :href="route('restaurants.show', restaurant.id)"
-              class="group relative w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-5 px-8 rounded-3xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 text-center block shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 overflow-hidden"
+              class="group/btn relative w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-4 px-6 rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 text-center block shadow-xl hover:shadow-red-500/25 transform hover:scale-105 overflow-hidden"
             >
-              <span class="relative z-10 flex items-center justify-center text-lg">
+              <span class="relative z-10 flex items-center justify-center text-base">
                 استكشف القائمة
-                <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'mr-3 group-hover:-translate-x-2' : 'ml-3 group-hover:translate-x-2'" :style="$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''">
+                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'mr-2 group-hover/btn:-translate-x-1' : 'ml-2 group-hover/btn:translate-x-1'" :style="$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
               </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
         </div>

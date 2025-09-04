@@ -34,7 +34,7 @@
             <div v-else class="flex justify-center items-center min-h-[60vh]">
               <div class="w-32 h-32 bg-amber-700 rounded-2xl"></div>
             </div>
-            
+
           </div>
         </div>
 
@@ -52,7 +52,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </button>
-              
+
               <!-- Page Dots -->
               <div class="flex items-center space-x-2">
                 <div
@@ -63,7 +63,7 @@
                   @click="goToPage(index + 1)"
                 ></div>
               </div>
-              
+
               <!-- Next Button -->
               <button
                 v-if="canGoNext"
@@ -188,16 +188,16 @@ onMounted(() => {
     isLoading.value = true
     hasError.value = false
   }
-  
+
   // Add keyboard event listener
   window.addEventListener('keydown', handleKeydown)
-  
+
   // Prevent browser back/forward from changing the page
   window.addEventListener('popstate', (event) => {
     event.preventDefault()
     window.history.pushState(null, '', window.location.pathname)
   })
-  
+
   // Ensure URL stays the same
   window.history.replaceState(null, '', window.location.pathname)
 })
@@ -219,38 +219,38 @@ onUnmounted(() => {
 <style scoped>
 /* Custom animations */
 @keyframes flip {
-  0% { 
+  0% {
     transform: rotateY(0deg) scale(1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
-  25% { 
+  25% {
     transform: rotateY(-15deg) scale(0.98);
     box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   }
-  50% { 
+  50% {
     transform: rotateY(-30deg) scale(0.95);
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   }
-  75% { 
+  75% {
     transform: rotateY(-15deg) scale(0.98);
     box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   }
-  100% { 
+  100% {
     transform: rotateY(0deg) scale(1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   }
 }
 
 @keyframes pageTurn {
-  0% { 
+  0% {
     transform: translateX(0) rotateY(0deg);
     opacity: 1;
   }
-  50% { 
+  50% {
     transform: translateX(-20px) rotateY(-10deg);
     opacity: 0.8;
   }
-  100% { 
+  100% {
     transform: translateX(0) rotateY(0deg);
     opacity: 1;
   }
@@ -266,7 +266,7 @@ onUnmounted(() => {
 
 /* Book-like shadows */
 .book-shadow {
-  box-shadow: 
+  box-shadow:
     0 0 0 1px rgba(0,0,0,0.1),
     0 10px 30px rgba(0,0,0,0.3),
     0 0 0 1px rgba(255,255,255,0.1) inset;
