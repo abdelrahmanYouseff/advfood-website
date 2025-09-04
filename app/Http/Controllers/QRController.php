@@ -94,7 +94,7 @@ class QRController extends Controller
         $previousImage = null; // First page, no previous
         $nextImage = $totalImages > 1 ? $images[1] : null;
 
-        return Inertia::render('QR/BookViewer', [
+        return Inertia::render('QR/BakizaBookViewer', [
             'currentImage' => $currentImage,
             'currentIndex' => $currentIndex,
             'totalImages' => $totalImages,
