@@ -25,6 +25,14 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+// QR Image Book Viewer Route
+Route::get('/qrs/{id}', [App\Http\Controllers\QRController::class, 'show']);
+
+// Test route
+Route::get('/test-qr', function () {
+    return response()->json(['message' => 'QR test route works']);
+});
+
 // Restaurant routes
 Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
@@ -100,10 +108,3 @@ Route::middleware('auth')->group(function () {
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 });
 
-Route::get('/test-locale', function () {
-    return response()->json([
-        'locale' => app()->getLocale(),
-        'config_locale' => config('app.locale'),
-        'html' => view('app')->render()
-    ]);
-});

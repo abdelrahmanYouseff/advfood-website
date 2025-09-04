@@ -1,7 +1,59 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-red-50 via-yellow-50 to-orange-50" :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'">
+    <!-- Enhanced Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-2xl border-b border-red-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+          <!-- Logo -->
+          <div class="flex items-center space-x-4 space-x-reverse">
+            <div class="relative">
+              <img src="/Foods Logo.png" alt="ADVFOOD" class="w-14 h-14 drop-shadow-lg" />
+              <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-full opacity-20 blur-sm"></div>
+            </div>
+            <div>
+              <h1 class="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">ADVFOOD</h1>
+              <p class="text-xs text-gray-500 -mt-1">منصة طلب الطعام الأولى</p>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
+            <a href="/" class="group relative text-gray-700 hover:text-red-600 font-medium transition-all duration-300">
+              الرئيسية
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="/restaurants" class="group relative text-red-600 font-medium">
+              المطاعم
+              <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-orange-500"></span>
+            </a>
+            <a href="/cart" class="group relative text-gray-700 hover:text-red-600 font-medium transition-all duration-300">
+              السلة
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="/login" class="group relative text-gray-700 hover:text-red-600 font-medium transition-all duration-300">
+              تسجيل الدخول
+              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="/register" class="relative bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group overflow-hidden">
+              <span class="relative z-10">إنشاء حساب</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+          </nav>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button class="text-gray-700 hover:text-red-600 p-2 rounded-lg hover:bg-red-50 transition-all duration-200">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <!-- Hero Section with Parallax -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600">
+    <div class="relative overflow-hidden bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600 pt-24">
       <!-- Animated Background -->
       <div class="absolute inset-0">
         <div class="absolute inset-0 bg-gradient-to-r from-red-700/90 to-orange-700/90"></div>
@@ -12,53 +64,56 @@
         </div>
       </div>
 
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
         <div class="text-center">
-          <div class="mb-8">
-            <div class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-6">
-              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <div class="mb-12">
+            <div class="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur-sm rounded-full text-white text-lg font-medium mb-8 border border-white/30">
+              <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              {{ $t('Fast Delivery • Fresh Food • Best Prices') }}
+              توصيل سريع • طعام طازج • أفضل الأسعار
             </div>
           </div>
 
-          <div class="flex items-center justify-center mb-6" :class="$i18n.locale === 'ar' ? 'flex-row-reverse' : 'flex-row'">
-            <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-20 w-20 md:h-24 md:w-24 rounded-lg shadow-lg" :class="$i18n.locale === 'ar' ? 'ml-4' : 'mr-4'">
-            <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
-              {{ $t('Welcome to') }}
+          <div class="flex items-center justify-center mb-12" :class="$i18n.locale === 'ar' ? 'flex-row-reverse' : 'flex-row'">
+            <div class="relative">
+              <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-24 w-24 md:h-32 md:w-32 rounded-2xl shadow-2xl" :class="$i18n.locale === 'ar' ? 'ml-6' : 'mr-6'">
+              <div class="absolute -inset-4 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 rounded-2xl blur-2xl"></div>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-bold text-white leading-tight">
+              مرحباً بك في
               <span class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                {{ $t('ADVFood') }}
+                ADVFOOD
               </span>
-              <br>{{ $t('Discover Delicious Restaurants') }}
+              <br>اكتشف أشهى المطاعم
             </h1>
           </div>
-          <p class="text-xl md:text-2xl text-red-100 mb-12 max-w-4xl mx-auto leading-relaxed">
-            {{ $t('Experience the finest culinary delights delivered right to your doorstep.') }}
-            {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
+          <p class="text-2xl md:text-3xl text-red-100 mb-16 max-w-5xl mx-auto leading-relaxed">
+            جرب أشهى الأطباق الطهي التي يتم توصيلها مباشرة إلى باب منزلك.
+            من المفضلات المحلية إلى المأكولات العالمية، نحن نجلب لك نكهات العالم.
           </p>
 
           <!-- Enhanced Search Bar -->
-          <div class="max-w-3xl mx-auto">
+          <div class="max-w-4xl mx-auto">
             <div class="relative group">
-              <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 rounded-2xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div class="relative bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20">
-                <div class="flex items-center p-2">
+              <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20">
+                <div class="flex items-center p-3">
                   <div class="flex-1 relative">
                     <input
                       v-model="searchQuery"
                       type="text"
-                      :placeholder="$t('Search for restaurants, cuisines, or dishes...')"
-                      class="w-full pl-12 pr-4 py-4 text-lg border-0 bg-transparent focus:outline-none placeholder-gray-500"
+                      placeholder="ابحث عن المطاعم أو المأكولات أو الأطباق..."
+                      class="w-full pl-16 pr-6 py-6 text-xl border-0 bg-transparent focus:outline-none placeholder-gray-500 font-medium"
                     />
-                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <svg class="h-6 w-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                      <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                       </svg>
                     </div>
                   </div>
-                  <button class="ml-2 px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-semibold hover:from-red-600 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
-                    {{ $t('Search') }}
+                  <button class="ml-3 px-12 py-6 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 text-lg">
+                    بحث
                   </button>
                 </div>
               </div>
@@ -78,37 +133,40 @@
     </div>
 
     <!-- Enhanced Filters Section -->
-    <div class="bg-white/80 backdrop-blur-sm shadow-lg border-b border-white/20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-                      <div class="flex items-center space-x-6" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
-              <div class="flex items-center space-x-3" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-8 w-8 rounded-lg shadow-sm">
-                <span class="text-lg font-semibold text-gray-800">{{ $t('Filter by:') }}</span>
+    <div class="bg-white/90 backdrop-blur-md shadow-2xl border-b border-red-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="flex items-center space-x-8 space-x-reverse">
+            <div class="flex items-center space-x-4 space-x-reverse">
+              <div class="relative">
+                <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-12 w-12 rounded-2xl shadow-lg">
+                <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl opacity-20 blur-sm"></div>
               </div>
-              <div class="flex space-x-3" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
+              <span class="text-2xl font-bold text-gray-800">تصفية حسب:</span>
+            </div>
+            <div class="flex space-x-4 space-x-reverse">
               <select
                 v-model="sortBy"
-                class="px-6 py-3 border-0 bg-white/70 backdrop-blur-sm rounded-xl focus:ring-2 focus:ring-red-500 focus:outline-none shadow-lg text-gray-700 font-medium transition-all duration-200 hover:bg-white"
+                class="px-8 py-4 border-0 bg-white/80 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-red-500 focus:outline-none shadow-xl text-gray-700 font-bold transition-all duration-300 hover:bg-white text-lg"
               >
-                <option value="rating">⭐ {{ $t('Highest Rated') }}</option>
-                <option value="delivery_time">⚡ {{ $t('Fastest Delivery') }}</option>
-                <option value="delivery_fee">💰 {{ $t('Lowest Delivery Fee') }}</option>
+                <option value="rating">⭐ أعلى تقييم</option>
+                <option value="delivery_time">⚡ أسرع توصيل</option>
+                <option value="delivery_fee">💰 أقل رسوم توصيل</option>
               </select>
             </div>
           </div>
 
-                                  <div class="flex items-center space-x-4" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
+                                  <div class="flex items-center space-x-6 space-x-reverse">
               <Link
                 :href="route('cart.index')"
-                class="relative group inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-xl font-semibold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                class="relative group inline-flex items-center px-10 py-5 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 text-lg"
               >
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-6 h-6 rounded shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
+                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-7 h-7 rounded-lg shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
                 </svg>
-                {{ $t('View Cart') }}
-                <span v-if="cartCount > 0" class="absolute bg-red-500 text-white text-sm rounded-full h-7 w-7 flex items-center justify-center font-bold shadow-lg" :class="$i18n.locale === 'ar' ? '-top-3 -left-3' : '-top-3 -right-3'">
+                عرض السلة
+                <span v-if="cartCount > 0" class="absolute bg-red-500 text-white text-sm rounded-full h-8 w-8 flex items-center justify-center font-bold shadow-lg" :class="$i18n.locale === 'ar' ? '-top-3 -left-3' : '-top-3 -right-3'">
                   {{ cartCount }}
                 </span>
               </Link>
@@ -116,18 +174,18 @@
               <Link
                 v-if="$page.props.auth.user"
                 :href="route('dashboard')"
-                class="flex items-center text-gray-700 hover:text-red-600 font-semibold transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-red-50"
+                class="flex items-center text-gray-700 hover:text-red-600 font-bold transition-all duration-300 px-6 py-3 rounded-xl hover:bg-red-50 text-lg"
               >
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-5 h-5 rounded shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-2' : 'mr-2'">
-                {{ $t('My Account') }}
+                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-6 h-6 rounded-lg shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
+                حسابي
               </Link>
               <Link
                 v-else
                 :href="route('login')"
-                class="flex items-center text-gray-700 hover:text-red-600 font-semibold transition-colors duration-200 px-4 py-2 rounded-lg hover:bg-red-50"
+                class="flex items-center text-gray-700 hover:text-red-600 font-bold transition-all duration-300 px-6 py-3 rounded-xl hover:bg-red-50 text-lg"
               >
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-5 h-5 rounded shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-2' : 'mr-2'">
-                {{ $t('Login') }}
+                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-6 h-6 rounded-lg shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-2'">
+                تسجيل الدخول
               </Link>
             </div>
         </div>
@@ -135,58 +193,78 @@
     </div>
 
     <!-- Enhanced Restaurants Grid -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <!-- Results Count -->
-      <div class="mb-12 text-center">
-        <div class="flex items-center justify-center mb-6" :class="$i18n.locale === 'ar' ? 'flex-row-reverse' : 'flex-row'">
-          <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-12 w-12 rounded-lg shadow-lg" :class="$i18n.locale === 'ar' ? 'ml-4' : 'mr-4'">
-          <h2 class="text-4xl font-bold text-gray-900">
-            {{ filteredRestaurants.length }} {{ $t('Amazing Restaurants') }}
+      <div class="mb-16 text-center">
+        <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-100 to-orange-100 rounded-full text-red-700 text-sm font-medium mb-8">
+          <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </svg>
+          {{ filteredRestaurants.length }} مطعم متميز
+        </div>
+        <div class="flex items-center justify-center mb-8" :class="$i18n.locale === 'ar' ? 'flex-row-reverse' : 'flex-row'">
+          <div class="relative">
+            <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-16 w-16 rounded-2xl shadow-2xl" :class="$i18n.locale === 'ar' ? 'ml-6' : 'mr-6'">
+            <div class="absolute -inset-2 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl opacity-20 blur-lg"></div>
+          </div>
+          <h2 class="text-5xl font-bold text-gray-900">
+            اكتشف أفضل
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600">المطاعم</span>
           </h2>
         </div>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          {{ $t('Discover culinary excellence with our curated selection of the finest restaurants in your area') }}
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          اكتشف التميز الطهي مع مجموعتنا المختارة من أفضل المطاعم في منطقتك
         </p>
       </div>
 
       <!-- Enhanced Restaurants Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div
           v-for="restaurant in filteredRestaurants"
           :key="restaurant.id"
-          class="group relative bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-4"
+          class="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 overflow-hidden transform hover:-translate-y-6 border border-red-100"
         >
-
-          <!-- Restaurant Image with Overlay -->
-          <div class="relative h-72 bg-gradient-to-br from-red-100 to-orange-100 overflow-hidden">
+          <!-- Restaurant Image with Enhanced Overlay -->
+          <div class="relative h-80 bg-gradient-to-br from-red-100 to-orange-100 overflow-hidden">
             <img
               v-if="restaurant.cover_image_url"
               :src="restaurant.cover_image_url"
               :alt="restaurant.name"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
               @error="console.log('Cover image failed to load:', restaurant.cover_image_url)"
               @load="console.log('Cover image loaded successfully:', restaurant.cover_image_url)"
             />
             <div v-else class="w-full h-full bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
-              <svg class="w-16 h-16 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-              </svg>
+              <div class="text-center">
+                <svg class="w-20 h-20 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+                <p class="text-red-500 font-medium">صورة المطعم</p>
+              </div>
             </div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+            
+            <!-- Enhanced Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            
+            <!-- Animated Background Pattern -->
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full blur-xl"></div>
+              <div class="absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br from-orange-500/20 to-yellow-500/20 rounded-full blur-xl"></div>
+            </div>
 
             <!-- Enhanced Status Badge -->
             <div class="absolute top-6" :class="$i18n.locale === 'ar' ? 'left-6' : 'right-6'">
-              <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-green-500 text-white shadow-2xl backdrop-blur-sm">
+              <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-bold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-2xl backdrop-blur-sm border border-white/20">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" :class="$i18n.locale === 'ar' ? 'ml-2' : 'mr-2'">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                 </svg>
-                {{ restaurant.delivery_time }} {{ $t('min') }}
+                {{ restaurant.delivery_time }} دقيقة
               </span>
             </div>
 
             <!-- Enhanced Rating Badge -->
             <div class="absolute top-6" :class="$i18n.locale === 'ar' ? 'right-6' : 'left-6'">
-              <div class="flex items-center bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl">
+              <div class="flex items-center bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-2xl border border-white/20">
                 <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                 </svg>
@@ -195,7 +273,7 @@
             </div>
 
             <!-- Floating Action Button -->
-            <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0" :class="$i18n.locale === 'ar' ? 'left-6' : 'right-6'">
+            <div class="absolute bottom-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0" :class="$i18n.locale === 'ar' ? 'left-6' : 'right-6'">
               <Link
                 :href="route('restaurants.show', restaurant.id)"
                 class="w-14 h-14 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-200"
@@ -208,25 +286,36 @@
           </div>
 
           <!-- Enhanced Restaurant Info -->
-          <div class="p-8">
-            <div class="flex items-start justify-between mb-6">
+          <div class="p-10">
+            <!-- Restaurant Header -->
+            <div class="flex items-start justify-between mb-8">
               <div class="flex items-center">
                 <div class="relative">
                   <img
+                    v-if="restaurant.logo_url"
                     :src="restaurant.logo_url"
                     :alt="restaurant.name"
-                    class="w-20 h-20 rounded-2xl object-cover border-4 border-red-100 shadow-xl"
+                    class="w-24 h-24 rounded-3xl object-cover border-4 border-red-100 shadow-2xl"
                     @error="console.log('Logo failed to load:', restaurant.logo_url)"
                     @load="console.log('Logo loaded successfully:', restaurant.logo_url)"
                   />
-                  <div class="absolute -bottom-2 -right-2 w-6 h-6 bg-green-500 rounded-full border-2 border-white"></div>
+                  <div v-else class="w-24 h-24 rounded-3xl bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center border-4 border-red-100 shadow-2xl">
+                    <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                  </div>
+                  <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full border-3 border-white shadow-lg flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                  </div>
                 </div>
-                <div :class="$i18n.locale === 'ar' ? 'mr-6' : 'ml-6'">
-                  <h3 class="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-200 mb-2">
+                <div :class="$i18n.locale === 'ar' ? 'mr-8' : 'ml-8'">
+                  <h3 class="text-3xl font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-300 mb-3">
                     {{ restaurant.name }}
                   </h3>
-                  <p class="text-gray-600 flex items-center">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'ml-2' : 'mr-2'">
+                  <p class="text-gray-600 flex items-center text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
@@ -236,48 +325,53 @@
               </div>
             </div>
 
-            <p class="text-gray-600 text-base mb-8 line-clamp-3 leading-relaxed">
+            <!-- Restaurant Description -->
+            <p class="text-gray-600 text-lg mb-10 line-clamp-3 leading-relaxed">
               {{ restaurant.description }}
             </p>
 
             <!-- Enhanced Restaurant Stats -->
-            <div class="grid grid-cols-2 gap-4 mb-8">
-              <div class="text-center p-4 bg-gradient-to-br from-red-50 to-orange-50 rounded-2xl border border-red-100">
-                <div class="text-2xl font-bold text-red-600 mb-1">${{ restaurant.delivery_fee }}</div>
-                <div class="text-sm text-gray-600 font-medium">{{ $t('Delivery Fee') }}</div>
+            <div class="grid grid-cols-2 gap-6 mb-10">
+              <div class="text-center p-6 bg-gradient-to-br from-red-50 to-orange-50 rounded-3xl border border-red-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div class="text-3xl font-bold text-red-600 mb-2">{{ restaurant.delivery_fee }} ريال</div>
+                <div class="text-sm text-gray-600 font-medium">رسوم التوصيل</div>
               </div>
-              <div class="text-center p-4 bg-gradient-to-br from-gray-50 to-slate-50 rounded-2xl border border-gray-100">
-                <div class="text-2xl font-bold text-gray-700 mb-1">${{ restaurant.minimum_order }}</div>
-                <div class="text-sm text-gray-600 font-medium">{{ $t('Minimum Order') }}</div>
+              <div class="text-center p-6 bg-gradient-to-br from-gray-50 to-slate-50 rounded-3xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                <div class="text-3xl font-bold text-gray-700 mb-2">{{ restaurant.minimum_order }} ريال</div>
+                <div class="text-sm text-gray-600 font-medium">الحد الأدنى للطلب</div>
               </div>
             </div>
 
             <!-- Enhanced Action Button -->
             <Link
               :href="route('restaurants.show', restaurant.id)"
-              class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-4 px-6 rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 text-center block shadow-xl hover:shadow-2xl transform hover:scale-105 group"
+              class="group relative w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-5 px-8 rounded-3xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 text-center block shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 overflow-hidden"
             >
-              <span class="flex items-center justify-center">
-                {{ $t('Explore Menu') }}
-                <svg class="w-5 h-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'mr-3 group-hover:-translate-x-1' : 'ml-3 group-hover:translate-x-1'" :style="$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''">
+              <span class="relative z-10 flex items-center justify-center text-lg">
+                استكشف القائمة
+                <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'mr-3 group-hover:-translate-x-2' : 'ml-3 group-hover:translate-x-2'" :style="$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                 </svg>
               </span>
+              <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
           </div>
         </div>
       </div>
 
       <!-- Enhanced Empty State -->
-      <div v-if="filteredRestaurants.length === 0" class="text-center py-20">
-        <div class="max-w-md mx-auto">
-          <div class="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center">
-            <svg class="w-16 h-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
+      <div v-if="filteredRestaurants.length === 0" class="text-center py-32">
+        <div class="max-w-2xl mx-auto">
+          <div class="relative w-40 h-40 mx-auto mb-12">
+            <div class="absolute inset-0 bg-gradient-to-br from-red-100 to-orange-100 rounded-full animate-pulse"></div>
+            <div class="absolute inset-4 bg-gradient-to-br from-red-200 to-orange-200 rounded-full flex items-center justify-center">
+              <svg class="w-20 h-20 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
+            </div>
           </div>
-          <h3 class="text-3xl font-bold text-gray-900 mb-4">{{ $t('No Restaurants Found') }}</h3>
-          <p class="text-xl text-gray-600 mb-8">{{ $t('Try searching with different keywords or adjust your filters') }}</p>
+          <h3 class="text-4xl font-bold text-gray-900 mb-6">لم نجد مطاعم</h3>
+          <p class="text-xl text-gray-600 mb-12 leading-relaxed">جرب البحث بكلمات مختلفة أو اضبط الفلاتر الخاصة بك</p>
           <button
             @click="searchQuery = ''"
             class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
