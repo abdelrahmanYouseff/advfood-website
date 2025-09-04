@@ -25,7 +25,7 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-// QR Image Book Viewer Route
+// QR Image Book Viewer Routeee
 Route::get('/qrs/{id}', [App\Http\Controllers\QRController::class, 'show']);
 
 // Test route
@@ -33,7 +33,7 @@ Route::get('/test-qr', function () {
     return response()->json(['message' => 'QR test route works']);
 });
 
-// Restaurant routes
+// Restaurant routesss
 Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
 
