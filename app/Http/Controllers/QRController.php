@@ -11,7 +11,7 @@ class QRController extends Controller
     public function show($id)
     {
         // Get all images from the asset folder
-        $assetPath = base_path('asset');
+        $assetPath = public_path('asset');
         $images = [];
         
         if (File::exists($assetPath)) {
