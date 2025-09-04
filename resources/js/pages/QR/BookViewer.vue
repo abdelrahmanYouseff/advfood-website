@@ -11,58 +11,22 @@
         <div class="relative bg-gradient-to-br from-amber-800 to-amber-900 rounded-3xl shadow-2xl overflow-hidden">
           <!-- Book Content -->
           <div class="p-8">
-            <!-- Product Entry -->
-            <div v-if="currentImage" class="flex items-start space-x-6 space-x-reverse mb-8">
-              <!-- Product Image -->
-              <div class="flex-shrink-0">
-                <div class="relative">
-                  <img
-                    :src="`/asset/${currentImage.filename}`"
-                    :alt="currentImage.name"
-                    class="w-32 h-32 object-cover rounded-2xl shadow-lg"
-                    @load="onImageLoad"
-                    @error="onImageError"
-                  />
-                  <!-- Brand Watermark -->
-                  <div class="absolute -left-2 top-4 w-1 h-24 bg-gradient-to-b from-amber-200 to-amber-300 rounded-full"></div>
-                  <div class="absolute -left-2 top-8 text-amber-200 text-xs font-medium transform -rotate-90 origin-center" style="font-family: 'Playfair Display', serif;">
-                    ADVFOOD
-                  </div>
-                </div>
-              </div>
-              
-              <!-- Product Info -->
-              <div class="flex-1">
-                <h2 class="text-3xl font-bold text-white mb-3" style="font-family: 'Dancing Script', cursive;">
-                  {{ currentImage.name }}
-                </h2>
-                <p class="text-amber-100 text-lg leading-relaxed mb-4">
-                  صورة عالية الجودة من معرض الصور التفاعلي. يمكنك تصفح جميع الصور باستخدام أزرار التنقل أدناه. هذه الصورة جزء من مجموعة صور احترافية تم اختيارها بعناية.
-                </p>
-                <!-- Separator Line -->
-                <div class="border-b border-dashed border-amber-600 mb-4"></div>
-              </div>
+            <!-- Image Display -->
+            <div v-if="currentImage" class="flex justify-center items-center min-h-[60vh]">
+              <img
+                :src="`/asset/${currentImage.filename}`"
+                :alt="currentImage.name"
+                class="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                @load="onImageLoad"
+                @error="onImageError"
+              />
             </div>
 
-            <!-- No Image Message -->
-            <div v-else class="text-center py-20">
-              <h2 class="text-2xl font-bold text-white mb-2">الصورة غير متوفرة</h2>
-              <p class="text-amber-200 mb-6">لا توجد صورة بهذا الرقم</p>
+            <!-- No Image -->
+            <div v-else class="flex justify-center items-center min-h-[60vh]">
+              <div class="w-32 h-32 bg-amber-700 rounded-2xl"></div>
             </div>
             
-            <!-- Pricing Section -->
-            <div class="mt-8 pt-6 border-t border-amber-600">
-              <div class="grid grid-cols-2 gap-8 text-center">
-                <div>
-                  <div class="text-amber-200 text-sm mb-2">عرض عادي</div>
-                  <div class="text-white text-2xl font-bold">مجاني</div>
-                </div>
-                <div>
-                  <div class="text-amber-200 text-sm mb-2">عرض مميز</div>
-                  <div class="text-white text-2xl font-bold">مجاني</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
