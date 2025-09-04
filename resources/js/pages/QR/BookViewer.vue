@@ -32,26 +32,26 @@
 
         <!-- Navigation Bar -->
         <div class="flex justify-center mt-8">
-          <div class="bg-white/90 backdrop-blur-sm rounded-2xl px-8 py-4 shadow-xl border border-amber-200">
-            <div class="flex items-center space-x-6 space-x-reverse">
+          <div class="bg-white rounded-2xl px-8 py-4 shadow-lg border border-yellow-200">
+            <div class="flex items-center space-x-6">
               <!-- Previous Button -->
               <Link
                 v-if="previousImage"
                 :href="`/qrs/${currentIndex - 1}`"
-                class="flex items-center justify-center w-10 h-10 bg-amber-600 hover:bg-amber-700 text-white rounded-full transition-all duration-200 hover:scale-110"
+                class="flex items-center justify-center w-10 h-10 bg-orange-600 hover:bg-orange-700 text-white rounded-full transition-all duration-200"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
               </Link>
               
               <!-- Page Dots -->
-              <div class="flex items-center space-x-2 space-x-reverse">
+              <div class="flex items-center space-x-2">
                 <div
                   v-for="(image, index) in allImages"
                   :key="index"
                   class="w-3 h-3 rounded-full transition-all duration-200"
-                  :class="index + 1 === currentIndex ? 'bg-amber-600 scale-125' : 'bg-amber-300'"
+                  :class="index + 1 === currentIndex ? 'bg-orange-600' : 'bg-yellow-300'"
                 ></div>
               </div>
               
@@ -59,10 +59,10 @@
               <Link
                 v-if="nextImage"
                 :href="`/qrs/${currentIndex + 1}`"
-                class="flex items-center justify-center w-10 h-10 bg-amber-600 hover:bg-amber-700 text-white rounded-full transition-all duration-200 hover:scale-110"
+                class="flex items-center justify-center w-10 h-10 bg-orange-600 hover:bg-orange-700 text-white rounded-full transition-all duration-200"
               >
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
               </Link>
             </div>
