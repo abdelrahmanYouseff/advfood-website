@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\RestaurantController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 // Admin routess
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -17,8 +18,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     // Protected admin routes
     Route::middleware(['auth', 'admin'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        // Admin Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         // Restaurant management
         Route::resource('restaurants', RestaurantController::class);

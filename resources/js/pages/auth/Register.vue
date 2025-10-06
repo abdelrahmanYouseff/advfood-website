@@ -8,7 +8,7 @@ import { Link, Form } from '@inertiajs/vue3'
       <!-- Header -->
       <div class="text-center">
         <div class="mx-auto h-16 w-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
-          <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-12 w-12 rounded-xl">
+          <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-12 w-12 rounded-xl">
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-2">Join ADVFood</h2>
         <p class="text-gray-600">Create your account to start ordering delicious food</p>
@@ -189,7 +189,7 @@ import { Link, Form } from '@inertiajs/vue3'
 
       <!-- Benefits Section -->
       <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg border border-white/20 p-6">
-        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Why Join ADVFOOD?</h3>
+        <h3 class="text-lg font-bold text-gray-900 mb-4 text-center">Why Join our platform?</h3>
         <div class="grid grid-cols-1 gap-4">
           <div class="flex items-center space-x-3">
             <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -229,7 +229,7 @@ import { Link, Form } from '@inertiajs/vue3'
       <!-- Back to Home -->
       <div class="text-center">
         <Link
-          :href="route('restaurants.index')"
+          href="/"
           class="text-red-600 hover:text-red-500 font-medium transition-colors duration-200"
         >
           ← Back to restaurants

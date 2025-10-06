@@ -69,7 +69,7 @@ class RestaurantController extends Controller
 
         Restaurant::create($validated);
 
-        return redirect()->route('admin.restaurants.index')
+        return redirect()->route('admin.restaurants')
             ->with('success', 'Restaurant created successfully!');
     }
 
@@ -122,7 +122,7 @@ class RestaurantController extends Controller
 
         $restaurant->update($validated);
 
-        return redirect()->route('admin.restaurants.index')
+        return redirect()->route('admin.restaurants')
             ->with('success', 'Restaurant updated successfully!');
     }
 
@@ -140,10 +140,10 @@ class RestaurantController extends Controller
                 $message .= " ({$productsCount} products were also deleted)";
             }
 
-            return redirect()->route('admin.restaurants.index')
+            return redirect()->route('admin.restaurants')
                 ->with('success', $message);
         } catch (\Exception $e) {
-            return redirect()->route('admin.restaurants.index')
+            return redirect()->route('admin.restaurants')
                 ->with('error', 'Error deleting restaurant: ' . $e->getMessage());
         }
     }

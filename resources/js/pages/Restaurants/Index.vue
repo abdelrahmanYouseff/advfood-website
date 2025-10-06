@@ -1,48 +1,26 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-red-50 via-yellow-50 to-orange-50" :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'">
-    <!-- Enhanced Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-2xl border-b border-red-100">
+  <div class="min-h-screen bg-gray-50" :dir="$i18n.locale === 'ar' ? 'rtl' : 'ltr'">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center py-4">
           <!-- Logo -->
-          <div class="flex items-center space-x-4 space-x-reverse">
-            <div class="relative">
-              <img src="/Foods Logo.png" alt="ADVFOOD" class="w-14 h-14 drop-shadow-lg" />
-              <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-full opacity-20 blur-sm"></div>
-            </div>
-            <div>
-              <h1 class="text-2xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">ADVFOOD</h1>
-              <p class="text-xs text-gray-500 -mt-1">منصة طلب الطعام الأولى</p>
-            </div>
+          <div class="flex items-center">
+            <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="w-16 h-16" />
           </div>
 
           <!-- Navigation -->
-          <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
-            <a href="/" class="group relative text-gray-700 hover:text-red-600 font-medium transition-all duration-300">
-              الرئيسية
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="/restaurants" class="group relative text-red-600 font-medium">
-              المطاعم
-              <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 to-orange-500"></span>
-            </a>
-            <a href="/cart" class="group relative text-gray-700 hover:text-red-600 font-medium transition-all duration-300">
-              السلة
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="/login" class="group relative text-gray-700 hover:text-red-600 font-medium transition-all duration-300">
-              تسجيل الدخول
-              <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="/register" class="relative bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 group overflow-hidden">
-              <span class="relative z-10">إنشاء حساب</span>
-              <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </a>
+          <nav class="hidden md:flex items-center space-x-8" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
+            <a href="/" class="text-gray-700 hover:text-red-600 font-medium">الرئيسية</a>
+            <a href="/restaurants" class="text-red-600 font-medium">المطاعم</a>
+            <a href="/cart" class="text-gray-700 hover:text-red-600 font-medium">السلة</a>
+            <a href="/login" class="text-gray-700 hover:text-red-600 font-medium">تسجيل الدخول</a>
+            <a href="/register" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">إنشاء حساب</a>
           </nav>
 
           <!-- Mobile menu button -->
           <div class="md:hidden">
-            <button class="text-gray-700 hover:text-red-600 p-2 rounded-lg hover:bg-red-50 transition-all duration-200">
+            <button class="text-gray-700 hover:text-red-600 p-2">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
@@ -52,307 +30,255 @@
       </div>
     </header>
 
-    <!-- Hero Section with Parallax -->
-    <div class="relative overflow-hidden bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600 pt-24">
-      <!-- Animated Background -->
-      <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-gradient-to-r from-red-700/90 to-orange-700/90"></div>
-        <div class="absolute top-0 left-0 w-full h-full">
-          <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div class="absolute top-40 right-20 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-red-400/15 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-      </div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div class="text-center">
-          <div class="mb-12">
-            <div class="inline-flex items-center px-8 py-4 bg-white/20 backdrop-blur-sm rounded-full text-white text-lg font-medium mb-8 border border-white/30">
-              <svg class="w-6 h-6 ml-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              توصيل سريع • طعام طازج • أفضل الأسعار
-            </div>
-          </div>
-
-          <div class="flex items-center justify-center mb-12" :class="$i18n.locale === 'ar' ? 'flex-row-reverse' : 'flex-row'">
-            <div class="relative">
-              <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-24 w-24 md:h-32 md:w-32 rounded-2xl shadow-2xl" :class="$i18n.locale === 'ar' ? 'ml-6' : 'mr-6'">
-              <div class="absolute -inset-4 bg-gradient-to-r from-yellow-400/30 to-orange-400/30 rounded-2xl blur-2xl"></div>
-            </div>
-            <h1 class="text-6xl md:text-8xl font-bold text-white leading-tight">
-              مرحباً بك في
-              <span class="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                ADVFOOD
-              </span>
-              <br>اكتشف أشهى المطاعم
-            </h1>
-          </div>
-          <p class="text-2xl md:text-3xl text-red-100 mb-16 max-w-5xl mx-auto leading-relaxed">
-            جرب أشهى الأطباق الطهي التي يتم توصيلها مباشرة إلى باب منزلك.
-            من المفضلات المحلية إلى المأكولات العالمية، نحن نجلب لك نكهات العالم.
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-red-600 to-orange-600 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="max-w-3xl mx-auto">
+          <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+            مرحباً بك في عالم الطعام اللذيذ
+          </h1>
+          <p class="text-xl md:text-2xl text-red-100 mb-8 leading-relaxed">
+            اكتشف أشهى المطاعم وأفضل الأطباق التي يتم توصيلها مباشرة إلى باب منزلك
           </p>
-
-          <!-- Enhanced Search Bar -->
-          <div class="max-w-4xl mx-auto">
-            <div class="relative group">
-              <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-orange-500 rounded-3xl blur-2xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20">
-                <div class="flex items-center p-3">
-                  <div class="flex-1 relative">
-                    <input
-                      v-model="searchQuery"
-                      type="text"
-                      placeholder="ابحث عن المطاعم أو المأكولات أو الأطباق..."
-                      class="w-full pl-16 pr-6 py-6 text-xl border-0 bg-transparent focus:outline-none placeholder-gray-500 font-medium"
-                    />
-                    <div class="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                      <svg class="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <button class="ml-3 px-12 py-6 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 text-lg">
-                    بحث
-                  </button>
-                </div>
-              </div>
+          <div class="flex flex-wrap justify-center gap-4 text-white">
+            <div class="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+              <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+              </svg>
+              <span class="font-medium">تقييم عالي</span>
+            </div>
+            <div class="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="font-medium">توصيل سريع</span>
+            </div>
+            <div class="flex items-center bg-white/20 backdrop-blur-sm rounded-full px-6 py-3">
+              <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+              </svg>
+              <span class="font-medium">أسعار مناسبة</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Enhanced Wave Decoration -->
-      <div class="absolute bottom-0 left-0 right-0">
-        <svg class="w-full h-20 text-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="currentColor"></path>
-          <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="currentColor"></path>
-          <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="currentColor"></path>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Enhanced Filters Section -->
-    <div class="bg-white/90 backdrop-blur-md shadow-2xl border-b border-red-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div class="flex items-center space-x-8 space-x-reverse">
-            <div class="flex items-center space-x-4 space-x-reverse">
-              <div class="relative">
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-12 w-12 rounded-2xl shadow-lg">
-                <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl opacity-20 blur-sm"></div>
-              </div>
-              <span class="text-2xl font-bold text-gray-800">تصفية حسب:</span>
-            </div>
-            <div class="flex space-x-4 space-x-reverse">
-              <select
-                v-model="sortBy"
-                class="px-8 py-4 border-0 bg-white/80 backdrop-blur-sm rounded-2xl focus:ring-2 focus:ring-red-500 focus:outline-none shadow-xl text-gray-700 font-bold transition-all duration-300 hover:bg-white text-lg"
-              >
-                <option value="rating">⭐ أعلى تقييم</option>
-                <option value="delivery_time">⚡ أسرع توصيل</option>
-                <option value="delivery_fee">💰 أقل رسوم توصيل</option>
-              </select>
-            </div>
-          </div>
-
-                                  <div class="flex items-center space-x-6 space-x-reverse">
-              <Link
-                :href="route('cart.index')"
-                class="relative group inline-flex items-center px-10 py-5 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 shadow-2xl hover:shadow-red-500/25 transform hover:scale-105 text-lg"
-              >
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-7 h-7 rounded-lg shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
-                </svg>
-                عرض السلة
-                <span v-if="cartCount > 0" class="absolute bg-red-500 text-white text-sm rounded-full h-8 w-8 flex items-center justify-center font-bold shadow-lg" :class="$i18n.locale === 'ar' ? '-top-3 -left-3' : '-top-3 -right-3'">
-                  {{ cartCount }}
-                </span>
-              </Link>
-
-              <Link
-                v-if="$page.props.auth.user"
-                :href="route('dashboard')"
-                class="flex items-center text-gray-700 hover:text-red-600 font-bold transition-all duration-300 px-6 py-3 rounded-xl hover:bg-red-50 text-lg"
-              >
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-6 h-6 rounded-lg shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-3'">
-                حسابي
-              </Link>
-              <Link
-                v-else
-                :href="route('login')"
-                class="flex items-center text-gray-700 hover:text-red-600 font-bold transition-all duration-300 px-6 py-3 rounded-xl hover:bg-red-50 text-lg"
-              >
-                <img src="/Foods Logo.png" alt="ADVFood Logo" class="w-6 h-6 rounded-lg shadow-sm" :class="$i18n.locale === 'ar' ? 'ml-3' : 'mr-2'">
-                تسجيل الدخول
-              </Link>
-            </div>
         </div>
       </div>
     </div>
 
-    <!-- Enhanced Restaurants Grid -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <!-- Results Count -->
-      <div class="mb-16 text-center">
-        <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-red-100 to-orange-100 rounded-full text-red-700 text-sm font-medium mb-8">
-          <svg class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-          </svg>
-          {{ filteredRestaurants.length }} مطعم متميز
-        </div>
-        <div class="flex items-center justify-center mb-8" :class="$i18n.locale === 'ar' ? 'flex-row-reverse' : 'flex-row'">
-          <div class="relative">
-            <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-16 w-16 rounded-2xl shadow-2xl" :class="$i18n.locale === 'ar' ? 'ml-6' : 'mr-6'">
-            <div class="absolute -inset-2 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl opacity-20 blur-lg"></div>
-          </div>
-          <h2 class="text-5xl font-bold text-gray-900">
-            اكتشف أفضل
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-orange-600">المطاعم</span>
-          </h2>
-        </div>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-          اكتشف التميز الطهي مع مجموعتنا المختارة من أفضل المطاعم في منطقتك
-        </p>
-      </div>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-      <!-- Enhanced Restaurants Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <!-- Restaurants Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div
-          v-for="restaurant in filteredRestaurants"
+          v-for="restaurant in restaurants"
           :key="restaurant.id"
-          class="group relative bg-white rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700 overflow-hidden transform hover:-translate-y-6 border border-red-100"
+          class="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden"
         >
           <!-- Restaurant Image -->
-          <div class="relative h-64 bg-gradient-to-br from-red-100 to-orange-100 overflow-hidden">
+          <div class="h-48 bg-gray-200">
             <img
               v-if="restaurant.cover_image_url"
               :src="restaurant.cover_image_url"
               :alt="restaurant.name"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
-              @error="console.log('Cover image failed to load:', restaurant.cover_image_url)"
-              @load="console.log('Cover image loaded successfully:', restaurant.cover_image_url)"
+              class="w-full h-full object-cover"
             />
-            <div v-else class="w-full h-full bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center">
-              <div class="text-center">
-                <svg class="w-16 h-16 text-red-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                </svg>
-                <p class="text-red-500 font-medium text-sm">صورة المطعم</p>
-              </div>
+            <div v-else class="w-full h-full bg-gray-200 flex items-center justify-center">
+              <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+              </svg>
             </div>
-
-            <!-- Gradient Overlay -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <!-- Restaurant Info - Simplified -->
-          <div class="p-8 text-center">
-            <!-- Restaurant Logo -->
-            <div class="flex justify-center mb-6">
-              <div class="relative">
-                <img
-                  v-if="restaurant.logo_url"
-                  :src="restaurant.logo_url"
-                  :alt="restaurant.name"
-                  class="w-20 h-20 rounded-2xl object-cover border-4 border-red-100 shadow-xl"
-                  @error="console.log('Logo failed to load:', restaurant.logo_url)"
-                  @load="console.log('Logo loaded successfully:', restaurant.logo_url)"
-                />
-                <div v-else class="w-20 h-20 rounded-2xl bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center border-4 border-red-100 shadow-xl">
-                  <svg class="w-10 h-10 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                  </svg>
-                </div>
-                <!-- Status Icon -->
-                <div class="absolute -bottom-1 -right-1 w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full border-2 border-white shadow-lg flex items-center justify-center">
-                  <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
+          <!-- Restaurant Info -->
+          <div class="p-6">
+            <!-- Restaurant Logo and Name -->
+            <div class="flex items-center mb-4">
+              <img
+                v-if="restaurant.logo_url"
+                :src="restaurant.logo_url"
+                :alt="restaurant.name"
+                class="w-12 h-12 rounded-full object-cover border-2 border-gray-200"
+              />
+              <div v-else class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+              </div>
+              <div class="flex-1 mr-4">
+                <h3 class="text-lg font-semibold text-gray-900">{{ restaurant.name }}</h3>
+                <p class="text-sm text-gray-600">{{ restaurant.description || 'مطعم متميز' }}</p>
               </div>
             </div>
 
-            <!-- Restaurant Name -->
-            <h3 class="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition-colors duration-300 mb-4">
-              {{ restaurant.name }}
-            </h3>
+            <!-- Restaurant Details -->
+            <div class="space-y-2 mb-4">
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">التقييم:</span>
+                <span class="font-medium">{{ restaurant.rating || '4.5' }} ⭐</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">وقت التوصيل:</span>
+                <span class="font-medium">{{ restaurant.delivery_time || '30' }} دقيقة</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">رسوم التوصيل:</span>
+                <span class="font-medium">{{ restaurant.delivery_fee || '5' }} ريال</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span class="text-gray-600">الحد الأدنى:</span>
+                <span class="font-medium">{{ restaurant.minimum_order || '25' }} ريال</span>
+              </div>
+            </div>
 
             <!-- Action Button -->
             <Link
               :href="route('restaurants.show', restaurant.id)"
-              class="group/btn relative w-full bg-gradient-to-r from-red-500 to-orange-500 text-white py-4 px-6 rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 text-center block shadow-xl hover:shadow-red-500/25 transform hover:scale-105 overflow-hidden"
+              class="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors duration-200 text-center block"
             >
-              <span class="relative z-10 flex items-center justify-center text-base">
-                استكشف القائمة
-                <svg class="w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" :class="$i18n.locale === 'ar' ? 'mr-2 group-hover/btn:-translate-x-1' : 'ml-2 group-hover/btn:translate-x-1'" :style="$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                </svg>
-              </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-red-600 to-orange-600 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+              عرض القائمة
             </Link>
           </div>
         </div>
       </div>
 
-      <!-- Enhanced Empty State -->
-      <div v-if="filteredRestaurants.length === 0" class="text-center py-32">
-        <div class="max-w-2xl mx-auto">
-          <div class="relative w-40 h-40 mx-auto mb-12">
-            <div class="absolute inset-0 bg-gradient-to-br from-red-100 to-orange-100 rounded-full animate-pulse"></div>
-            <div class="absolute inset-4 bg-gradient-to-br from-red-200 to-orange-200 rounded-full flex items-center justify-center">
-              <svg class="w-20 h-20 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-              </svg>
+      <!-- Empty State -->
+      <div v-if="filteredRestaurants.length === 0" class="text-center py-12">
+        <svg class="w-16 h-16 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+        </svg>
+        <h3 class="text-lg font-medium text-gray-900 mb-2">لا توجد مطاعم</h3>
+        <p class="text-gray-600">جرب البحث بكلمات مختلفة</p>
+      </div>
+    </main>
+
+    <!-- Professional Footer -->
+    <footer class="bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white">
+      <!-- Main Footer Content -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="lg:col-span-1">
+            <div class="flex items-center mb-6">
+              <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="w-12 h-12 rounded-xl shadow-lg" />
+              <h3 class="text-2xl font-bold ml-3 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+                منصتنا
+              </h3>
+            </div>
+            <p class="text-gray-400 mb-6 leading-relaxed">
+              منصة طلب الطعام الرائدة التي تجمع بين أفضل المطاعم وتجربة طلب سلسة وآمنة.
+            </p>
+            <!-- Social Media Icons -->
+            <div class="space-y-4">
+              <h5 class="text-lg font-semibold text-white mb-4">تابعنا على</h5>
+              <div class="flex gap-2">
+                <!-- Facebook -->
+                <a href="#" class="group relative w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+
+                <!-- Instagram -->
+                <a href="#" class="group relative w-8 h-8 bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 rounded-lg hover:from-purple-600 hover:via-pink-600 hover:to-orange-600 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281c-.49 0-.98-.49-.98-.98s.49-.98.98-.98.98.49.98.98-.49.98-.98.98zm-5.83 8.281c-1.297 0-2.448-.49-3.323-1.297C6.198 13.895 5.708 12.744 5.708 11.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297z"/>
+                  </svg>
+                </a>
+
+                <!-- Twitter -->
+                <a href="#" class="group relative w-8 h-8 bg-gradient-to-br from-sky-500 to-sky-600 rounded-lg hover:from-sky-600 hover:to-sky-700 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-sky-500/25 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  </svg>
+                </a>
+
+                <!-- YouTube -->
+                <a href="#" class="group relative w-8 h-8 bg-gradient-to-br from-red-600 to-red-700 rounded-lg hover:from-red-700 hover:to-red-800 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-red-500/25 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="#" class="group relative w-8 h-8 bg-gradient-to-br from-blue-700 to-blue-800 rounded-lg hover:from-blue-800 hover:to-blue-900 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+
+                <!-- WhatsApp -->
+                <a href="#" class="group relative w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-green-500/25 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
-          <h3 class="text-4xl font-bold text-gray-900 mb-6">لم نجد مطاعم</h3>
-          <p class="text-xl text-gray-600 mb-12 leading-relaxed">جرب البحث بكلمات مختلفة أو اضبط الفلاتر الخاصة بك</p>
-          <button
-            @click="searchQuery = ''"
-            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
-          >
-            {{ $t('Show All Restaurants') }}
-          </button>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6 text-white">روابط سريعة</h4>
+            <ul class="space-y-3">
+              <li><a href="/" class="text-gray-400 hover:text-white transition-colors duration-300">الرئيسية</a></li>
+              <li><a href="/restaurants" class="text-gray-400 hover:text-white transition-colors duration-300">المطاعم</a></li>
+              <li><a href="/cart" class="text-gray-400 hover:text-white transition-colors duration-300">السلة</a></li>
+              <li><a href="/login" class="text-gray-400 hover:text-white transition-colors duration-300">تسجيل الدخول</a></li>
+              <li><a href="/register" class="text-gray-400 hover:text-white transition-colors duration-300">إنشاء حساب</a></li>
+            </ul>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6 text-white">خدماتنا</h4>
+            <ul class="space-y-3">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">توصيل سريع</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">دفع آمن</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">تتبع الطلب</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">دعم العملاء</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">برنامج الولاء</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-lg font-semibold mb-6 text-white">تواصل معنا</h4>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-red-400 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                <span class="text-gray-400">info@ourplatform.com</span>
+              </div>
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-red-400 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                </svg>
+                <span class="text-gray-400">+966 50 123 4567</span>
+              </div>
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-red-400 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                </svg>
+                <span class="text-gray-400">الرياض، المملكة العربية السعودية</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Enhanced Footer -->
-    <footer class="bg-gradient-to-br from-gray-900 via-slate-900 to-black text-white py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-          <h3 class="text-4xl font-bold mb-6 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
-            {{ $t('ADVFOOD - Best Food Delivery Experience') }}
-          </h3>
-          <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-            {{ $t('Fast • Secure • Reliable • Delicious') }}
-          </p>
-          <div class="flex justify-center space-x-12" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
-            <div class="flex items-center text-lg text-gray-300">
-              <div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center" :class="$i18n.locale === 'ar' ? 'ml-4' : 'mr-4'">
-                <svg class="w-6 h-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <span class="font-semibold">{{ $t('Fast Delivery') }}</span>
+      <!-- Bottom Footer -->
+      <div class="border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="text-gray-400 text-sm mb-4 md:mb-0">
+              © 2025 منصتنا. جميع الحقوق محفوظة.
             </div>
-            <div class="flex items-center text-lg text-gray-300">
-              <div class="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center" :class="$i18n.locale === 'ar' ? 'ml-4' : 'mr-4'">
-                <svg class="w-6 h-6 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <span class="font-semibold">{{ $t('Fresh Food') }}</span>
-            </div>
-            <div class="flex items-center text-lg text-gray-300">
-              <div class="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center" :class="$i18n.locale === 'ar' ? 'ml-4' : 'mr-4'">
-                <svg class="w-6 h-6 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-              </div>
-              <span class="font-semibold">{{ $t('Secure Payment') }}</span>
+            <div class="flex space-x-6" :class="$i18n.locale === 'ar' ? 'space-x-reverse' : ''">
+              <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">سياسة الخصوصية</a>
+              <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">شروط الاستخدام</a>
+              <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors duration-300">سياسة الاسترداد</a>
             </div>
           </div>
         </div>
@@ -362,7 +288,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { Link } from '@inertiajs/vue3'
 
 const props = defineProps({
@@ -370,82 +296,51 @@ const props = defineProps({
 })
 
 const searchQuery = ref('')
-const sortBy = ref('rating')
-const cartCount = ref(0)
 
 const filteredRestaurants = computed(() => {
-  let filtered = props.restaurants
+  if (!props.restaurants) return []
 
-  // Search filter
-  if (searchQuery.value) {
-    filtered = filtered.filter(restaurant =>
-      restaurant.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-      restaurant.description?.toLowerCase().includes(searchQuery.value.toLowerCase())
-    )
-  }
+  if (!searchQuery.value) return props.restaurants
 
-  // Sort
-  filtered.sort((a, b) => {
-    switch (sortBy.value) {
-      case 'rating':
-        return b.rating - a.rating
-      case 'delivery_time':
-        return a.delivery_time - b.delivery_time
-      case 'delivery_fee':
-        return a.delivery_fee - b.delivery_fee
-      default:
-        return 0
-    }
-  })
-
-  return filtered
-})
-
-onMounted(() => {
-  // Get cart count from session
-  const cart = JSON.parse(localStorage.getItem('cart') || '{}')
-  cartCount.value = Object.keys(cart).length
+  return props.restaurants.filter(restaurant =>
+    restaurant.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+    restaurant.description?.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
 })
 </script>
 
 <style scoped>
-.line-clamp-3 {
+.line-clamp-1 {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-::-webkit-scrollbar-track {
-  background: #fef2f2;
-  border-radius: 5px;
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
 }
 
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #ef4444, #f97316);
-  border-radius: 5px;
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #dc2626, #ea580c);
+/* Enhanced button hover effects */
+.group\/btn:hover {
+  transform: scale(1.05);
 }
 
-/* Animation delays */
-.delay-500 {
-  animation-delay: 500ms;
-}
-
-.delay-1000 {
-  animation-delay: 1000ms;
-}
-
-/* Enhanced shadows */
-.shadow-3xl {
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
+/* Smooth transitions */
+* {
+  transition: all 0.3s ease;
 }
 </style>

@@ -25,6 +25,10 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
 // QR Image Book Viewer Routeee
 Route::get('/qrs/{id}', [App\Http\Controllers\QRController::class, 'show']);
 
@@ -51,8 +55,9 @@ Route::get('/test-qr', function () {
 });
 
 // Restaurant routesss
-Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
+
+Route::get('/api/products/recent', [App\Http\Controllers\ProductController::class, 'recent'])->name('api.products.recent');
 
 // Cart routes
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
@@ -118,6 +123,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::get('/dashboard/restaurants', function () {
+        return Inertia::render('Admin/Restaurants');
+    })->name('dashboard.restaurants');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

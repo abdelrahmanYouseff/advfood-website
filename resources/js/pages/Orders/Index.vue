@@ -9,7 +9,7 @@
           </div>
           <div class="flex items-center space-x-4 space-x-reverse">
             <Link
-              :href="route('restaurants.index')"
+              href="/"
               class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700"
             >
               طلب جديد
@@ -30,7 +30,7 @@
         <p class="mt-1 text-sm text-gray-500">ابدأ بالتسوق من مطاعمنا المميزة</p>
         <div class="mt-6">
           <Link
-            :href="route('restaurants.index')"
+            href="/"
             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700"
           >
             تصفح المطاعم

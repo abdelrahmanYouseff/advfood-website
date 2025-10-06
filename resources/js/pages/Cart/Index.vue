@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center py-6">
           <div class="flex items-center space-x-6">
             <Link
-              :href="route('restaurants.index')"
+              href="/"
               class="group p-3 bg-gradient-to-r from-red-100 to-orange-100 rounded-xl hover:from-red-200 hover:to-orange-200 transition-all duration-200 shadow-lg hover:shadow-xl"
             >
               <svg class="w-6 h-6 text-red-600 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -14,7 +14,7 @@
               </svg>
             </Link>
             <div class="flex items-center space-x-3">
-              <img src="/Foods Logo.png" alt="ADVFood Logo" class="h-10 w-10 rounded-lg shadow-sm">
+              <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-10 w-10 rounded-lg shadow-sm">
               <div>
                 <h1 class="text-3xl font-bold text-gray-900">Shopping Cart</h1>
                 <p class="text-gray-600">{{ cartItems.length }} items in your cart</p>
@@ -59,7 +59,7 @@
               <h3 class="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h3>
               <p class="text-gray-600 mb-8 max-w-md mx-auto">Start shopping from our amazing restaurants and discover delicious food</p>
               <Link
-                :href="route('restaurants.index')"
+                href="/"
                 class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
               >
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

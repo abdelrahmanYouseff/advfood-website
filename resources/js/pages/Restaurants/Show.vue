@@ -1,113 +1,62 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-red-50 via-yellow-50 to-orange-50">
-    <!-- Hero Section with Restaurant Cover -->
-    <div class="relative h-96 bg-gradient-to-br from-red-600 via-orange-600 to-yellow-600 overflow-hidden">
-      <!-- Restaurant Cover Image Background -->
-      <div v-if="restaurant.cover_image_url" class="absolute inset-0">
+  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" :dir="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 w-full" style="background-color: transparent;">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-36">
+          <!-- Logo -->
+          <div class="flex items-center space-x-2">
+            <div class="w-32 h-32 flex items-center justify-center">
+              <img src="/asset/GatherUs-Logo.png" alt="GatherUs Logo" class="w-32 h-32 object-contain">
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-white -mt-1">{{ $t('Discover Delicious Restaurants') }}</span>
+            </div>
+          </div>
+
+          <!-- Back Button -->
+          <Link
+            href="/"
+            class="flex items-center gap-2 px-4 py-2 text-sm border border-white/30 rounded-md hover:bg-white/20 transition-colors text-white"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            {{ $t('Back to Home') }}
+          </Link>
+        </div>
+      </div>
+    </header>
+
+    <!-- Header with Restaurant Info -->
+    <div class="relative -mt-36">
+      <div class="h-96 overflow-hidden">
         <img
-          :src="restaurant.cover_image_url"
-          :alt="restaurant.name + ' Cover'"
+          :src="restaurant.cover_image_url || restaurant.logo_url || '/images/default-restaurant-cover.png'"
+          :alt="restaurant.name"
           class="w-full h-full object-cover"
         />
-        <div class="absolute inset-0 bg-gradient-to-r from-red-700/90 to-orange-700/90"></div>
+        <div class="absolute inset-0 bg-black/40" />
       </div>
 
-      <!-- Background Pattern -->
-      <div class="absolute inset-0">
-        <div v-if="!restaurant.cover_image_url" class="absolute inset-0 bg-gradient-to-r from-red-700/90 to-orange-700/90"></div>
-        <div class="absolute top-0 left-0 w-full h-full">
-          <div class="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-          <div class="absolute top-40 right-20 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-red-400/15 rounded-full blur-3xl animate-pulse delay-500"></div>
-        </div>
-      </div>
 
-      <!-- Enhanced Header -->
-      <header class="relative z-10 bg-white/10 backdrop-blur-sm border-b border-white/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between py-4">
-            <div class="flex items-center space-x-6">
-              <Link
-                :href="route('restaurants.index')"
-                class="group p-3 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                <svg class="w-6 h-6 text-white group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-              </Link>
-              <div class="text-white">
-                <h1 class="text-2xl font-bold">{{ restaurant.name }}</h1>
-                <p class="text-red-100">{{ restaurant.address }}</p>
-              </div>
-            </div>
-
-            <Link
-              :href="route('cart.index')"
-              class="relative group inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm text-white rounded-xl font-semibold hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
-            >
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
-              </svg>
-              عرض السلة
-              <span v-if="cartCount > 0" class="absolute -top-2 -right-2 bg-red-500 text-white text-sm rounded-full h-6 w-6 flex items-center justify-center font-bold shadow-lg">
-                {{ cartCount }}
-              </span>
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      <!-- Restaurant Hero Info -->
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col lg:flex-row items-center lg:items-end space-y-8 lg:space-y-0 lg:space-x-12">
-          <div class="relative">
-            <img
-              :src="restaurant.logo_url"
-              :alt="restaurant.name"
-              class="w-32 h-32 lg:w-40 lg:h-40 rounded-3xl object-cover border-8 border-white shadow-2xl"
-            />
-            <div class="absolute -bottom-4 -right-4 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg"></div>
-          </div>
-
-          <div class="flex-1 text-center lg:text-left text-white">
-            <h2 class="text-4xl lg:text-5xl font-bold mb-4">{{ restaurant.name }}</h2>
-            <p class="text-xl text-red-100 mb-8 max-w-3xl leading-relaxed">{{ restaurant.description }}</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div class="flex items-center justify-center lg:justify-start space-x-3 p-4 bg-white/20 backdrop-blur-sm rounded-2xl shadow-lg">
-                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
+        <div class="max-w-7xl mx-auto">
+          <div class="flex items-end justify-between">
+            <div class="text-white">
+              <h1 class="text-4xl font-bold mb-2">{{ restaurant.name }}</h1>
+              <div class="flex items-center gap-4 text-lg">
+                <span class="bg-white/20 text-white border border-white/30 px-3 py-1 rounded-full text-sm">
+                  {{ getCuisineType() }}
+                </span>
+                <span class="bg-white/20 text-white border border-white/30 px-3 py-1 rounded-full text-sm">
+                  {{ getPriceRange(restaurant.minimum_order) }}
+                </span>
+                <div class="flex items-center gap-1">
+                  <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
-                </div>
-                <div>
-                  <div class="text-2xl font-bold">{{ restaurant.rating }}</div>
-                  <div class="text-sm text-red-100">تقييم العملاء</div>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-center lg:justify-start space-x-3 p-4 bg-white/20 backdrop-blur-sm rounded-2xl shadow-lg">
-                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <div class="text-2xl font-bold">{{ restaurant.delivery_time }} دقيقة</div>
-                  <div class="text-sm text-red-100">وقت التوصيل</div>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-center lg:justify-start space-x-3 p-4 bg-white/20 backdrop-blur-sm rounded-2xl shadow-lg">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
-                  </svg>
-                </div>
-                <div>
-                  <div class="text-2xl font-bold">{{ restaurant.delivery_fee }} ريال</div>
-                  <div class="text-sm text-red-100">Delivery Fee</div>
+                  <span>{{ restaurant.rating || '0.0' }}</span>
                 </div>
               </div>
             </div>
@@ -116,287 +65,258 @@
       </div>
     </div>
 
-    <!-- Main Content -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="lg:grid lg:grid-cols-4 lg:gap-8">
-        <!-- Restaurant Info Sidebar -->
-        <div class="lg:col-span-1 mb-8 lg:mb-0">
-          <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 sticky top-24">
-            <div class="text-center mb-8">
-              <h3 class="text-2xl font-bold text-gray-900 mb-4">Restaurant Info</h3>
-              <div class="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center">
-                <svg class="w-12 h-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                </svg>
-              </div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Restaurant Details Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-lg shadow-lg sticky top-6">
+            <div class="p-6 border-b border-gray-200">
+              <h3 class="text-xl font-semibold text-gray-900">{{ $t('Restaurant Information') }}</h3>
             </div>
+            <div class="p-6 space-y-4">
+              <p class="text-gray-600">{{ restaurant.description || $t('Restaurant description not available') }}</p>
 
-            <!-- Restaurant Stats -->
-            <div class="space-y-4 mb-8">
-              <div class="p-4 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border border-red-100">
-                <div class="flex items-center">
-                  <div class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-lg font-bold text-gray-900">{{ restaurant.rating }} / 5</div>
-                    <div class="text-sm text-gray-600">Customer Rating</div>
-                  </div>
-                </div>
-              </div>
+              <div class="border-t border-gray-200 pt-4"></div>
 
-              <div class="p-4 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl border border-yellow-100">
-                <div class="flex items-center">
-                  <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-lg font-bold text-gray-900">{{ restaurant.delivery_time }} min</div>
-                    <div class="text-sm text-gray-600">Average Delivery</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-100">
-                <div class="flex items-center">
-                  <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-lg font-bold text-gray-900">{{ restaurant.delivery_fee }} ريال</div>
-                    <div class="text-sm text-gray-600">Delivery Fee</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl border border-blue-100">
-                <div class="flex items-center">
-                  <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-lg font-bold text-gray-900">{{ restaurant.minimum_order }} ريال</div>
-                    <div class="text-sm text-gray-600">Minimum Order</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Working Hours -->
-            <div class="border-t border-gray-200 pt-6">
-              <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                ساعات العمل
-              </h4>
               <div class="space-y-3">
-                <div v-if="restaurant.working_hours" v-for="(hours, day) in restaurant.working_hours" :key="day" class="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-                  <span class="text-sm font-medium text-gray-700 capitalize">{{ day }}</span>
-                  <span class="text-sm text-gray-900 font-semibold">{{ hours }}</span>
-                </div>
-                <div v-else class="p-3 bg-gray-50 rounded-xl text-center">
-                  <span class="text-sm text-gray-500">لا توجد معلومات عن ساعات العمل</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="border-t border-gray-200 pt-6 mt-6">
-              <h4 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
-                <svg class="w-5 h-5 mr-2 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                </svg>
-                معلومات الاتصال
-              </h4>
-              <div class="space-y-3">
-                <div class="flex items-center p-3 bg-gray-50 rounded-xl">
-                  <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center gap-3 text-sm">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                   </svg>
-                  <span class="text-sm text-gray-700">{{ restaurant.address }}</span>
+                  <span>{{ restaurant.address || 'العنوان غير متوفر' }}</span>
                 </div>
-                <div class="flex items-center p-3 bg-gray-50 rounded-xl">
-                  <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center gap-3 text-sm">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
                   </svg>
-                  <span class="text-sm text-gray-700">{{ restaurant.phone }}</span>
+                  <span>{{ restaurant.phone || 'الهاتف غير متوفر' }}</span>
+                </div>
+                <div class="flex items-center gap-3 text-sm">
+                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span>{{ getWorkingHours(restaurant.working_hours) }}</span>
                 </div>
               </div>
+
+              <div class="border-t border-gray-200 pt-4"></div>
+
+              <button class="w-full bg-gradient-to-r from-gray-900 to-gray-700 hover:from-gray-800 hover:to-gray-600 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200">
+                {{ $t('Book a Table') }}
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Menu Section -->
-        <div class="lg:col-span-3">
-          <!-- Menu Categories -->
-          <div class="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8 mb-8">
-            <h3 class="text-3xl font-bold text-gray-900 mb-8 flex items-center">
-              <svg class="w-8 h-8 mr-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-              </svg>
-              قائمة الطعام
-            </h3>
-            <div class="flex flex-wrap gap-4">
-              <button
-                v-for="category in categories"
-                :key="category.id"
-                @click="selectedCategory = category.id"
-                :class="[
-                  'px-6 py-4 rounded-2xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105',
-                  selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-red-500 to-orange-500 text-white'
-                    : 'bg-gradient-to-r from-red-50 to-orange-50 text-gray-700 hover:from-red-100 hover:to-orange-100'
-                ]"
-              >
-                <span class="flex items-center">
-                  <img v-if="category.image_url" :src="category.image_url" :alt="category.name" class="w-8 h-8 rounded-full mr-3 object-cover" />
-                  <span class="text-lg">{{ category.name }}</span>
-                  <span class="ml-3 bg-white/20 px-3 py-1 rounded-full text-sm font-bold">
-                    {{ getCategoryProductCount(category.id) }}
-                  </span>
-                </span>
-              </button>
-            </div>
+        <!-- Menu -->
+        <div class="lg:col-span-2">
+          <div class="mb-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ $t('Menu') }}</h2>
+            <p class="text-gray-600">{{ $t('Discover our carefully selected dishes') }}</p>
           </div>
 
-          <!-- Products Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div v-if="categories.length > 0" class="space-y-8">
             <div
-              v-for="product in filteredProducts"
-              :key="product.id"
-              class="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2"
+              v-for="category in categories"
+              :key="category.id"
+              class="bg-white rounded-lg shadow-lg overflow-hidden"
             >
-              <!-- Product Image -->
-              <div class="relative h-72 bg-gradient-to-br from-red-100 to-orange-100 overflow-hidden">
-                <img
-                  :src="product.image_url"
-                  :alt="product.name"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-                <!-- Price Badge -->
-                <div class="absolute top-4 right-4">
-                  <div class="bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-2 rounded-2xl font-bold shadow-2xl backdrop-blur-sm">
-                    {{ product.formatted_price }}
-                  </div>
-                </div>
-
-                <!-- Not Available Overlay -->
-                <div v-if="!product.is_available" class="absolute inset-0 bg-black/50 flex items-center justify-center">
-                  <div class="bg-red-500 text-white px-6 py-3 rounded-2xl font-bold text-lg">
-                    غير متاح حالياً
-                  </div>
-                </div>
-
-                <!-- Featured Badge -->
-                <div v-if="product.is_featured" class="absolute top-4 left-4">
-                  <div class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                    ⭐ مميز
-                  </div>
-                </div>
+              <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                <h3 class="text-xl font-semibold text-gray-900">{{ category.name }}</h3>
               </div>
+              <div class="divide-y divide-gray-200">
+                <div
+                  v-for="(product, index) in getCategoryProducts(category.id)"
+                  :key="product.id"
+                  class="p-6 hover:bg-gray-50 transition-colors"
+                >
+                  <div class="flex gap-4">
+                    <!-- Product Image -->
+                    <div class="flex-shrink-0">
+                      <img
+                        :src="product.image_url"
+                        :alt="product.name"
+                        class="w-20 h-20 rounded-lg object-cover shadow-md"
+                        @error="handleImageError"
+                      />
+                    </div>
 
-              <!-- Product Info -->
-              <div class="p-8">
-                <div class="mb-6">
-                  <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-red-600 transition-colors duration-200">
-                    {{ product.name }}
-                  </h3>
-                  <p class="text-gray-600 text-base leading-relaxed line-clamp-3">
-                    {{ product.description }}
-                  </p>
-                </div>
-
-                <!-- Category Badge -->
-                <div class="mb-6">
-                  <span class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-red-100 to-orange-100 text-red-700">
-                    <img v-if="product.category?.image_url" :src="product.category.image_url" :alt="product.category.name" class="w-5 h-5 rounded-full mr-2 object-cover" />
-                    {{ product.category?.name }}
-                  </span>
-                </div>
-
-                <!-- Quantity Controls -->
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center space-x-4">
-                    <button
-                      @click="updateQuantity(product.id, getQuantity(product.id) - 1)"
-                      :disabled="getQuantity(product.id) <= 0"
-                      class="w-12 h-12 rounded-full bg-gradient-to-r from-red-100 to-orange-100 text-red-600 hover:from-red-200 hover:to-orange-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-110"
-                    >
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
-                      </svg>
-                    </button>
-                    <span class="w-16 text-center text-2xl font-bold text-gray-900">{{ getQuantity(product.id) }}</span>
-                    <button
-                      @click="updateQuantity(product.id, getQuantity(product.id) + 1)"
-                      :disabled="!product.is_available"
-                      class="w-12 h-12 rounded-full bg-gradient-to-r from-red-100 to-orange-100 text-red-600 hover:from-red-200 hover:to-orange-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-110"
-                    >
-                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                      </svg>
-                    </button>
+                    <!-- Product Details -->
+                    <div class="flex-1">
+                      <div class="flex justify-between items-start mb-2">
+                        <div class="flex items-center gap-2">
+                          <h4 class="font-semibold text-gray-900">{{ product.name }}</h4>
+                          <div class="flex gap-1">
+                            <span v-if="product.is_vegetarian" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
+                              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.828a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                              </svg>
+                              نباتي
+                            </span>
+                            <span v-if="product.is_gluten_free" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
+                              <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                              </svg>
+                              خالي من الجلوتين
+                            </span>
+                          </div>
+                        </div>
+                        <span class="font-bold text-lg text-gray-900">
+                          {{ product.formatted_price }}
+                        </span>
+                      </div>
+                      <p class="text-gray-600 text-sm leading-relaxed">
+                        {{ product.description }}
+                      </p>
+                    </div>
                   </div>
-
-                  <button
-                    @click="addToCart(product)"
-                    :disabled="!product.is_available"
-                    class="px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                  >
-                    <span class="flex items-center">
-                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
-                      </svg>
-                      إضافة للسلة
-                    </span>
-                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Empty State -->
-          <div v-if="filteredProducts.length === 0" class="text-center py-20">
+          <!-- No Menu Items -->
+          <div v-else class="text-center py-16">
             <div class="max-w-md mx-auto">
-              <div class="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-red-100 to-orange-100 rounded-full flex items-center justify-center">
-                <svg class="w-16 h-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-32 h-32 mx-auto mb-8 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
+                <svg class="w-16 h-16 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
               </div>
-              <h3 class="text-3xl font-bold text-gray-900 mb-4">لا توجد منتجات</h3>
-              <p class="text-xl text-gray-600 mb-8">جرب اختيار فئة مختلفة أو عد لاحقاً لرؤية منتجات جديدة</p>
-              <button
-                @click="selectedCategory = null"
-                class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-red-500 to-orange-500 text-white rounded-2xl font-bold hover:from-red-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:scale-105"
-              >
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
-                </svg>
-                عرض جميع المنتجات
-              </button>
+              <h3 class="text-3xl font-bold text-gray-900 mb-4">{{ $t('No Menu Items') }}</h3>
+              <p class="text-xl text-gray-600 mb-8">{{ $t('This restaurant has no menu items available at the moment') }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="space-y-4">
+            <p class="text-gray-300 leading-relaxed">
+              {{ $t('Your ideal destination to discover the best restaurants and culinary experiences. From cozy small restaurants to luxurious fine dining, we connect you with unforgettable meals.') }}
+            </p>
+            <div class="flex space-x-4 space-x-reverse">
+              <!-- Facebook -->
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+                aria-label="Facebook"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </a>
+
+              <!-- Twitter -->
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+                aria-label="Twitter"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                </svg>
+              </a>
+
+              <!-- Instagram -->
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+                aria-label="Instagram"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281c-.49 0-.98-.49-.98-.98s.49-.98.98-.98.98.49.98.98-.49.98-.98.98zm-5.83 8.281c-1.297 0-2.448-.49-3.323-1.297C6.198 13.895 5.708 12.744 5.708 11.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297z"/>
+                </svg>
+              </a>
+
+              <!-- YouTube -->
+              <a
+                href="#"
+                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+                aria-label="YouTube"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-white">{{ $t('Quick Links') }}</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block">{{ $t('About Us') }}</a></li>
+              <li><a href="#" class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block">{{ $t('Contact Us') }}</a></li>
+              <li><a href="#" class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block">{{ $t('Privacy Policy') }}</a></li>
+              <li><a href="#" class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block">{{ $t('Terms of Service') }}</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold text-white">{{ $t('Contact Us') }}</h4>
+            <div class="space-y-3">
+              <div class="text-gray-300">
+                <div class="font-medium">{{ $t('Address') }}</div>
+                <div class="text-sm">QM4G+F35, King Abdulaziz Rd, Al Muruj, Riyadh 12465, Saudi Arabia</div>
+              </div>
+
+              <div class="text-gray-300">
+                <div class="font-medium">{{ $t('Phone') }}</div>
+                <div class="text-sm">+966 50 784 4079</div>
+              </div>
+
+              <div class="text-gray-300">
+                <div class="font-medium">{{ $t('Email') }}</div>
+                <div class="text-sm">info@adv-line.sa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="my-8 border-t border-gray-700"></div>
+
+        <!-- Bottom Section -->
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div class="flex items-center space-x-2 space-x-reverse text-gray-300">
+            <span>© {{ new Date().getFullYear() }} {{ $t('All rights reserved') }}.</span>
+          </div>
+
+          <div class="flex items-center space-x-1 space-x-reverse text-gray-300">
+            <span>{{ $t('Made with') }}</span>
+            <svg class="w-4 h-4 text-red-500 fill-red-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span>{{ $t('food lovers') }}</span>
+          </div>
+
+          <div class="flex space-x-6 space-x-reverse text-sm text-gray-400">
+            <a href="#" class="hover:text-white transition-colors">{{ $t('Privacy') }}</a>
+            <a href="#" class="hover:text-white transition-colors">{{ $t('Terms') }}</a>
+            <a href="#" class="hover:text-white transition-colors">{{ $t('Cookies') }}</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { Link, router } from '@inertiajs/vue3'
+import { ref, computed } from 'vue'
+import { Link } from '@inertiajs/vue3'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
+
+// Set current language based on the locale
+const currentLanguage = ref(locale.value || 'en')
 
 const props = defineProps({
   restaurant: Object,
@@ -404,94 +324,36 @@ const props = defineProps({
   products: Array,
 })
 
-const selectedCategory = ref(null)
-const cart = ref({})
-const cartCount = ref(0)
-
-const filteredProducts = computed(() => {
-  if (!selectedCategory.value) {
-    return props.products
-  }
-  return props.products.filter(product => product.category_id === selectedCategory.value)
-})
-
-const getCategoryProductCount = (categoryId) => {
-  return props.products.filter(product => product.category_id === categoryId).length
+// Helper functions
+const getPriceRange = (minimumOrder) => {
+  if (minimumOrder <= 50) return '$'
+  if (minimumOrder <= 100) return '$$'
+  return '$$$'
 }
 
-const getQuantity = (productId) => {
-  return cart.value[productId] || 0
+const getCuisineType = () => {
+  // Since we don't have cuisine field in database, return a default
+  return t('Restaurant')
 }
 
-const updateQuantity = (productId, quantity) => {
-  if (quantity < 0) return
-
-  if (quantity === 0) {
-    delete cart.value[productId]
-  } else {
-    cart.value[productId] = quantity
+const getWorkingHours = (workingHours) => {
+  if (!workingHours || typeof workingHours !== 'object') {
+    return t('Working hours not available')
   }
 
-  updateCartCount()
-  localStorage.setItem('cart', JSON.stringify(cart.value))
+  // If it's an object with day-specific hours, show a general message
+  if (workingHours.monday || workingHours.tuesday) {
+    return t('Open Today')
+  }
+
+  return t('Working hours not available')
 }
 
-const addToCart = (product) => {
-  const currentQuantity = cart.value[product.id] || 0
-  updateQuantity(product.id, currentQuantity + 1)
-
-  // Send to server
-  router.post(route('cart.add'), {
-    product_id: product.id,
-    quantity: 1
-  })
+const getCategoryProducts = (categoryId) => {
+  return props.products.filter(product => product.category_id === categoryId)
 }
 
-const updateCartCount = () => {
-  cartCount.value = Object.values(cart.value).reduce((sum, quantity) => sum + quantity, 0)
+const handleImageError = (event) => {
+  event.target.src = '/images/default-product.png'
 }
-
-onMounted(() => {
-  // Load cart from localStorage
-  const savedCart = JSON.parse(localStorage.getItem('cart') || '{}')
-  cart.value = savedCart
-  updateCartCount()
-})
 </script>
-
-<style scoped>
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #fef2f2;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #ef4444, #f97316);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #dc2626, #ea580c);
-}
-
-/* Animation delays */
-.delay-500 {
-  animation-delay: 500ms;
-}
-
-.delay-1000 {
-  animation-delay: 1000ms;
-}
-</style>
