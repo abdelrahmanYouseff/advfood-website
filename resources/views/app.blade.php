@@ -5,6 +5,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        {{-- Open Graph Meta Tags --}}
+        <meta property="og:title" content="ADVFood - منصة طلب الطعام">
+        <meta property="og:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
+        <meta property="og:image" content="{{ url('/logo-white.png') }}">
+        <meta property="og:url" content="{{ url('/') }}">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="ADVFood">
+
+        {{-- Twitter Card Meta Tags --}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="ADVFood - منصة طلب الطعام">
+        <meta name="twitter:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
+        <meta name="twitter:image" content="{{ url('/logo-white.png') }}">
+
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
             (function() {
@@ -31,11 +45,14 @@
             }
         </style>
 
-        <title inertia>Welcome at AdvFood</title>
+        <title inertia>ADVFood - منصة طلب الطعام</title>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="msapplication-TileImage" content="/favicon.ico">
+        <meta name="msapplication-TileColor" content="#cf4823">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
