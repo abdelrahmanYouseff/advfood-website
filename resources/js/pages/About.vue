@@ -201,24 +201,41 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <!-- Our Story -->
         <div class="mb-16">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-              <h2 class="text-4xl font-bold text-gray-900 mb-6">{{ $t('Our Story') }}</h2>
-              <p class="text-lg text-gray-600 mb-6">
-                {{ $t('Founded with a passion for connecting food lovers with exceptional dining experiences, we have been serving the community since our inception. Our journey began with a simple vision: to make great food accessible to everyone.') }}
-              </p>
-              <p class="text-lg text-gray-600">
-                {{ $t('Today, we are proud to be the leading platform for discovering and enjoying the finest restaurants in your area. From local favorites to international cuisine, we bring the world\'s flavors to your doorstep.') }}
-              </p>
-            </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch min-h-[500px]">
+            <!-- Image Section -->
             <div class="relative">
-              <div class="aspect-w-16 aspect-h-9">
+              <div class="h-full">
                 <img
                   src="/images/about-story.jpg"
                   alt="Our Story"
-                  class="w-full h-96 object-cover rounded-2xl shadow-2xl"
+                  class="w-full h-full object-cover"
                   @error="handleImageError"
                 />
+                <!-- Vintage frame effect -->
+                <div class="absolute inset-0 border-4 border-amber-200 opacity-30"></div>
+                <!-- Sepia overlay -->
+                <div class="absolute inset-0 bg-amber-900 opacity-20"></div>
+              </div>
+            </div>
+
+            <!-- Text Section with Red Background -->
+            <div class="p-12 flex flex-col justify-center" style="background-color: #cf4823;" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
+              <div class="text-white">
+                <div class="mb-4">
+                  <span class="text-2xl font-bold">{{ $t('Since 1974') }}</span>
+                </div>
+                <h2 class="text-4xl font-bold text-white mb-8">{{ $t('Our Story') }}</h2>
+                <div class="space-y-4 text-lg leading-relaxed">
+                  <p>
+                    {{ $t('Founded in Jeddah in 1974 by Shakour Abu Ghazaleh, our journey began with a simple vision: to provide high-quality, affordable food to our community.') }}
+                  </p>
+                  <p>
+                    {{ $t('Over the years, we have expanded our offerings to include chicken, fish, and shrimp dishes, always maintaining our commitment to quality and taste.') }}
+                  </p>
+                  <p>
+                    {{ $t('Today, we are proud to serve thousands of customers daily, bringing the authentic flavors of our heritage to every table.') }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

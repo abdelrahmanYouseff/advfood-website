@@ -19,24 +19,18 @@
             >
               {{ $t('Home') }}
             </Link>
-            <Link
-              href="/about"
+            <a
+              href="#about-us"
               class="text-white hover:text-gray-200 px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-white/20 rounded-md"
             >
               {{ $t('About Us') }}
-            </Link>
-            <Link
-              href="/"
+            </a>
+            <a
+              href="#contact-us"
               class="text-white hover:text-gray-200 px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-white/20 rounded-md"
             >
-              {{ $t('Restaurants') }}
-            </Link>
-            <Link
-              href="/"
-              class="text-white hover:text-gray-200 px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-white/20 rounded-md"
-            >
-              {{ $t('Contact') }}
-            </Link>
+              {{ $t('Contact Us') }}
+            </a>
           </nav>
 
           <!-- Desktop Action Buttons -->
@@ -129,24 +123,18 @@
             >
               {{ $t('Home') }}
             </Link>
-            <Link
-              href="/about"
+            <a
+              href="#about-us"
               class="text-right text-white hover:text-gray-200 px-3 py-2 text-base font-medium transition-colors duration-200 hover:bg-white/20 rounded-md flex items-center gap-3"
             >
               {{ $t('About Us') }}
-            </Link>
-            <Link
-              href="/"
+            </a>
+            <a
+              href="#contact-us"
               class="text-right text-white hover:text-gray-200 px-3 py-2 text-base font-medium transition-colors duration-200 hover:bg-white/20 rounded-md flex items-center gap-3"
             >
-              {{ $t('Restaurants') }}
-            </Link>
-            <Link
-              href="/"
-              class="text-right text-white hover:text-gray-200 px-3 py-2 text-base font-medium transition-colors duration-200 hover:bg-white/20 rounded-md flex items-center gap-3"
-            >
-              {{ $t('Contact') }}
-            </Link>
+              {{ $t('Contact Us') }}
+            </a>
 
             <div class="pt-6 border-t border-gray-200 space-y-3">
               <!-- Language Switcher Mobile -->
@@ -207,12 +195,6 @@
           </h2>
         </div>
 
-        <!-- Results Count -->
-        <div class="mb-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-          <p class="text-gray-600">
-            {{ $t('Found') }} {{ filteredRestaurants.length }} {{ $t('restaurants') }}
-          </p>
-        </div>
 
         <!-- Restaurant Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
@@ -228,11 +210,6 @@
                 class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 @error="handleImageError"
               />
-              <div class="absolute top-4 right-4">
-                <span class="bg-white/90 text-gray-800 px-2 py-1 rounded-full text-sm font-medium">
-                  {{ getPriceRange(restaurant.minimum_order) }}
-                </span>
-              </div>
               <div class="absolute bottom-4 left-4 flex items-center gap-1 bg-white/90 px-2 py-1 rounded-full">
                 <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -244,36 +221,9 @@
             <div class="p-6">
               <div class="flex items-start justify-between mb-3">
                 <div>
-                  <h3 class="text-xl font-semibold text-gray-900 mb-1">{{ restaurant.name }}</h3>
-                  <span class="inline-block px-2 py-1 text-xs border border-gray-300 rounded-full text-gray-600">
-                    {{ getPriceRange(restaurant.minimum_order) }}
-                  </span>
                 </div>
               </div>
 
-              <p class="text-gray-600 mb-4 line-clamp-2">{{ restaurant.description || 'وصف المطعم غير متوفر' }}</p>
-
-              <div class="space-y-2 mb-4">
-                <div class="flex items-center gap-2 text-sm text-gray-500">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                  <span>{{ restaurant.address || 'العنوان غير متوفر' }}</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-gray-500">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                  <span>{{ restaurant.phone || 'الهاتف غير متوفر' }}</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-gray-500">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  <span>{{ getWorkingHours(restaurant.working_hours) }}</span>
-                </div>
-              </div>
 
               <button
                 @click="viewMenu(restaurant.id)"
@@ -281,6 +231,143 @@
               >
                 {{ $t('Explore Menu') }}
               </button>
+
+              <!-- Social Media Icons -->
+              <div class="flex justify-center mt-4" :class="currentLanguage === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'">
+      <!-- Facebook -->
+      <a
+        :href="getSocialLink(restaurant.name, 'facebook')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="Facebook"
+      >
+                  <svg class="w-5 h-5 text-gray-600 hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+
+      <!-- Twitter -->
+      <a
+        :href="getSocialLink(restaurant.name, 'twitter')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="Twitter"
+      >
+                  <svg class="w-5 h-5 text-gray-600 hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  </svg>
+                </a>
+
+      <!-- Instagram -->
+      <a
+        :href="getSocialLink(restaurant.name, 'instagram')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="Instagram"
+      >
+        <svg class="w-5 h-5 text-gray-600 hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </a>
+
+      <!-- TikTok -->
+      <a
+        :href="getSocialLink(restaurant.name, 'tiktok')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="TikTok"
+      >
+        <svg class="w-5 h-5 text-gray-600 hover:text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-.88-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Additional Icons - Hide for Gather Us -->
+    <div v-if="restaurant.name !== 'Gather Us'" class="flex justify-center gap-3 mt-3">
+      <!-- Hunger Icon -->
+      <a
+        :href="getSocialLink(restaurant.name, 'hunger')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="HungerStation"
+      >
+        <img
+          src="/icons/hunger.png"
+          alt="Hunger Icon"
+          class="w-6 h-6 object-contain"
+          @error="handleImageError"
+        />
+      </a>
+
+      <!-- Chef Icon - Link for Delawa only -->
+      <a
+        v-if="restaurant.name === 'Delawa'"
+        :href="getSocialLink(restaurant.name, 'chefz')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="The Chefz"
+      >
+        <img
+          src="/icons/the-chefz.webp"
+          alt="Chef Icon"
+          class="w-6 h-6 object-contain"
+          @error="handleImageError"
+        />
+      </a>
+      <!-- Chef Icon - Non-clickable for other restaurants -->
+      <div
+        v-else
+        class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-green-500 hover:to-teal-600 transition-all duration-300 transform hover:scale-110"
+      >
+        <img
+          src="/icons/the-chefz.webp"
+          alt="Chef Icon"
+          class="w-6 h-6 object-contain"
+          @error="handleImageError"
+        />
+      </div>
+
+      <!-- Jahez Icon - Only for Tant Bakiza and Delawa -->
+      <a
+        v-if="restaurant.name === 'Tant Bakiza' || restaurant.name === 'Delawa'"
+        :href="getSocialLink(restaurant.name, 'jahez')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="Jahez"
+      >
+        <img
+          src="/icons/jahez.png"
+          alt="Jahez Icon"
+          class="w-6 h-6 object-contain"
+          @error="handleImageError"
+        />
+      </a>
+
+      <!-- Noon Icon - Only for Tant Bakiza -->
+      <a
+        v-if="restaurant.name === 'Tant Bakiza'"
+        :href="getSocialLink(restaurant.name, 'noon')"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-10 h-10 bg-gray-200 rounded-lg flex items-center justify-center hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-600 transition-all duration-300 transform hover:scale-110"
+        aria-label="Noon"
+      >
+        <img
+          src="/icons/noon.png"
+          alt="Noon Icon"
+          class="w-6 h-6 object-contain"
+          @error="handleImageError"
+        />
+      </a>
+    </div>
             </div>
           </div>
         </div>
@@ -303,8 +390,190 @@
         </div>
       </div>
 
-      <!-- Recent Products Section -->
-      <section class="py-16 bg-gray-50">
+      <!-- About Us Section -->
+      <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <!-- Section Header -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+          <div class="text-center">
+            <h2 class="text-5xl font-bold text-gray-900 mb-6">
+              {{ $t('About Us') }}
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              {{ $t('Learn more about our journey and values.') }}
+            </p>
+            <!-- Decorative line -->
+            <div class="flex justify-center mt-8">
+              <div class="h-1 w-20 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Story Subsection -->
+        <div id="about-us" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch min-h-[500px] rounded-2xl overflow-hidden shadow-2xl">
+            <!-- Text Section with Red Background -->
+            <div class="p-12 flex flex-col justify-center" style="background-color: #cf4823;" dir="rtl">
+              <div class="text-white" style="text-align: right; direction: rtl;">
+                <h2 class="text-4xl font-bold text-white mb-8">قصتنا</h2>
+                <div class="space-y-4 text-lg leading-relaxed" style="text-align: right; direction: rtl;">
+                  <p>
+                    بدأت حكايتنا بشغف واحد يجمع بين الطعم الأصيل والجودة العالية.
+                  </p>
+                  <p>
+                    انطلقت بكيزة لتقدّم نكهة الحلويات المصرية الأصيلة بلمسة حديثة تحافظ على تراثنا العريق. ثم وُلدت ديلاوة لتكمل المسيرة، وتقدّم تشكيلة متنوعة من الحلويات الشرقية والعالمية بطابع أنيق ومذاق استثنائي.
+                  </p>
+                  <p>
+                    ومع حبنا للتنوع والابتكار، جاءت Gather Us لتجمعنا حول المخبوزات الطازجة والروائح التي تعيد الذكريات الجميلة كل صباح.
+                  </p>
+                  <p>
+                    من خلال هذه العلامات الثلاث، نسعى لتقديم تجربة طعام تجمع بين الأصالة والإبداع، وتعبّر عن شغفنا بصناعة النكهات التي تبقى في الذاكرة.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="relative">
+              <div class="h-full">
+                <img
+                  src="/brands.png"
+                  alt="Our Story"
+                  class="w-full h-full object-cover"
+                  @error="handleImageError"
+                />
+                <!-- Vintage frame effect -->
+                <div class="absolute inset-0 border-4 border-amber-200 opacity-30"></div>
+                <!-- Sepia overlay -->
+                <div class="absolute inset-0 bg-amber-900 opacity-20"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Our Mission Subsection -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+          <div class="text-center mb-12">
+            <h3 class="text-4xl font-bold text-gray-900 mb-6">{{ $t('Our Mission') }}</h3>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              {{ $t('To revolutionize the way people discover, order, and enjoy food by connecting them with the best restaurants and culinary experiences.') }}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center p-6 bg-white rounded-2xl shadow-lg">
+              <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $t('Fast Delivery') }}</h3>
+              <p class="text-gray-600">{{ $t('Quick and reliable delivery service to bring your favorite meals to you in no time.') }}</p>
+            </div>
+
+            <div class="text-center p-6 bg-white rounded-2xl shadow-lg">
+              <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $t('Quality Assurance') }}</h3>
+              <p class="text-gray-600">{{ $t('We ensure every meal meets our high standards of quality and freshness.') }}</p>
+            </div>
+
+            <div class="text-center p-6 bg-white rounded-2xl shadow-lg">
+              <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-3">{{ $t('Customer Love') }}</h3>
+              <p class="text-gray-600">{{ $t('Your satisfaction is our priority, and we work hard to exceed your expectations.') }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Us Section -->
+        <div id="contact-us" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+          <div class="text-center mb-12">
+            <h3 class="text-4xl font-bold text-gray-900 mb-6">{{ $t('Contact Us') }}</h3>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              {{ $t('Get in touch with us for any questions or feedback.') }}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Contact Info -->
+            <div class="space-y-8" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
+              <!-- Phone -->
+              <div class="flex items-start gap-6 group">
+                <div class="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $t('Phone') }}</h4>
+                  <a href="tel:+966507844079" class="text-lg text-gray-600 hover:text-blue-600 transition-colors block" dir="ltr">+966 50 784 4079</a>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start gap-6 group">
+                <div class="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $t('Email') }}</h4>
+                  <a href="mailto:info@adv-line.sa" class="text-lg text-gray-600 hover:text-green-600 transition-colors block">info@adv-line.sa</a>
+                </div>
+              </div>
+
+              <!-- Address -->
+              <div class="flex items-start gap-6 group">
+                <div class="flex-shrink-0 w-16 h-16 bg-gray-200 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $t('Address') }}</h4>
+                  <p class="text-lg text-gray-600">QM4G+F35, King Abdulaziz Rd, Al Muruj, Riyadh 12465, Saudi Arabia</p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-white rounded-2xl shadow-xl p-8">
+              <h4 class="text-2xl font-bold text-gray-900 mb-6 text-center">{{ $t('Send Message') }}</h4>
+              <form class="space-y-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('Name') }}</label>
+                  <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" placeholder="أدخل اسمك الكامل">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('Email') }}</label>
+                  <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" placeholder="أدخل بريدك الإلكتروني">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 mb-2">{{ $t('Message') }}</label>
+                  <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors" placeholder="اكتب رسالتك هنا..."></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-medium py-3 px-6 rounded-lg hover:from-orange-600 hover:to-red-600 transition-all duration-200 shadow-lg hover:shadow-xl">
+                  {{ $t('Send Message') }}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Recent Products Section - Hidden -->
+      <section class="py-16 bg-gray-50 hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <!-- Section Title -->
           <div class="text-center mb-12">
@@ -395,122 +664,151 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-          <!-- Company Info -->
-          <div class="space-y-4">
+    <footer class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 opacity-5">
+        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+
+          <!-- Logo & About Section -->
+          <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
+            <div class="flex justify-end" :class="currentLanguage === 'ar' ? 'justify-start' : 'justify-end'">
+              <img src="/logo-white.png" alt="ADVFood Logo" class="h-40 w-40 object-contain">
+            </div>
             <p class="text-gray-300 leading-relaxed">
               {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
             </p>
-            <div class="flex" :class="currentLanguage === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'">
-              <!-- Facebook -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
-                aria-label="Facebook"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-
-              <!-- Twitter -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
-                aria-label="Twitter"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-              </a>
-
-              <!-- Instagram -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
-                aria-label="Instagram"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.004 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281c-.49 0-.98-.49-.98-.98s.49-.98.98-.98.98.49.98.98-.49.98-.98.98zm-5.83 8.281c-1.297 0-2.448-.49-3.323-1.297C6.198 13.895 5.708 12.744 5.708 11.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297z"/>
-                </svg>
-              </a>
-
-              <!-- YouTube -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 transition-all duration-300 transform hover:scale-110"
-                aria-label="YouTube"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-              </a>
+            <!-- Decorative Line -->
+            <div class="flex items-center gap-2">
+              <div class="h-1 w-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
+              <div class="h-1 w-8 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
+              <div class="h-1 w-4 bg-gradient-to-r from-orange-300 to-red-300 rounded-full"></div>
             </div>
           </div>
 
-          <!-- Quick Links -->
-          <div class="space-y-4">
-            <h4 class="text-lg font-semibold text-white">{{ $t('Quick Links') }}</h4>
-            <ul class="space-y-2">
-              <li v-for="link in quickLinks" :key="link.name">
-                <a
-                  :href="link.href"
-                  class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 inline-block"
-                >
-                  {{ link.name }}
-                </a>
-              </li>
-            </ul>
+          <!-- Contact Info Section -->
+          <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
+            <h4 class="text-xl font-bold text-white relative inline-block">
+              {{ $t('Contact Us') }}
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-500 to-red-500"></span>
+            </h4>
+            <div class="space-y-4">
+              <!-- Address -->
+              <div class="flex items-start gap-4 group">
+                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-white text-lg mb-1">{{ $t('Address') }}</div>
+                  <div class="text-sm text-gray-300 leading-relaxed">QM4G+F35, King Abdulaziz Rd, Al Muruj, Riyadh 12465, Saudi Arabia</div>
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="flex items-start gap-4 group">
+                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-white text-lg mb-1">{{ $t('Phone') }}</div>
+                  <a href="tel:+966507844079" class="text-sm text-gray-300 hover:text-orange-400 transition-colors block" dir="ltr">+966 50 784 4079</a>
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="flex items-start gap-4 group">
+                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div class="flex-1">
+                  <div class="font-bold text-white text-lg mb-1">{{ $t('Email') }}</div>
+                  <a href="mailto:info@adv-line.sa" class="text-sm text-gray-300 hover:text-orange-400 transition-colors block">info@adv-line.sa</a>
+                </div>
+              </div>
+            </div>
           </div>
 
-
-          <!-- Contact Info -->
-          <div class="space-y-4">
-            <h4 class="text-lg font-semibold text-white">{{ $t('Contact Us') }}</h4>
+          <!-- Working Hours Section -->
+          <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
+            <h4 class="text-xl font-bold text-white relative inline-block">
+              {{ $t('Working Hours') }}
+              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-500 to-red-500"></span>
+            </h4>
             <div class="space-y-3">
-              <div class="text-gray-300">
-                <div class="font-medium">{{ $t('Address') }}</div>
-                <div class="text-sm">QM4G+F35, King Abdulaziz Rd, Al Muruj, Riyadh 12465, Saudi Arabia</div>
+              <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                <span class="text-gray-300">{{ $t('Sunday - Thursday') }}</span>
+                <span class="text-white font-semibold">9:00 AM - 11:00 PM</span>
               </div>
-
-              <div class="text-gray-300">
-                <div class="font-medium">{{ $t('Phone') }}</div>
-                <div class="text-sm">+966 50 784 4079</div>
-              </div>
-
-              <div class="text-gray-300">
-                <div class="font-medium">{{ $t('Email') }}</div>
-                <div class="text-sm">info@adv-line.sa</div>
+              <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
+                <span class="text-gray-300">{{ $t('Friday - Saturday') }}</span>
+                <span class="text-white font-semibold">10:00 AM - 12:00 AM</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="my-8 border-t border-gray-700"></div>
+        <!-- Divider with decoration -->
+        <div class="relative my-8">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-700"></div>
+          </div>
+          <div class="relative flex justify-center">
+            <div class="bg-gray-900 px-4">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+                <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <!-- Bottom Section -->
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div class="flex items-center space-x-2 space-x-reverse text-gray-300">
-            <span>© {{ currentYear }} {{ $t('All rights reserved') }}.</span>
-          </div>
-
-          <div class="flex items-center space-x-1 space-x-reverse text-gray-300">
-            <span>{{ $t('Made with') }}</span>
-            <svg class="w-4 h-4 text-red-500 fill-red-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          <!-- Copyright -->
+          <div class="flex items-center space-x-2 space-x-reverse text-gray-400">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z"/>
             </svg>
-            <span>{{ $t('by') }} {{ $t('food lovers') }}</span>
+            <span>© {{ currentYear }} ADVFood. {{ $t('All rights reserved') }}.</span>
           </div>
 
-          <div class="flex space-x-6 space-x-reverse text-sm text-gray-400">
-            <a href="#" class="hover:text-white transition-colors">{{ $t('Privacy') }}</a>
-            <a href="#" class="hover:text-white transition-colors">{{ $t('Terms') }}</a>
-            <a href="#" class="hover:text-white transition-colors">{{ $t('Cookies') }}</a>
+          <!-- Made in Saudi Arabia -->
+          <div class="flex items-center space-x-1 space-x-reverse text-gray-400">
+            <span>صنع في السعودية</span>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="flex space-x-6 space-x-reverse text-sm">
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300 relative group">
+              {{ $t('Privacy') }}
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300 relative group">
+              {{ $t('Terms') }}
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-orange-400 transition-colors duration-300 relative group">
+              {{ $t('Cookies') }}
+              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all duration-300"></span>
+            </a>
           </div>
         </div>
       </div>
+
+      <!-- Animated gradient border at top -->
+      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 animate-gradient"></div>
     </footer>
   </div>
 </template>
@@ -540,6 +838,39 @@ const recentProducts = ref([])
 
 // Footer data
 const currentYear = new Date().getFullYear()
+
+// Social media links function
+const getSocialLink = (restaurantName, platform) => {
+  const socialLinks = {
+    'Tant Bakiza': {
+      facebook: 'https://www.facebook.com/profile.php?id=61573854809171',
+      twitter: 'https://x.com/Tunt_Bakiza',
+      instagram: 'https://www.instagram.com/tunt_bakiza/',
+      tiktok: 'https://www.tiktok.com/@tunt_bakiza?is_from_webapp=1&sender_device=pc',
+      hunger: 'https://hungerstation.com/sa-en/restaurant/kabsa/badr/badr/147152',
+      jahez: 'https://jahez.app.link/ieLexrG96Tb?_p=c11c3fdc9c0b7af2eb0389f8',
+      noon: 'https://food.noon.com/saudi-en/outlet/TNTBKZQVT0/'
+    },
+    'Delawa': {
+      facebook: 'https://www.facebook.com/people/Delawa-%D8%AF%D9%8A%D9%84%D8%A7%D9%88%D8%A9/61576916633213/?locale=ar_AR',
+      twitter: 'https://x.com/Delawa_sa',
+      instagram: 'https://www.instagram.com/delawa_sa/',
+      tiktok: 'https://www.tiktok.com/@delawa_sa',
+      hunger: 'https://hungerstation.com/sa-en/restaurant/riyadh/king-abdulaziz-neighborhood/147049',
+      jahez: 'https://jahez.app.link/mjyxSwRO2Ub?_p=c11c3fdc9c0b7af2eb0389f8',
+      chefz: 'https://thechefzco.app.link/sXRjUP4PVTb'
+    },
+    'Gather Us': {
+      facebook: 'https://www.facebook.com/profile.php?id=61580193684770',
+      twitter: 'https://x.com/gatherussa',
+      instagram: 'https://www.instagram.com/gatherussa/',
+      tiktok: 'https://www.tiktok.com/@gatherussa',
+      hunger: '#'
+    }
+  }
+
+  return socialLinks[restaurantName]?.[platform] || '#'
+}
 
 const quickLinks = computed(() => [
   { name: t('About'), href: '#' },
@@ -709,11 +1040,6 @@ const fetchRecentProducts = async () => {
 }
 
 // Helper functions
-const getPriceRange = (minimumOrder) => {
-  if (minimumOrder <= 50) return '$'
-  if (minimumOrder <= 100) return '$$'
-  return '$$$'
-}
 
 const getWorkingHours = (workingHours) => {
   if (!workingHours || typeof workingHours !== 'object') {
