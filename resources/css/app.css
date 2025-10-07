@@ -2,6 +2,21 @@
 
 @import 'tw-animate-css';
 
+/* Arabic Font Classes */
+.font-arabic {
+    font-family: var(--font-arabic);
+}
+
+/* Apply Arabic font to all Arabic text */
+[dir="rtl"] {
+    font-family: var(--font-arabic);
+}
+
+/* Apply Arabic font to specific elements */
+.arabic-text {
+    font-family: var(--font-arabic);
+}
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
@@ -9,6 +24,7 @@
 
 @theme inline {
     --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-arabic: 'IBM Plex Sans Arabic', 'Noto Sans Arabic', 'Segoe UI', Tahoma, Arial, sans-serif;
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
