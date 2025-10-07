@@ -7,8 +7,8 @@
         $meta = $meta ?? [];
         $title = $meta['title'] ?? 'ADVFood - منصة طلب الطعام';
         $description = $meta['description'] ?? 'اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood';
-        // استخدم صورة PNG/JPG ثابتة في public/images/social-preview.png بحجم 1200x630
-        $defaultImagePath = 'images/social-preview.png';
+        // استخدم صورة PNG/JPG ثابتة في public/favicon copy.png
+        $defaultImagePath = 'favicon copy.png';
         // لو الملف موجود في public نستخدم secure_asset للحصول على رابط كامل HTTPS
         $imagePath = $meta['image'] ?? (file_exists(public_path($defaultImagePath)) ? secure_asset($defaultImagePath) : secure_asset('logo-white.png'));
         // لتفادي الكاش أثناء التطوير/تحديث: يمكنك فك التعليق التالي لو الصورة في public
