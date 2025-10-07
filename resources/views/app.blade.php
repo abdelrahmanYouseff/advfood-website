@@ -8,8 +8,8 @@
         {{-- Open Graph Meta Tags --}}
         <meta property="og:title" content="ADVFood - منصة طلب الطعام">
         <meta property="og:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
-        <meta property="og:image" content="{{ url('favicon_copy.png') }}">
-        <meta property="og:image:secure_url" content="{{ url('favicon_copy.png') }}">
+        <meta property="og:image" content="{{ url('favicon_copy.png') }}?v={{ time() }}">
+        <meta property="og:image:secure_url" content="{{ url('favicon_copy.png') }}?v={{ time() }}">
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:width" content="512">
         <meta property="og:image:height" content="512">
@@ -22,7 +22,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="ADVFood - منصة طلب الطعام">
         <meta name="twitter:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
-        <meta name="twitter:image" content="{{ url('favicon_copy.png') }}">
+        <meta name="twitter:image" content="{{ url('favicon_copy.png') }}?v={{ time() }}">
         <meta name="twitter:image:alt" content="ADVFood Logo">
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
@@ -53,12 +53,12 @@
 
         <title inertia>ADVFood - منصة طلب الطعام</title>
 
-        <link rel="icon" href="/favicon_copy.png" sizes="any">
-        <link rel="icon" href="/favicon.ico" sizes="any">
+        <link rel="icon" href="/favicon.ico?v={{ time() }}" sizes="any">
+        <link rel="icon" href="/favicon_copy.png?v={{ time() }}" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/favicon_copy.png">
-        <link rel="shortcut icon" href="/favicon_copy.png">
-        <meta name="msapplication-TileImage" content="/favicon_copy.png">
+        <link rel="apple-touch-icon" href="/favicon.ico?v={{ time() }}">
+        <link rel="shortcut icon" href="/favicon.ico?v={{ time() }}">
+        <meta name="msapplication-TileImage" content="/favicon.ico?v={{ time() }}">
         <meta name="msapplication-TileColor" content="#cf4823">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
