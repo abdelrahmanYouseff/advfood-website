@@ -22,7 +22,15 @@ use Inertia\Inertia;
 require __DIR__.'/admin.php';
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    $restaurants = \App\Models\Restaurant::where('is_active', true)
+        ->with(['products' => function($query) {
+            $query->where('is_available', true)->take(3);
+        }])
+        ->get();
+
+    return Inertia::render('Home', [
+        'restaurants' => $restaurants
+    ]);
 });
 
 Route::get('/about', function () {
@@ -49,6 +57,28 @@ Route::get('/pdf/{filename}', function ($filename) {
     ]);
 });
 
+// Menu images serving route
+Route::get('/menu/{filename}', function ($filename) {
+    $filePath = public_path('menu/' . $filename);
+
+    if (!file_exists($filePath)) {
+        abort(404, 'Menu image not found');
+    }
+
+    return response()->file($filePath);
+});
+
+// Restaurant images serving route
+Route::get('/rest/{filename}', function ($filename) {
+    $filePath = public_path('rest/' . $filename);
+
+    if (!file_exists($filePath)) {
+        abort(404, 'Restaurant image not found');
+    }
+
+    return response()->file($filePath);
+});
+
 // Test route
 Route::get('/test-qr', function () {
     return response()->json(['message' => 'QR test route works']);
@@ -58,6 +88,48 @@ Route::get('/test-qr', function () {
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
 
 Route::get('/api/products/recent', [App\Http\Controllers\ProductController::class, 'recent'])->name('api.products.recent');
+
+// API route for restaurants
+Route::get('/api/restaurants', function () {
+    $restaurants = \App\Models\Restaurant::where('is_active', true)
+        ->with(['products' => function($query) {
+            $query->where('is_available', true)->take(6);
+        }])
+        ->get()
+        ->map(function($restaurant) {
+            return [
+                'id' => $restaurant->id,
+                'name' => $restaurant->name,
+                'description' => $restaurant->description,
+                'logo' => $restaurant->logo ? asset(ltrim($restaurant->logo, '/')) : asset('images/default-restaurant-logo.png'),
+                'logo_url' => $restaurant->logo ? asset(ltrim($restaurant->logo, '/')) : asset('images/default-restaurant-logo.png'),
+                'cover_image' => $restaurant->cover_image ? asset(ltrim($restaurant->cover_image, '/')) : asset('images/default-restaurant-cover.png'),
+                'cover_image_url' => $restaurant->cover_image ? asset(ltrim($restaurant->cover_image, '/')) : asset('images/default-restaurant-cover.png'),
+                'address' => $restaurant->address,
+                'phone' => $restaurant->phone,
+                'rating' => $restaurant->rating,
+                'delivery_time' => $restaurant->delivery_time,
+                'delivery_fee' => $restaurant->delivery_fee,
+                'minimum_order' => $restaurant->minimum_order,
+                'products' => $restaurant->products->map(function($product) {
+                    return [
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'description' => $product->description,
+                        'price' => $product->price,
+                        'image' => $product->image ? asset(ltrim($product->image, '/')) : asset('images/default-product.png'),
+                        'is_featured' => $product->is_featured,
+                        'restaurant' => [
+                            'id' => $product->restaurant_id,
+                            'name' => $product->restaurant->name ?? '',
+                        ]
+                    ];
+                })
+            ];
+        });
+
+    return response()->json(['restaurants' => $restaurants]);
+});
 
 // Cart routes
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');

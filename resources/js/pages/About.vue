@@ -446,7 +446,7 @@ import { Link } from '@inertiajs/vue3'
 const { t, locale } = useI18n()
 
 // Language and mobile menu state
-const currentLanguage = ref('en')
+const currentLanguage = ref('ar')
 const isLanguageDropdownOpen = ref(false)
 const isMobileMenuOpen = ref(false)
 
@@ -506,7 +506,7 @@ const handleImageError = (event) => {
 
 // Lifecycle
 onMounted(() => {
-  currentLanguage.value = locale.value || 'en'
+  currentLanguage.value = locale.value || 'ar'
 })
 
 // Watch for language changes

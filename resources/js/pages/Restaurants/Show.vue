@@ -316,7 +316,7 @@ import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 
 // Set current language based on the locale
-const currentLanguage = ref(locale.value || 'en')
+const currentLanguage = ref(locale.value || 'ar')
 
 const props = defineProps({
   restaurant: Object,

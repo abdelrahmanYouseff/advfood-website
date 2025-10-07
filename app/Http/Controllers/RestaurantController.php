@@ -69,14 +69,14 @@ class RestaurantController extends Controller
 
         // Add accessor methods to products
         $products->each(function ($product) {
-            $product->image_url = $product->image ? asset('storage/' . $product->image) : asset('images/default-product.png');
+            $product->image_url = $product->image ? 'http://127.0.0.1:8000/' . ltrim($product->image, '/') : asset('images/default-product.png');
             $product->formatted_price = number_format($product->price, 2) . ' ريال';
         });
 
         // Debug: Add logo_url and cover_image_url to restaurant
         $restaurantData = $restaurant->toArray();
-        $restaurantData['logo_url'] = $restaurant->logo ? asset('storage/' . $restaurant->logo) : null;
-        $restaurantData['cover_image_url'] = $restaurant->cover_image ? asset('storage/' . $restaurant->cover_image) : null;
+        $restaurantData['logo_url'] = $restaurant->logo ? 'http://127.0.0.1:8000/' . ltrim($restaurant->logo, '/') : asset('images/default-restaurant-logo.png');
+        $restaurantData['cover_image_url'] = $restaurant->cover_image ? 'http://127.0.0.1:8000/' . ltrim($restaurant->cover_image, '/') : asset('images/default-restaurant-cover.png');
 
         return Inertia::render('Restaurants/Show', [
             'restaurant' => $restaurantData,

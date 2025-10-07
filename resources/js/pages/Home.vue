@@ -3,11 +3,11 @@
     <!-- Header -->
     <header class="sticky top-0 z-50 w-full" style="background-color: #cf4823; backdrop-filter: blur(10px);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-36" :class="currentLanguage === 'ar' ? 'flex-row' : 'flex-row-reverse'">
+        <div class="flex justify-between items-center h-48" :class="currentLanguage === 'ar' ? 'flex-row' : 'flex-row-reverse'">
           <!-- Logo -->
           <div class="flex items-center">
-            <div class="w-32 h-32 flex items-center justify-center">
-              <img src="/asset/GatherUs-Logo.png" alt="GatherUs Logo" class="w-32 h-32 object-contain">
+            <div class="w-48 h-48 flex items-center justify-center">
+              <img src="/logo-white.png" alt="ADVFood Logo" class="w-48 h-48 object-contain">
             </div>
           </div>
 
@@ -113,8 +113,8 @@
         <div class="px-4 py-6">
           <!-- Mobile Logo -->
           <div class="flex items-center space-x-2 mb-8">
-            <div class="w-28 h-28 flex items-center justify-center">
-              <img src="/asset/GatherUs-Logo.png" alt="GatherUs Logo" class="w-28 h-28 object-contain">
+            <div class="w-40 h-40 flex items-center justify-center">
+              <img src="/logo-white.png" alt="ADVFood Logo" class="w-40 h-40 object-contain">
             </div>
             <div class="flex flex-col">
               <span class="text-xs text-white -mt-1">اكتشف الطعام الرائع</span>
@@ -221,11 +221,11 @@
             :key="restaurant.id"
             class="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white rounded-lg shadow-md"
           >
-            <div class="relative h-64 overflow-hidden">
+            <div class="relative h-48 overflow-hidden bg-white">
               <img
                 :src="restaurant.cover_image_url || restaurant.logo_url || '/images/default-restaurant-cover.png'"
                 :alt="restaurant.name"
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                 @error="handleImageError"
               />
               <div class="absolute top-4 right-4">
@@ -324,11 +324,11 @@
               class="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
             >
               <!-- Product Image -->
-              <div class="relative h-48 overflow-hidden">
+              <div class="relative h-48 overflow-hidden bg-white">
                 <img
                   :src="product.image_url"
                   :alt="product.name"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   @error="handleProductImageError"
                 />
                 <div class="absolute top-4 right-4">
@@ -525,7 +525,7 @@ const { t, locale } = useI18n()
 // Reactive state
 const isMobileMenuOpen = ref(false)
 const isLanguageDropdownOpen = ref(false)
-const currentLanguage = ref('en')
+const currentLanguage = ref('ar')
 
 // Restaurant data
 const searchTerm = ref('')
@@ -551,8 +551,8 @@ const quickLinks = computed(() => [
 
 // Languages data
 const languages = [
-  { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'ar', name: 'العربية', flag: '🇸🇦' },
+  { code: 'en', name: 'English', flag: '🇺🇸' },
   { code: 'fr', name: 'Français', flag: '🇫🇷' },
   { code: 'es', name: 'Español', flag: '🇪🇸' },
 ]
@@ -687,7 +687,9 @@ const fetchRestaurants = async () => {
   try {
     const response = await fetch('/api/restaurants')
     const data = await response.json()
+    console.log('Fetched restaurants:', data.restaurants)
     restaurants.value = data.restaurants || []
+    console.log('Restaurants count:', restaurants.value.length)
   } catch (error) {
     console.error('Error fetching restaurants:', error)
     restaurants.value = []
