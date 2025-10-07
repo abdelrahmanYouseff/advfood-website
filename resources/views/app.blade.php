@@ -8,7 +8,7 @@
         {{-- Open Graph Meta Tags --}}
         <meta property="og:title" content="ADVFood - منصة طلب الطعام">
         <meta property="og:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
-        <meta property="og:image" content="{{ url('/logo-white.png') }}">
+        <meta property="og:image" content="{{ asset('favicon_copy.png') }}">
         <meta property="og:url" content="{{ url('/') }}">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="ADVFood">
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="ADVFood - منصة طلب الطعام">
         <meta name="twitter:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
-        <meta name="twitter:image" content="{{ url('/logo-white.png') }}">
+        <meta name="twitter:image" content="{{ asset('favicon_copy.png') }}">
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
