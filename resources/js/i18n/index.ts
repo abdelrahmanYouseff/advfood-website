@@ -633,6 +633,7 @@ const messages = {
       'Contact Us': 'تواصل معنا',
       'Get in touch with us for any questions or feedback.': 'تواصل معنا لأي استفسارات أو ملاحظات.',
       'Send Message': 'إرسال رسالة',
+      'Message': 'الرسالة',
       'Call Us': 'اتصل بنا',
       'Email Us': 'راسلنا'
       },
@@ -985,6 +986,7 @@ const messages = {
     'Contact Us': 'Contact Us',
     'Get in touch with us for any questions or feedback.': 'Get in touch with us for any questions or feedback.',
     'Send Message': 'Send Message',
+    'Message': 'Message',
     'Call Us': 'Call Us',
     'Email Us': 'Email Us'
   }

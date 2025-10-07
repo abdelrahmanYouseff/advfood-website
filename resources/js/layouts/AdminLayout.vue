@@ -20,9 +20,32 @@ const sidebarOpen = ref(false)
       <!-- Navigation -->
       <nav class="mt-8 px-4">
         <div class="space-y-2">
+          <!-- Dashboard -->
+          <Link
+            :href="route('admin.dashboard')"
+            class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            :class="$page.component.startsWith('Admin/Dashboard') ? 'bg-green-50 text-green-700 border-l-4 border-green-500' : ''"
+          >
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5a2 2 0 012-2h4a2 2 0 012 2v6H8V5z"></path>
+            </svg>
+            <span class="font-medium">Dashboard</span>
+          </Link>
 
+          <!-- Restaurants -->
+          <Link
+            :href="route('admin.restaurants.index')"
+            class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            :class="$page.component.startsWith('Admin/Restaurants') ? 'bg-green-50 text-green-700 border-l-4 border-green-500' : ''"
+          >
+            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+            </svg>
+            <span class="font-medium">المطاعم</span>
+          </Link>
 
-          <!-- Products -->
+          <!-- Menus (Products) -->
           <Link
             :href="route('admin.products.index')"
             class="flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-gray-100 transition-colors duration-200"
@@ -31,7 +54,7 @@ const sidebarOpen = ref(false)
             <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
             </svg>
-            المنتجات
+            <span class="font-medium">المنيو</span>
           </Link>
 
           <!-- Orders -->
