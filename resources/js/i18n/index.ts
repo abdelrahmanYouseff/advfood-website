@@ -596,7 +596,7 @@ const messages = {
     'Founded with a passion for connecting food lovers with exceptional dining experiences, we have been serving the community since our inception. Our journey began with a simple vision: to make great food accessible to everyone.': 'تأسسنا بشغف لربط عشاق الطعام بتجارب طهوية استثنائية، وقد كنا نخدم المجتمع منذ تأسيسنا. بدأت رحلتنا برؤية بسيطة: جعل الطعام الرائع متاحاً للجميع.',
     'Today, we are proud to be the leading platform for discovering and enjoying the finest restaurants in your area. From local favorites to international cuisine, we bring the world\'s flavors to your doorstep.': 'اليوم، نحن فخورون بأن نكون المنصة الرائدة لاكتشاف والاستمتاع بأفضل المطاعم في منطقتك. من المفضلات المحلية إلى المأكولات العالمية، نحضر لك نكهات العالم إلى عتبة بابك.',
     'Our Mission': 'مهمتنا',
-    'To revolutionize the way people discover, order, and enjoy food by connecting them with the best restaurants and culinary experiences.': 'لإحداث ثورة في الطريقة التي يكتشف بها الناس الطعام ويطلبونه ويستمتعون به من خلال ربطهم بأفضل المطاعم والتجارب الطهوية.',
+      'To revolutionize the way people discover, order, and enjoy food by connecting them with the best restaurants and culinary experiences.': 'لإحداث تغيير في الطريقة التي يكتشف بها الناس الطعام ويطلبونه ويستمتعون به من خلال ربطهم بأفضل المطاعم وتجارب الطعام.',
     'Fast Delivery': 'توصيل سريع',
     'Quick and reliable delivery service to bring your favorite meals to you in no time.': 'خدمة توصيل سريعة وموثوقة لتوصيل وجباتك المفضلة إليك في أي وقت من الأوقات.',
     'Quality Assurance': 'ضمان الجودة',

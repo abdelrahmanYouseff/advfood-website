@@ -1,7 +1,12 @@
 <template>
   <div class="min-h-screen bg-background" :dir="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
     <!-- Header -->
-    <header class="sticky top-0 z-50 w-full" style="background-color: #cf4823; backdrop-filter: blur(10px);">
+    <header
+      ref="header"
+      class="fixed top-0 left-0 right-0 z-50 w-full transition-transform duration-300"
+      :class="{ '-translate-y-full': isHeaderHidden }"
+      style="background-color: #cf4823; backdrop-filter: blur(10px);"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-48" :class="currentLanguage === 'ar' ? 'flex-row' : 'flex-row-reverse'">
           <!-- Logo -->
@@ -177,7 +182,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-1">
+    <main class="flex-1 pt-48">
       <!-- Hero Section -->
       <div class="text-white py-20" style="background-color: #cf4823;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -806,6 +811,8 @@ const { t, locale } = useI18n()
 const isMobileMenuOpen = ref(false)
 const isLanguageDropdownOpen = ref(false)
 const currentLanguage = ref('ar')
+const isHeaderHidden = ref(false)
+const lastScrollY = ref(0)
 
 // Restaurant data
 const searchTerm = ref('')
@@ -1050,5 +1057,25 @@ const handleClickOutside = (event) => {
 // Add event listener for outside clicks
 if (typeof window !== 'undefined') {
   document.addEventListener('click', handleClickOutside)
+}
+
+// Header scroll behavior
+const handleScroll = () => {
+  const currentScrollY = window.scrollY
+
+  // Only show header when at the very top of the page (scrollY = 0)
+  if (currentScrollY === 0) {
+    isHeaderHidden.value = false
+  } else {
+    // Hide header for any other scroll position
+    isHeaderHidden.value = true
+  }
+
+  lastScrollY.value = currentScrollY
+}
+
+// Add scroll event listener
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', handleScroll)
 }
 </script>

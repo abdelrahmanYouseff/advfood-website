@@ -1,7 +1,12 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" :dir="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
     <!-- Header -->
-    <header class="sticky top-0 z-50 w-full" style="background-color: transparent;">
+    <header
+      ref="header"
+      class="fixed top-0 left-0 right-0 z-50 w-full transition-transform duration-300"
+      :class="{ '-translate-y-full': isHeaderHidden }"
+      style="background-color: transparent;"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-36">
           <!-- Logo -->
@@ -29,7 +34,7 @@
     </header>
 
     <!-- Header with Restaurant Info -->
-    <div class="relative -mt-36">
+    <div class="relative pt-36">
       <div class="h-96 overflow-hidden">
         <img
           :src="restaurant.cover_image_url || restaurant.logo_url || '/images/default-restaurant-cover.png'"
@@ -317,6 +322,8 @@ const { t, locale } = useI18n()
 
 // Set current language based on the locale
 const currentLanguage = ref(locale.value || 'ar')
+const isHeaderHidden = ref(false)
+const lastScrollY = ref(0)
 
 const props = defineProps({
   restaurant: Object,
@@ -355,5 +362,25 @@ const getCategoryProducts = (categoryId) => {
 
 const handleImageError = (event) => {
   event.target.src = '/images/default-product.png'
+}
+
+// Header scroll behavior
+const handleScroll = () => {
+  const currentScrollY = window.scrollY
+
+  // Only show header when at the very top of the page (scrollY = 0)
+  if (currentScrollY === 0) {
+    isHeaderHidden.value = false
+  } else {
+    // Hide header for any other scroll position
+    isHeaderHidden.value = true
+  }
+
+  lastScrollY.value = currentScrollY
+}
+
+// Add scroll event listener
+if (typeof window !== 'undefined') {
+  window.addEventListener('scroll', handleScroll)
 }
 </script>
