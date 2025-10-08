@@ -42,7 +42,7 @@ class Product extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return $this->image ? 'http://127.0.0.1:8000/' . ltrim($this->image, '/') : asset('images/default-product.png');
+        return $this->image ? asset('storage/' . $this->image) : asset('images/default-product.png');
     }
 
     public function getFormattedPriceAttribute(): string
