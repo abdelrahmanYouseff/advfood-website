@@ -42,7 +42,17 @@ class Product extends Model
 
     public function getImageUrlAttribute(): string
     {
-        return $this->image ? asset('storage/' . $this->image) : asset('images/default-product.png');
+        if (!$this->image) {
+            return asset('images/default-product.png');
+        }
+
+        // Check if the image path starts with 'menu/' (public directory)
+        if (str_starts_with($this->image, 'menu/')) {
+            return asset($this->image);
+        }
+
+        // Otherwise, use storage path
+        return asset('storage/' . $this->image);
     }
 
     public function getFormattedPriceAttribute(): string
