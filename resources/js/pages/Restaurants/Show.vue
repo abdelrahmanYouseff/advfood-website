@@ -8,17 +8,7 @@
       style="background-color: transparent;"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-36">
-          <!-- Logo -->
-          <div class="flex items-center space-x-2">
-            <div class="w-32 h-32 flex items-center justify-center">
-              <img src="/asset/GatherUs-Logo.png" alt="GatherUs Logo" class="w-32 h-32 object-contain">
-            </div>
-            <div class="flex flex-col">
-              <span class="text-xs text-white -mt-1">{{ $t('Discover Delicious Restaurants') }}</span>
-            </div>
-          </div>
-
+        <div class="flex justify-end items-center h-36">
           <!-- Back Button -->
           <Link
             href="/"
@@ -105,11 +95,6 @@
                 </div>
               </div>
 
-              <div class="border-t border-gray-200 pt-4"></div>
-
-              <button class="w-full bg-gradient-to-r from-gray-900 to-gray-700 hover:from-gray-800 hover:to-gray-600 text-white py-3 px-4 rounded-lg font-medium transition-all duration-200">
-                {{ $t('Book a Table') }}
-              </button>
             </div>
           </div>
         </div>
@@ -172,7 +157,7 @@
                         </span>
                       </div>
                       <p class="text-gray-600 text-sm leading-relaxed">
-                        {{ product.description }}
+                        {{ translateDescription(product.description) }}
                       </p>
                     </div>
                   </div>
@@ -362,6 +347,22 @@ const getCategoryProducts = (categoryId) => {
 
 const handleImageError = (event) => {
   event.target.src = '/images/default-product.png'
+}
+
+// Translate product descriptions
+const translateDescription = (description) => {
+  const translations = {
+    'Delicious traditional Egyptian sweet made with layers of phyllo pastry and nuts, soaked in sweet syrup': 'حلوى مصرية تقليدية لذيذة مصنوعة من طبقات عجين الفيلو والمكسرات، منقوعة في شراب حلو',
+    'Fresh and crispy Egyptian bread with a golden crust, perfect for any meal': 'خبز مصري طازج ومقرمش بقشرة ذهبية، مثالي لأي وجبة',
+    'Traditional Egyptian pastry filled with nuts and sweetened with honey': 'معجنات مصرية تقليدية محشوة بالمكسرات ومحلاة بالعسل',
+    'Classic Egyptian dessert made with layers of pastry and cream': 'حلوى مصرية كلاسيكية مصنوعة من طبقات المعجنات والكريمة',
+    'Sweet and aromatic Egyptian bread perfect for breakfast': 'خبز مصري حلو وعطري مثالي للإفطار',
+    'Traditional Egyptian cookies with a unique taste and texture': 'بسكويت مصري تقليدي بطعم وقوام فريد',
+    'Rich and creamy Egyptian dessert with layers of flavor': 'حلوى مصرية غنية وكريمية بطبقات من النكهات',
+    'Fresh Egyptian bread with sesame seeds and traditional flavor': 'خبز مصري طازج بالسمسم والنكهة التقليدية'
+  }
+
+  return translations[description] || description
 }
 
 // Header scroll behavior

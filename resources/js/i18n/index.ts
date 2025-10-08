@@ -305,7 +305,7 @@ const messages = {
     'min': 'دقيقة',
     'Delivery Fee': 'رسوم التوصيل',
     'Minimum Order': 'الحد الأدنى للطلب',
-    'Explore Menu': 'استكشف القائمة',
+    'Explore Menu': 'إستكشف القائمة',
     'No Restaurants Found': 'لم يتم العثور على مطاعم',
     'Try searching with different keywords or adjust your filters': 'جرب البحث بكلمات مختلفة أو اضبط المرشحات',
     'Show All Restaurants': 'عرض جميع المطاعم',

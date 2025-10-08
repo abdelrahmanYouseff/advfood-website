@@ -209,9 +209,9 @@
           <div
             v-for="restaurant in filteredRestaurants"
             :key="restaurant.id"
-            class="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white rounded-lg shadow-md"
+            class="group overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 bg-white rounded-lg shadow-md flex flex-col"
           >
-            <div class="relative h-48 overflow-hidden bg-white">
+            <div class="relative h-64 overflow-hidden bg-white">
               <img
                 :src="restaurant.cover_image_url || restaurant.logo_url || '/images/default-restaurant-cover.png'"
                 :alt="restaurant.name"
@@ -220,14 +220,14 @@
               />
             </div>
 
-            <div class="p-6">
+            <div class="p-6 flex flex-col h-full">
               <div class="flex items-start justify-between mb-3">
                 <div>
                 </div>
               </div>
 
               <!-- Social Media Icons -->
-              <div class="flex justify-center items-center gap-4 mt-4">
+              <div class="flex justify-center items-center gap-4 mt-4 flex-grow">
                 <!-- Facebook -->
                 <a
                   :href="getSocialLink(restaurant.name, 'facebook')"
@@ -366,6 +366,16 @@
         />
       </a>
     </div>
+
+              <!-- Explore Menu Button -->
+              <div class="mt-auto pt-6">
+                <button
+                  @click="viewMenu(restaurant.id)"
+                  class="w-full bg-gradient-to-r from-gray-800 to-black hover:from-gray-700 hover:to-gray-900 text-white px-6 py-3 rounded-lg font-medium transition-all duration-200 transform hover:scale-105"
+                >
+                  {{ $t('Explore Menu') }}
+                </button>
+              </div>
             </div>
           </div>
         </div>
