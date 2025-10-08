@@ -91,6 +91,11 @@ Route::get('/test-qr', function () {
 // Restaurant routesss
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
 
+// Customer Order routes (no authentication required)
+Route::get('/checkout/{restaurant}', [App\Http\Controllers\CustomerOrderController::class, 'checkout'])->name('customer.checkout');
+Route::post('/customer-orders', [App\Http\Controllers\CustomerOrderController::class, 'store'])->name('customer.orders.store');
+Route::get('/order-success/{order}', [App\Http\Controllers\CustomerOrderController::class, 'success'])->name('order.success');
+
 Route::get('/api/products/recent', [App\Http\Controllers\ProductController::class, 'recent'])->name('api.products.recent');
 
 // API route for restaurants

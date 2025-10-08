@@ -62,45 +62,107 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Restaurant Details Sidebar -->
-        <div class="lg:col-span-1">
+        <!-- Shopping Cart Sidebar -->
+        <div class="lg:col-span-1 order-2 lg:order-1">
           <div class="bg-white rounded-lg shadow-lg sticky top-6">
-            <div class="p-6 border-b border-gray-200">
-              <h3 class="text-xl font-semibold text-gray-900">{{ $t('Restaurant Information') }}</h3>
+            <div class="p-6 border-b border-gray-200 bg-gradient-to-r from-orange-500 to-red-500">
+              <div class="flex items-center justify-between text-white">
+                <h3 class="text-xl font-semibold flex items-center gap-2">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                  </svg>
+                  {{ $t('Shopping Cart') }}
+                </h3>
+                <span class="bg-white text-orange-500 px-3 py-1 rounded-full text-sm font-bold">
+                  {{ cartItems.length }}
+                </span>
+              </div>
             </div>
-            <div class="p-6 space-y-4">
-              <p class="text-gray-600">{{ restaurant.description || $t('Restaurant description not available') }}</p>
 
-              <div class="border-t border-gray-200 pt-4"></div>
+            <!-- Cart Items -->
+            <div class="p-6">
+              <div v-if="cartItems.length === 0" class="text-center py-8">
+                <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <p class="text-gray-500">{{ $t('Your cart is empty') }}</p>
+                <p class="text-sm text-gray-400 mt-2">{{ $t('Add items from the menu') }}</p>
+              </div>
 
-              <div class="space-y-3">
-                <div class="flex items-center gap-3 text-sm">
-                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                  <span>{{ restaurant.address || 'العنوان غير متوفر' }}</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm">
-                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                  <span>{{ restaurant.phone || 'الهاتف غير متوفر' }}</span>
-                </div>
-                <div class="flex items-center gap-3 text-sm">
-                  <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  <span>{{ getWorkingHours(restaurant.working_hours) }}</span>
+              <div v-else class="space-y-4 max-h-96 overflow-y-auto">
+                <div
+                  v-for="item in cartItems"
+                  :key="item.id"
+                  class="flex gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  <img
+                    :src="item.image_url"
+                    :alt="item.name"
+                    class="w-16 h-16 rounded-lg object-cover"
+                  />
+                  <div class="flex-1">
+                    <h4 class="font-semibold text-sm text-gray-900">{{ item.name }}</h4>
+                    <p class="text-sm text-gray-600">{{ item.price }} {{ $t('SAR') }}</p>
+                    <div class="flex items-center gap-2 mt-2">
+                      <button
+                        @click="decreaseQuantity(item.id)"
+                        class="w-6 h-6 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors"
+                      >
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M20 12H4"></path>
+                        </svg>
+                      </button>
+                      <span class="text-sm font-semibold w-8 text-center">{{ item.quantity }}</span>
+                      <button
+                        @click="increaseQuantity(item.id)"
+                        class="w-6 h-6 bg-orange-500 hover:bg-orange-600 text-white rounded-full flex items-center justify-center transition-colors"
+                      >
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                      </button>
+                      <button
+                        @click="removeFromCart(item.id)"
+                        class="mr-auto text-red-500 hover:text-red-700 transition-colors"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
 
+              <!-- Cart Summary -->
+              <div v-if="cartItems.length > 0" class="mt-6 pt-6 border-t border-gray-200">
+                <div class="space-y-2 mb-4">
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">{{ $t('Subtotal') }}</span>
+                    <span class="font-semibold">{{ cartSubtotal.toFixed(2) }} {{ $t('SAR') }}</span>
+                  </div>
+                  <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">{{ $t('Delivery Fee') }}</span>
+                    <span class="font-semibold">{{ restaurant.delivery_fee }} {{ $t('SAR') }}</span>
+                  </div>
+                  <div class="flex justify-between text-lg font-bold pt-2 border-t border-gray-200">
+                    <span>{{ $t('Total') }}</span>
+                    <span class="text-orange-500">{{ cartTotal.toFixed(2) }} {{ $t('SAR') }}</span>
+                  </div>
+                </div>
+                <Link
+                  :href="`/checkout/${restaurant.id}`"
+                  class="block w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center"
+                >
+                  {{ $t('Proceed to Checkout') }}
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Menu -->
-        <div class="lg:col-span-2">
+        <div class="lg:col-span-2 order-1 lg:order-2">
           <div class="mb-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ $t('Menu') }}</h2>
             <p class="text-gray-600">{{ $t('Discover our carefully selected dishes') }}</p>
@@ -152,9 +214,21 @@
                             </span>
                           </div>
                         </div>
-                        <span class="font-bold text-lg text-gray-900">
-                          {{ product.formatted_price }}
-                        </span>
+                        <div class="flex items-center gap-3">
+                          <span class="font-bold text-lg text-gray-900">
+                            {{ product.formatted_price }}
+                          </span>
+                          <button
+                            @click="addToCart(product)"
+                            class="group relative w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-full flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg active:scale-95"
+                            :title="$t('Add to Cart')"
+                          >
+                            <svg class="w-5 h-5 transition-transform group-hover:rotate-90 duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></span>
+                          </button>
+                        </div>
                       </div>
                       <p class="text-gray-600 text-sm leading-relaxed">
                         {{ translateDescription(product.description) }}
@@ -310,6 +384,9 @@ const currentLanguage = ref(locale.value || 'ar')
 const isHeaderHidden = ref(false)
 const lastScrollY = ref(0)
 
+// Shopping cart state
+const cartItems = ref([])
+
 const props = defineProps({
   restaurant: Object,
   categories: Array,
@@ -349,6 +426,17 @@ const handleImageError = (event) => {
   event.target.src = '/images/default-product.png'
 }
 
+// Cart computed properties
+const cartSubtotal = computed(() => {
+  return cartItems.value.reduce((total, item) => {
+    return total + (item.price * item.quantity)
+  }, 0)
+})
+
+const cartTotal = computed(() => {
+  return cartSubtotal.value + parseFloat(props.restaurant.delivery_fee || 0)
+})
+
 // Translate product descriptions
 const translateDescription = (description) => {
   const translations = {
@@ -363,6 +451,62 @@ const translateDescription = (description) => {
   }
 
   return translations[description] || description
+}
+
+// Cart functions
+const addToCart = (product) => {
+  // Check if product already exists in cart
+  const existingItem = cartItems.value.find(item => item.id === product.id)
+
+  if (existingItem) {
+    // Increase quantity if already in cart
+    existingItem.quantity++
+  } else {
+    // Add new item to cart
+    cartItems.value.push({
+      id: product.id,
+      name: product.name,
+      price: parseFloat(product.price),
+      image_url: product.image_url,
+      quantity: 1
+    })
+  }
+
+  // Save to localStorage
+  localStorage.setItem('cart', JSON.stringify(cartItems.value))
+}
+
+const removeFromCart = (productId) => {
+  cartItems.value = cartItems.value.filter(item => item.id !== productId)
+  localStorage.setItem('cart', JSON.stringify(cartItems.value))
+}
+
+const increaseQuantity = (productId) => {
+  const item = cartItems.value.find(item => item.id === productId)
+  if (item) {
+    item.quantity++
+    localStorage.setItem('cart', JSON.stringify(cartItems.value))
+  }
+}
+
+const decreaseQuantity = (productId) => {
+  const item = cartItems.value.find(item => item.id === productId)
+  if (item) {
+    if (item.quantity > 1) {
+      item.quantity--
+    } else {
+      removeFromCart(productId)
+    }
+    localStorage.setItem('cart', JSON.stringify(cartItems.value))
+  }
+}
+
+// Load cart from localStorage on mount
+if (typeof window !== 'undefined') {
+  const savedCart = localStorage.getItem('cart')
+  if (savedCart) {
+    cartItems.value = JSON.parse(savedCart)
+  }
 }
 
 // Header scroll behavior
