@@ -20,8 +20,23 @@ class RestaurantController extends Controller
 
         // Add image URLs to each restaurant
         $restaurants->each(function ($restaurant) {
-            $restaurant->logo_url = $restaurant->logo ? asset('storage/' . $restaurant->logo) : asset('images/default-restaurant-logo.png');
-            $restaurant->cover_image_url = $restaurant->cover_image ? asset('storage/' . $restaurant->cover_image) : asset('images/default-restaurant-cover.png');
+            // Check if logo path starts with 'restaurants/' (uploaded via storage) or other paths (public/)
+            if ($restaurant->logo) {
+                $restaurant->logo_url = str_starts_with($restaurant->logo, 'restaurants/')
+                    ? asset('storage/' . $restaurant->logo)
+                    : asset($restaurant->logo);
+            } else {
+                $restaurant->logo_url = asset('images/default-restaurant-logo.png');
+            }
+
+            // Check if cover_image path starts with 'restaurants/' (uploaded via storage) or other paths (public/)
+            if ($restaurant->cover_image) {
+                $restaurant->cover_image_url = str_starts_with($restaurant->cover_image, 'restaurants/')
+                    ? asset('storage/' . $restaurant->cover_image)
+                    : asset($restaurant->cover_image);
+            } else {
+                $restaurant->cover_image_url = asset('images/default-restaurant-cover.png');
+            }
         });
 
         // Check if request is for API (JSON)
@@ -69,14 +84,37 @@ class RestaurantController extends Controller
 
         // Add accessor methods to products
         $products->each(function ($product) {
-            $product->image_url = $product->image ? asset('storage/' . $product->image) : asset('images/default-product.png');
+            // Check if product image path starts with 'products/' (uploaded via storage) or other paths (public/)
+            if ($product->image) {
+                $product->image_url = str_starts_with($product->image, 'products/')
+                    ? asset('storage/' . $product->image)
+                    : asset($product->image);
+            } else {
+                $product->image_url = asset('images/default-product.png');
+            }
             $product->formatted_price = number_format($product->price, 2) . ' ريال';
         });
 
         // Add logo_url and cover_image_url to restaurant
         $restaurantData = $restaurant->toArray();
-        $restaurantData['logo_url'] = $restaurant->logo ? asset('storage/' . $restaurant->logo) : asset('images/default-restaurant-logo.png');
-        $restaurantData['cover_image_url'] = $restaurant->cover_image ? asset('storage/' . $restaurant->cover_image) : asset('images/default-restaurant-cover.png');
+
+        // Check if logo path starts with 'restaurants/' (uploaded via storage) or other paths (public/)
+        if ($restaurant->logo) {
+            $restaurantData['logo_url'] = str_starts_with($restaurant->logo, 'restaurants/')
+                ? asset('storage/' . $restaurant->logo)
+                : asset($restaurant->logo);
+        } else {
+            $restaurantData['logo_url'] = asset('images/default-restaurant-logo.png');
+        }
+
+        // Check if cover_image path starts with 'restaurants/' (uploaded via storage) or other paths (public/)
+        if ($restaurant->cover_image) {
+            $restaurantData['cover_image_url'] = str_starts_with($restaurant->cover_image, 'restaurants/')
+                ? asset('storage/' . $restaurant->cover_image)
+                : asset($restaurant->cover_image);
+        } else {
+            $restaurantData['cover_image_url'] = asset('images/default-restaurant-cover.png');
+        }
 
         return Inertia::render('Restaurants/Show', [
             'restaurant' => $restaurantData,
