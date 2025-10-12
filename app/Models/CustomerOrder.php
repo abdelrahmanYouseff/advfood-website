@@ -12,8 +12,10 @@ class CustomerOrder extends Model
 
     protected $fillable = [
         'restaurant_id',
+        'order_number',
         'customer_name',
         'customer_phone',
+        'customer_email',
         'address',
         'latitude',
         'longitude',
@@ -25,6 +27,9 @@ class CustomerOrder extends Model
         'delivery_fee',
         'total',
         'status',
+        'payment_status',
+        'noon_order_id',
+        'payment_data',
         'notes',
     ];
 

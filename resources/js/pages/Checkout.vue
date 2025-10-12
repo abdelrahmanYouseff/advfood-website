@@ -23,7 +23,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Checkout Form -->
         <div class="lg:col-span-2">
-          <form @submit.prevent="submitOrder" class="bg-white rounded-lg shadow-lg p-8">
+          <form @submit="submitOrder" ref="checkoutForm" class="bg-white rounded-lg shadow-lg p-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-6">{{ $t('Delivery Information') }}</h2>
 
             <!-- Customer Name -->
@@ -213,7 +213,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import { Link, router } from '@inertiajs/vue3'
+import { Link } from '@inertiajs/vue3'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
@@ -290,9 +290,14 @@ const getCurrentLocation = () => {
 }
 
 // Submit order
-const submitOrder = () => {
+const submitOrder = (event) => {
+  console.log('Submit Order clicked')
+  console.log('Cart Items:', cartItems.value)
+
   if (cartItems.value.length === 0) {
+    event.preventDefault()
     alert(t('Your cart is empty'))
+    console.error('Cart is empty!')
     return
   }
 
@@ -307,19 +312,44 @@ const submitOrder = () => {
     total: cartTotal.value,
   }
 
-  router.post('/customer-orders', orderData, {
-    onSuccess: () => {
-      // Clear cart
-      localStorage.removeItem('cart')
-      cartItems.value = []
+  console.log('Sending order data:', orderData)
+
+  // Prevent default form submission
+  event.preventDefault()
+
+  // Send AJAX request to get redirect URL
+  const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content')
+
+  fetch(`/checkout/${props.restaurant.id}/process`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': csrfToken,
+      'Accept': 'application/json'
     },
-    onError: (err) => {
-      errors.value = err
-      isSubmitting.value = false
-    },
-    onFinish: () => {
+    body: JSON.stringify(orderData)
+  })
+  .then(response => {
+    console.log('Response status:', response.status)
+    console.log('Response headers:', response.headers)
+    return response.json()
+  })
+  .then(data => {
+    console.log('Response data:', data)
+    if (data.success && data.redirect_url) {
+      console.log('Redirecting to:', data.redirect_url)
+      // Redirect to Noon Payment
+      window.location.href = data.redirect_url
+    } else {
+      console.error('Invalid response:', data)
+      alert('حدث خطأ في معالجة الطلب')
       isSubmitting.value = false
     }
+  })
+  .catch(error => {
+    console.error('Error:', error)
+    alert('حدث خطأ في معالجة الطلب')
+    isSubmitting.value = false
   })
 }
 </script>

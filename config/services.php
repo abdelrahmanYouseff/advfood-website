@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'noon' => [
+        'mode' => env('NOON_PAYMENT_MODE', 'test'), // 'test' or 'live'
+        'app_id' => env('NOON_APP_ID'),
+        'api_key' => env('NOON_API_KEY'),
+        'business_id' => env('NOON_BUSINESS_ID'),
+    ],
+
 ];

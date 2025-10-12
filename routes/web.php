@@ -93,8 +93,10 @@ Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->
 
 // Customer Order routes (no authentication required)
 Route::get('/checkout/{restaurant}', [App\Http\Controllers\CustomerOrderController::class, 'checkout'])->name('customer.checkout');
-Route::post('/customer-orders', [App\Http\Controllers\CustomerOrderController::class, 'store'])->name('customer.orders.store');
+Route::post('/checkout/{restaurant}/process', [App\Http\Controllers\CustomerOrderController::class, 'processCheckout'])->name('customer.checkout.process');
 Route::get('/order-success/{order}', [App\Http\Controllers\CustomerOrderController::class, 'success'])->name('order.success');
+Route::get('/payment-callback/{order}', [App\Http\Controllers\CustomerOrderController::class, 'paymentCallback'])->name('payment.callback');
+Route::get('/payment-failed/{order}', [App\Http\Controllers\CustomerOrderController::class, 'paymentFailed'])->name('payment.failed');
 
 Route::get('/api/products/recent', [App\Http\Controllers\ProductController::class, 'recent'])->name('api.products.recent');
 
