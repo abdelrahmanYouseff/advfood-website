@@ -14,7 +14,7 @@
               </svg>
             </Link>
             <div class="flex items-center space-x-3">
-              <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-10 w-10 rounded-lg shadow-sm">
+              <img src="/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-10 w-10 rounded-lg shadow-sm">
               <div>
                 <h1 class="text-3xl font-bold text-gray-900">Shopping Cart</h1>
                 <p class="text-gray-600">{{ cartItems.length }} items in your cart</p>

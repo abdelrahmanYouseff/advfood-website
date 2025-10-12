@@ -1,8 +1,19 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100" :dir="currentLanguage === 'ar' ? 'rtl' : 'ltr'">
     <!-- Header -->
-    <header class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-6 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header class="relative text-white py-6 shadow-lg">
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <img
+          src="/asset/WhatsApp Image 2025-10-12 at 10.20.57 AM.jpeg"
+          alt="Header Background"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      <!-- Content -->
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between">
           <h1 class="text-3xl font-bold">{{ $t('Checkout') }}</h1>
           <Link

@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center py-4">
           <!-- Logo -->
           <div class="flex items-center">
-            <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="w-16 h-16" />
+            <img src="/images/gatherus-logo-new.png" alt="GatherUs Logo" class="w-16 h-16" />
           </div>
 
           <!-- Navigation -->
@@ -159,7 +159,7 @@
           <!-- Company Info -->
           <div class="lg:col-span-1">
             <div class="flex items-center mb-6">
-              <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="w-12 h-12 rounded-xl shadow-lg" />
+              <img src="/images/gatherus-logo-new.png" alt="GatherUs Logo" class="w-12 h-12 rounded-xl shadow-lg" />
               <h3 class="text-2xl font-bold ml-3 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
                 منصتنا
               </h3>

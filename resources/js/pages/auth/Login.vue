@@ -13,7 +13,7 @@ defineProps({
       <!-- Header -->
       <div class="text-center">
         <div class="mx-auto h-16 w-16 bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl flex items-center justify-center mb-6 overflow-hidden">
-          <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-12 w-12 rounded-xl">
+          <img src="/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-12 w-12 rounded-xl">
         </div>
         <h2 class="text-3xl font-bold text-gray-900 mb-2">Welcome to ADVFood</h2>
         <p class="text-gray-600">Sign in to your account to continue</p>
