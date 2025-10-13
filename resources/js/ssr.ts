@@ -5,7 +5,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createSSRApp, DefineComponent, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Welcome to AdvFood';
+const appName = import.meta.env.VITE_APP_NAME || 'ADVFood - منصة طلب الطعام';
 
 createServer((page) =>
     createInertiaApp({

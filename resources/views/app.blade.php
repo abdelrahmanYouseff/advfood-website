@@ -18,7 +18,6 @@
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="ADVFood">
 
-        {{-- Twitter Card Meta Tags --}}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="ADVFood - منصة طلب الطعام">
         <meta name="twitter:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
