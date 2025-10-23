@@ -15,7 +15,7 @@ import { Link, Form } from '@inertiajs/vue3'
       <!-- Header -->
       <div class="text-center">
         <div class="mx-auto h-20 w-20 bg-gradient-to-r from-green-500 to-blue-500 rounded-3xl flex items-center justify-center mb-6 shadow-2xl overflow-hidden">
-          <img src="http://127.0.0.1:8002/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-16 w-16 rounded-2xl">
+          <img src="/images/gatherus-logo-new.png" alt="GatherUs Logo" class="h-16 w-16 rounded-2xl">
         </div>
         <h2 class="text-4xl font-bold text-white mb-2">لوحة تحكم الأدمن</h2>
         <p class="text-gray-300">الوصول إلى لوحة تحكم إدارة ADVFood</p>
