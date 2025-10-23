@@ -39,9 +39,10 @@
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
             <p class="text-gray-700 leading-relaxed mb-4">
               At <strong>Advanced Line Food</strong>, we are committed to protecting your privacy and personal data.
-              This policy explains how we collect, use, and protect your information when you use our platform.
+              This policy explains how we collect, use, and protect your information when you use our food delivery platform.
             </p>
             <p class="text-gray-700 leading-relaxed">
+              We collect only the essential information necessary to process and deliver your food orders safely and efficiently.
               By using our website or application, you agree to the terms outlined in this policy.
             </p>
           </section>
@@ -49,27 +50,37 @@
           <!-- Information We Collect -->
           <section class="mb-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">Information We Collect</h2>
+            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 class="text-lg font-semibold text-blue-900 mb-3">Essential Information for Order Delivery</h3>
+              <p class="text-blue-800 mb-4">
+                We collect only the minimum information required to process and deliver your food orders:
+              </p>
+            </div>
+
             <div class="space-y-4">
               <div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Personal Information</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Personal Information Required for Delivery</h3>
                 <ul class="list-disc list-inside text-gray-700 space-y-1">
-                  <li>Full name</li>
-                  <li>Phone number</li>
-                  <li>Email address</li>
-                  <li>Delivery address</li>
-                  <li>Food preferences</li>
+                  <li><strong>Full name</strong> - Required to verify order recipient</li>
+                  <li><strong>Phone number</strong> - Required for delivery driver contact and order updates</li>
+                  <li><strong>Email address</strong> - Required for order confirmation and receipts</li>
+                  <li><strong>Delivery address</strong> - Required to deliver your order to the correct location</li>
                 </ul>
+                <p class="text-gray-600 text-sm mt-2 italic">
+                  Note: We do NOT collect unnecessary personal information such as ID numbers, passport details, or financial information beyond payment processing.
+                </p>
               </div>
 
               <div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Usage Information</h3>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Technical Information</h3>
                 <ul class="list-disc list-inside text-gray-700 space-y-1">
-                  <li>Order date and time</li>
-                  <li>Favorite restaurants</li>
-                  <li>Browsing history</li>
-                  <li>IP address</li>
-                  <li>Device and browser type</li>
+                  <li>Order date and time - For order processing and delivery tracking</li>
+                  <li>Device type (mobile/desktop) - For app optimization</li>
+                  <li>IP address - For security and fraud prevention</li>
                 </ul>
+                <p class="text-gray-600 text-sm mt-2 italic">
+                  We do NOT track your browsing history, location data, or personal preferences beyond what's necessary for order delivery.
+                </p>
               </div>
             </div>
           </section>
@@ -78,19 +89,27 @@
           <section class="mb-8">
             <h2 class="text-2xl font-bold text-gray-900 mb-4">How We Use Your Information</h2>
             <div class="space-y-4">
-              <div class="bg-blue-50 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold text-blue-900 mb-2">Order Processing</h3>
-                <p class="text-blue-800">We use your information to process and deliver your orders with the highest quality.</p>
+              <div class="bg-green-50 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-green-900 mb-2">Order Processing & Delivery</h3>
+                <p class="text-green-800">
+                  We use your name, phone number, email, and delivery address exclusively to process your order,
+                  coordinate with the restaurant, and ensure successful delivery to your location.
+                </p>
               </div>
 
-              <div class="bg-green-50 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold text-green-900 mb-2">Service Improvement</h3>
-                <p class="text-green-800">We analyze your data to provide personalized food recommendations.</p>
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <h3 class="text-lg font-semibold text-blue-900 mb-2">Communication</h3>
+                <p class="text-blue-800">
+                  We use your contact information to send order confirmations, delivery updates, and receipts only.
+                  We do not send marketing emails or promotional content without your explicit consent.
+                </p>
               </div>
 
               <div class="bg-purple-50 p-4 rounded-lg">
-                <h3 class="text-lg font-semibold text-purple-900 mb-2">Communication</h3>
-                <p class="text-purple-800">We send you order updates and special offers.</p>
+                <h3 class="text-lg font-semibold text-purple-900 mb-2">Security & Fraud Prevention</h3>
+                <p class="text-purple-800">
+                  We use technical information to protect your account from unauthorized access and prevent fraudulent orders.
+                </p>
               </div>
             </div>
           </section>
@@ -117,6 +136,85 @@
               <div class="bg-gray-50 p-6 rounded-lg">
                 <h3 class="text-lg font-semibold text-gray-800 mb-3">Backup</h3>
                 <p class="text-gray-700">Regular encrypted backups of your data</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Apple & Android Compliance -->
+          <section class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Apple App Store & Google Play Store Compliance</h2>
+            <div class="bg-gradient-to-r from-blue-50 to-green-50 p-6 rounded-lg mb-6">
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">App Store Guidelines Compliance</h3>
+              <p class="text-gray-700 mb-4">
+                Our app complies with Apple App Store and Google Play Store privacy requirements:
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <div class="bg-white border-l-4 border-blue-500 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">Minimal Data Collection</h4>
+                <p class="text-gray-700">
+                  We collect only the essential data required for food delivery service functionality.
+                  No unnecessary data collection or tracking.
+                </p>
+              </div>
+
+              <div class="bg-white border-l-4 border-green-500 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">Transparent Purpose</h4>
+                <p class="text-gray-700">
+                  Every piece of data we collect has a clear, legitimate purpose directly related to
+                  processing and delivering your food orders.
+                </p>
+              </div>
+
+              <div class="bg-white border-l-4 border-purple-500 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">No Third-Party Sharing</h4>
+                <p class="text-gray-700">
+                  We do not share your personal information with third parties for marketing purposes.
+                  Data is only shared with delivery partners and restaurants for order fulfillment.
+                </p>
+              </div>
+
+              <div class="bg-white border-l-4 border-orange-500 p-4 rounded-lg">
+                <h4 class="text-lg font-semibold text-gray-800 mb-2">User Control</h4>
+                <p class="text-gray-700">
+                  You have full control over your data. You can request data deletion, modification,
+                  or export at any time through your account settings.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Data Storage & Retention -->
+          <section class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">Data Storage & Retention</h2>
+            <div class="bg-yellow-50 p-6 rounded-lg mb-6">
+              <h3 class="text-lg font-semibold text-yellow-900 mb-3">Local Data Storage</h3>
+              <p class="text-yellow-800">
+                All customer data is stored locally in Saudi Arabia and processed according to local privacy laws.
+                We do not transfer your personal data to third countries without your explicit consent.
+              </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="bg-white border border-gray-200 p-6 rounded-lg">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">Data Retention Period</h4>
+                <ul class="text-gray-700 space-y-2">
+                  <li>• Order data: 2 years for accounting purposes</li>
+                  <li>• Contact information: Until account deletion</li>
+                  <li>• Payment data: As required by financial regulations</li>
+                  <li>• Technical logs: 90 days maximum</li>
+                </ul>
+              </div>
+
+              <div class="bg-white border border-gray-200 p-6 rounded-lg">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">Data Deletion</h4>
+                <ul class="text-gray-700 space-y-2">
+                  <li>• Immediate deletion upon request</li>
+                  <li>• Automatic deletion after retention period</li>
+                  <li>• Secure deletion using industry standards</li>
+                  <li>• No data recovery after deletion</li>
+                </ul>
               </div>
             </div>
           </section>
@@ -159,6 +257,15 @@
                   </svg>
                 </div>
                 <p class="text-gray-700">Right to withdraw your consent at any time</p>
+              </div>
+
+              <div class="flex items-start space-x-3">
+                <div class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <p class="text-gray-700">Right to data portability (export your data)</p>
               </div>
             </div>
           </section>
