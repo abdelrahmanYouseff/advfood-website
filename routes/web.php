@@ -61,16 +61,16 @@ Route::get('/pdf/{filename}', function ($filename) {
     ]);
 });
 
-// Menu images serving route
-Route::get('/menu/{filename}', function ($filename) {
-    $filePath = public_path('menu/' . $filename);
+// Menu images serving route (supports subdirectories like menu/delawa/new/filename.jpg)
+Route::get('/menu/{path}', function ($path) {
+    $filePath = public_path('menu/' . $path);
 
     if (!file_exists($filePath)) {
         abort(404, 'Menu image not found');
     }
 
     return response()->file($filePath);
-});
+})->where('path', '.*');
 
 // Restaurant images serving route
 Route::get('/rest/{filename}', function ($filename) {
