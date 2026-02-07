@@ -684,8 +684,9 @@
 
           <!-- Logo & About Section -->
           <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-            <div class="flex justify-end" :class="currentLanguage === 'ar' ? 'justify-start' : 'justify-end'">
+            <div class="flex flex-col" :class="currentLanguage === 'ar' ? 'items-end' : 'items-start'">
               <img src="/logo-white.png" alt="ADVFood Logo" class="h-40 w-40 object-contain">
+              <p class="text-white font-semibold mt-4 text-lg" dir="rtl">شركة الخط المتطور للأغذية</p>
             </div>
             <p class="text-gray-300 leading-relaxed">
               {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
