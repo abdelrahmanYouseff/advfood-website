@@ -683,8 +683,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
 
           <!-- Logo & About Section -->
-          <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-            <div class="flex flex-col" :class="currentLanguage === 'ar' ? 'items-end' : 'items-start'">
+          <div class="space-y-6 text-right">
+            <div class="flex flex-col items-end">
               <img src="/logo-white.png" alt="ADVFood Logo" class="h-40 w-40 object-contain">
               <p class="text-white font-semibold mt-4 text-lg" dir="rtl">شركة الخط المتطور للأغذية</p>
             </div>
@@ -692,7 +692,7 @@
               {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
             </p>
             <!-- Decorative Line -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 justify-end">
               <div class="h-1 w-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
               <div class="h-1 w-8 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
               <div class="h-1 w-4 bg-gradient-to-r from-orange-300 to-red-300 rounded-full"></div>
