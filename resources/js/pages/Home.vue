@@ -686,7 +686,7 @@
           <div class="space-y-6 text-right">
             <div class="flex flex-col items-end">
               <img src="/logo-white.png" alt="ADVFood Logo" class="h-40 w-40 object-contain">
-              <p class="text-white font-semibold mt-4 text-lg" dir="rtl">شركة الخط المتطور للأغذية</p>
+              <p class="text-white font-semibold mt-4 text-lg" dir="rtl">شركة الخط المتطور للمنتجات الغذائية</p>
             </div>
             <p class="text-gray-300 leading-relaxed">
               {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
