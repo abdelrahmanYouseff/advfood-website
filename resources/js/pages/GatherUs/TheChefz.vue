@@ -1,4 +1,5 @@
 <template>
+  <Head title="Gather-us" />
   <div class="min-h-screen flex flex-col" dir="rtl">
     <!-- Main Content - Teal Green Background -->
     <div class="flex-1 flex flex-col items-center justify-center py-16 px-4" style="background-color: #cf4823;">
@@ -13,7 +14,7 @@
 
       <!-- Heading -->
       <h2 class="text-2xl md:text-3xl font-bold text-white mb-8">
-        هتلاقوني في
+        متواجدين في
       </h2>
 
       <!-- The Chefz Logo - Clickable Link -->
@@ -81,5 +82,5 @@
 </template>
 
 <script setup>
-// Simple landing page - no additional setup needed
+import { Head } from '@inertiajs/vue3'
 </script>
