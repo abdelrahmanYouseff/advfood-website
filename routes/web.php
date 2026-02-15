@@ -41,6 +41,10 @@ Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
+Route::get('/gather-us/the-chefz', function () {
+    return Inertia::render('GatherUs/TheChefz');
+})->name('gather-us.the-chefz');
+
 // QR Image Book Viewer Routeee
 Route::get('/qrs/{id}', [App\Http\Controllers\QRController::class, 'show']);
 
