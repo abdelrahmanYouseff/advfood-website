@@ -45,6 +45,15 @@ Route::get('/gather-us/the-chefz', function () {
     return Inertia::render('GatherUs/TheChefz');
 })->name('gather-us.the-chefz');
 
+Route::get('/bakiza/gahez', function () {
+    return Inertia::render('GatherUs/TheChefz', [
+        'logo' => '/rest/bakiza-logo.png',
+        'linkUrl' => 'https://jahez.link/W836wlxUP0b',
+        'appImage' => '/images/jahez-logo.png',
+        'appImageAlt' => 'جاهز',
+    ]);
+})->name('bakiza.gahez');
+
 // QR Image Book Viewer Routeee
 Route::get('/qrs/{id}', [App\Http\Controllers\QRController::class, 'show']);
 
