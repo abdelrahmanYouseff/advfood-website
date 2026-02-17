@@ -182,9 +182,9 @@
     </header>
 
     <!-- Main Content -->
-    <main class="flex-1 pt-48">
-      <!-- Hero Section -->
-      <div class="text-white py-20" style="background-color: #cf4823;">
+    <main class="flex-1">
+      <!-- Hero Section - continuous with header (same orange background) -->
+      <div class="text-white pt-48 pb-20" style="background-color: #cf4823;">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             {{ $t('Discover Delicious Restaurants') }}
@@ -604,7 +604,7 @@
               <div class="relative h-48 overflow-hidden bg-white">
                 <img
                   :src="product.image_url"
-                  :alt="product.name"
+                  :alt="getProductName(product)"
                   class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   @error="handleProductImageError"
                 />
@@ -623,8 +623,8 @@
               <!-- Product Info -->
               <div class="p-6">
                 <div class="mb-3">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ product.name }}</h3>
-                  <p class="text-gray-600 text-sm line-clamp-2">{{ product.description }}</p>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-2">{{ getProductName(product) }}</h3>
+                  <p class="text-gray-600 text-sm line-clamp-2">{{ getProductDescription(product) }}</p>
                 </div>
 
                 <div class="flex items-center justify-between mb-4">
@@ -671,143 +671,7 @@
       </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white overflow-hidden">
-      <!-- Background Pattern -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
-      </div>
-
-      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Main Footer Content -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
-
-          <!-- Logo & About Section -->
-          <div class="space-y-6 text-right">
-            <div class="flex flex-col items-end">
-              <img src="/logo-white.png" alt="ADVFood Logo" class="h-40 w-40 object-contain">
-              <p class="text-white font-semibold mt-4 text-lg" dir="rtl">شركة الخط المتطور للمنتجات الغذائية</p>
-            </div>
-            <p class="text-gray-300 leading-relaxed">
-              {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
-            </p>
-            <!-- Decorative Line -->
-            <div class="flex items-center gap-2 justify-end">
-              <div class="h-1 w-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
-              <div class="h-1 w-8 bg-gradient-to-r from-orange-400 to-red-400 rounded-full"></div>
-              <div class="h-1 w-4 bg-gradient-to-r from-orange-300 to-red-300 rounded-full"></div>
-            </div>
-          </div>
-
-          <!-- Contact Info Section -->
-          <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-            <h4 class="text-xl font-bold text-white relative inline-block">
-              {{ $t('Contact Us') }}
-              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-500 to-red-500"></span>
-            </h4>
-            <div class="space-y-4">
-              <!-- Address -->
-              <div class="flex items-start gap-4 group">
-                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="font-bold text-white text-lg mb-1">{{ $t('Address') }}</div>
-                  <div class="text-sm text-gray-300 leading-relaxed">QM4G+F35, King Abdulaziz Rd, Al Muruj, Riyadh 12465, Saudi Arabia</div>
-                </div>
-              </div>
-
-              <!-- Phone -->
-              <div class="flex items-start gap-4 group">
-                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="font-bold text-white text-lg mb-1">{{ $t('Phone') }}</div>
-                  <a href="tel:+966507844079" class="text-sm text-gray-300 hover:text-orange-400 transition-colors block" dir="ltr">+966 50 784 4079</a>
-                </div>
-              </div>
-
-              <!-- Email -->
-              <div class="flex items-start gap-4 group">
-                <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                  </svg>
-                </div>
-                <div class="flex-1">
-                  <div class="font-bold text-white text-lg mb-1">{{ $t('Email') }}</div>
-                  <a href="mailto:info@adv-line.sa" class="text-sm text-gray-300 hover:text-orange-400 transition-colors block">info@adv-line.sa</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Working Hours Section -->
-          <div class="space-y-6" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-            <h4 class="text-xl font-bold text-white relative inline-block">
-              {{ $t('Working Hours') }}
-              <span class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-orange-500 to-red-500"></span>
-            </h4>
-            <div class="space-y-3">
-              <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                <span class="text-gray-300">{{ $t('Sunday - Thursday') }}</span>
-                <span class="text-white font-semibold">9:00 AM - 11:00 PM</span>
-              </div>
-              <div class="flex justify-between items-center p-3 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
-                <span class="text-gray-300">{{ $t('Friday - Saturday') }}</span>
-                <span class="text-white font-semibold">10:00 AM - 12:00 AM</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Divider with decoration -->
-        <div class="relative my-8">
-          <div class="absolute inset-0 flex items-center">
-            <div class="w-full border-t border-gray-700"></div>
-          </div>
-          <div class="relative flex justify-center">
-            <div class="bg-gray-900 px-4">
-              <div class="flex items-center gap-2">
-                <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
-                <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Section -->
-        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <!-- Copyright -->
-          <div class="flex items-center space-x-2 space-x-reverse text-gray-400">
-            <span>© {{ currentYear }} ADVFood. {{ $t('All rights reserved') }}.</span>
-          </div>
-
-          <!-- Made in Saudi Arabia -->
-          <div class="flex items-center space-x-1 space-x-reverse text-gray-400">
-            <span>صنع في ❤️ السعودية</span>
-          </div>
-
-          <!-- Quick Links -->
-          <div class="flex space-x-6 space-x-reverse text-sm">
-            <Link href="/privacy" class="text-gray-400 hover:text-orange-400 transition-colors duration-300 relative group">
-              {{ $t('Privacy') }}
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-orange-400 group-hover:w-full transition-all duration-300"></span>
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      <!-- Animated gradient border at top -->
-      <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 animate-gradient"></div>
-    </footer>
+    <AppFooter />
   </div>
 </template>
 
@@ -815,8 +679,11 @@
 import { ref, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Link } from '@inertiajs/vue3'
+import AppFooter from '@/components/AppFooter.vue'
+import { useProductLocale } from '@/composables/useProductLocale'
 
 const { t, locale } = useI18n()
+const { getProductName, getProductDescription } = useProductLocale()
 
 // Reactive state
 const isMobileMenuOpen = ref(false)
@@ -837,8 +704,6 @@ const restaurants = ref([])
 const recentProducts = ref([])
 
 // Footer data
-const currentYear = new Date().getFullYear()
-
 // Social media links function
 const getSocialLink = (restaurantName, platform) => {
   const socialLinks = {

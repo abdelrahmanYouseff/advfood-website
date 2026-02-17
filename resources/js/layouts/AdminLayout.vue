@@ -90,8 +90,8 @@ const sidebarOpen = ref(false)
          class="fixed inset-0 z-40 bg-gray-600 bg-opacity-75 lg:hidden"
          @click="sidebarOpen = false"></div>
 
-    <!-- Main content -->
-    <div class="lg:mr-64 min-h-screen">
+    <!-- Main content - LTR: margin-right for sidebar | RTL: margin-left for sidebar -->
+    <div class="min-h-screen lg:mr-64 rtl:lg:mr-0 rtl:lg:ml-64 min-w-0">
       <!-- Top header -->
       <header class="bg-white shadow-sm border-b border-gray-200">
         <div class="px-4 sm:px-6 lg:px-8">

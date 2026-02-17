@@ -188,11 +188,11 @@
                 >
                   <img
                     :src="item.image_url"
-                    :alt="item.name"
+                    :alt="(currentLanguage === 'ar' && item.name_ar) ? item.name_ar : item.name"
                     class="w-16 h-16 rounded-lg object-cover"
                   />
                   <div class="flex-1">
-                    <h5 class="font-semibold text-sm text-gray-900">{{ item.name }}</h5>
+                    <h5 class="font-semibold text-sm text-gray-900">{{ (currentLanguage === 'ar' && item.name_ar) ? item.name_ar : item.name }}</h5>
                     <p class="text-sm text-gray-600">{{ item.quantity }} × {{ item.price }} {{ $t('SAR') }}</p>
                     <p class="text-sm font-semibold text-orange-500">{{ (item.quantity * item.price).toFixed(2) }} {{ $t('SAR') }}</p>
                   </div>

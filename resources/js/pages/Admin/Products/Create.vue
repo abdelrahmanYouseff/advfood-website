@@ -9,7 +9,9 @@ const props = defineProps({
 
 const form = useForm({
   name: '',
+  name_ar: '',
   description: '',
+  description_ar: '',
   price: 0,
   restaurant_id: '',
   category_id: '',
@@ -38,21 +40,38 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit" class="p-6 space-y-6">
-          <!-- Basic Information -->
+          <!-- Basic Information - اسم المنتج -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">اسم المنتج *</label>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">اسم المنتج (إنجليزي) *</label>
               <input
                 id="name"
                 v-model="form.name"
                 type="text"
                 required
+                dir="ltr"
                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 :class="{ 'border-red-500': form.errors.name }"
               />
               <p v-if="form.errors.name" class="mt-1 text-sm text-red-600">{{ form.errors.name }}</p>
             </div>
 
+            <div>
+              <label for="name_ar" class="block text-sm font-medium text-gray-700 mb-2">اسم المنتج (عربي)</label>
+              <input
+                id="name_ar"
+                v-model="form.name_ar"
+                type="text"
+                dir="rtl"
+                placeholder="اسم المنتج بالعربية"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                :class="{ 'border-red-500': form.errors.name_ar }"
+              />
+              <p v-if="form.errors.name_ar" class="mt-1 text-sm text-red-600">{{ form.errors.name_ar }}</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label for="price" class="block text-sm font-medium text-gray-700 mb-2">السعر (ريال) *</label>
               <input
@@ -107,17 +126,33 @@ const submit = () => {
           </div>
 
           <!-- Description -->
-          <div>
-            <label for="description" class="block text-sm font-medium text-gray-700 mb-2">وصف المنتج *</label>
-            <textarea
-              id="description"
-              v-model="form.description"
-              rows="4"
-              required
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              :class="{ 'border-red-500': form.errors.description }"
-            ></textarea>
-            <p v-if="form.errors.description" class="mt-1 text-sm text-red-600">{{ form.errors.description }}</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="description" class="block text-sm font-medium text-gray-700 mb-2">وصف المنتج (إنجليزي) *</label>
+              <textarea
+                id="description"
+                v-model="form.description"
+                rows="4"
+                required
+                dir="ltr"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                :class="{ 'border-red-500': form.errors.description }"
+              ></textarea>
+              <p v-if="form.errors.description" class="mt-1 text-sm text-red-600">{{ form.errors.description }}</p>
+            </div>
+            <div>
+              <label for="description_ar" class="block text-sm font-medium text-gray-700 mb-2">وصف المنتج (عربي)</label>
+              <textarea
+                id="description_ar"
+                v-model="form.description_ar"
+                rows="4"
+                dir="rtl"
+                placeholder="وصف المنتج بالعربية"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                :class="{ 'border-red-500': form.errors.description_ar }"
+              ></textarea>
+              <p v-if="form.errors.description_ar" class="mt-1 text-sm text-red-600">{{ form.errors.description_ar }}</p>
+            </div>
           </div>
 
           <!-- Product Image -->

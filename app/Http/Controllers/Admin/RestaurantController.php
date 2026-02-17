@@ -69,14 +69,22 @@ class RestaurantController extends Controller
 
         Restaurant::create($validated);
 
-        return redirect()->route('admin.restaurants')
+        return redirect()->route('admin.restaurants.index')
             ->with('success', 'Restaurant created successfully!');
     }
 
     public function edit(Restaurant $restaurant)
     {
+        $restaurantData = $restaurant->toArray();
+        $restaurantData['logo_url'] = $restaurant->logo
+            ? (str_starts_with($restaurant->logo, 'restaurants/') ? asset('storage/' . $restaurant->logo) : asset($restaurant->logo))
+            : null;
+        $restaurantData['cover_image_url'] = $restaurant->cover_image
+            ? (str_starts_with($restaurant->cover_image, 'restaurants/') ? asset('storage/' . $restaurant->cover_image) : asset($restaurant->cover_image))
+            : null;
+
         return Inertia::render('Admin/Restaurants/Edit', [
-            'restaurant' => $restaurant
+            'restaurant' => $restaurantData
         ]);
     }
 
@@ -87,7 +95,7 @@ class RestaurantController extends Controller
             'description' => 'nullable|string',
             'address' => 'required|string',
             'phone' => 'required|string|max:20',
-            'email' => 'nullable|email|unique:restaurants,email,' . $restaurant->id,
+            'email' => 'nullable|email',
             'working_hours' => 'nullable|string',
             'delivery_time' => 'required|integer|min:1',
             'delivery_fee' => 'required|numeric|min:0',
@@ -104,25 +112,27 @@ class RestaurantController extends Controller
 
         // Handle logo upload
         if ($request->hasFile('logo')) {
-            // Delete old logo if exists
-            if ($restaurant->logo) {
+            if ($restaurant->logo && str_starts_with($restaurant->logo, 'restaurants/')) {
                 Storage::disk('public')->delete($restaurant->logo);
             }
             $validated['logo'] = $request->file('logo')->store('restaurants/logos', 'public');
+        } else {
+            unset($validated['logo']);
         }
 
         // Handle cover image upload
         if ($request->hasFile('cover_image')) {
-            // Delete old cover image if exists
-            if ($restaurant->cover_image) {
+            if ($restaurant->cover_image && str_starts_with($restaurant->cover_image, 'restaurants/')) {
                 Storage::disk('public')->delete($restaurant->cover_image);
             }
             $validated['cover_image'] = $request->file('cover_image')->store('restaurants/covers', 'public');
+        } else {
+            unset($validated['cover_image']);
         }
 
         $restaurant->update($validated);
 
-        return redirect()->route('admin.restaurants')
+        return redirect()->route('admin.restaurants.index')
             ->with('success', 'Restaurant updated successfully!');
     }
 
@@ -140,10 +150,10 @@ class RestaurantController extends Controller
                 $message .= " ({$productsCount} products were also deleted)";
             }
 
-            return redirect()->route('admin.restaurants')
+            return redirect()->route('admin.restaurants.index')
                 ->with('success', $message);
         } catch (\Exception $e) {
-            return redirect()->route('admin.restaurants')
+            return redirect()->route('admin.restaurants.index')
                 ->with('error', 'Error deleting restaurant: ' . $e->getMessage());
         }
     }

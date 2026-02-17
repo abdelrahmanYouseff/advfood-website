@@ -45,7 +45,9 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'description' => 'required|string',
+            'description_ar' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'restaurant_id' => 'required|exists:restaurants,id',
             'category_id' => 'required|exists:categories,id',
@@ -86,7 +88,9 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'name_ar' => 'nullable|string|max:255',
             'description' => 'required|string',
+            'description_ar' => 'nullable|string',
             'price' => 'required|numeric|min:0',
             'restaurant_id' => 'required|exists:restaurants,id',
             'category_id' => 'required|exists:categories,id',
@@ -97,13 +101,16 @@ class ProductController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($product->image) {
+            // Delete old image if exists (only for storage paths)
+            if ($product->image && str_starts_with($product->image, 'products/')) {
                 Storage::disk('public')->delete($product->image);
             }
 
             $imagePath = $request->file('image')->store('products/images', 'public');
             $validated['image'] = $imagePath;
+        } else {
+            // احتفظ بالصورة الحالية - لا تغيير
+            unset($validated['image']);
         }
 
         $product->update($validated);

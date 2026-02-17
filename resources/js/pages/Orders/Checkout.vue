@@ -147,11 +147,11 @@
                 >
                   <img
                     :src="item.product.image_url"
-                    :alt="item.product.name"
+                    :alt="getProductName(item.product)"
                     class="w-12 h-12 rounded-lg object-cover"
                   />
                   <div class="flex-1 min-w-0">
-                    <h3 class="text-sm font-medium text-gray-900 truncate">{{ item.product.name }}</h3>
+                    <h3 class="text-sm font-medium text-gray-900 truncate">{{ getProductName(item.product) }}</h3>
                     <p class="text-sm text-gray-500">{{ item.quantity }} × {{ item.product.formatted_price }}</p>
                   </div>
                   <div class="text-right">
@@ -205,6 +205,9 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { Link, router, useForm } from '@inertiajs/vue3'
+import { useProductLocale } from '@/composables/useProductLocale'
+
+const { getProductName } = useProductLocale()
 
 const props = defineProps({
   cartItems: Array,

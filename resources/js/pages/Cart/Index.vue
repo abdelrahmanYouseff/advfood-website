@@ -81,7 +81,7 @@
                   <div class="relative">
                     <img
                       :src="item.product.image_url"
-                      :alt="item.product.name"
+                      :alt="getProductName(item.product)"
                       class="w-24 h-24 rounded-2xl object-cover shadow-lg group-hover:shadow-xl transition-shadow duration-200"
                       @error="$event.target.src = '/images/default-product.png'"
                     />
@@ -95,7 +95,7 @@
                 <div class="flex-1 min-w-0">
                   <div class="flex items-start justify-between">
                     <div class="flex-1">
-                      <h3 class="text-xl font-bold text-gray-900 mb-2">{{ item.product.name }}</h3>
+                      <h3 class="text-xl font-bold text-gray-900 mb-2">{{ getProductName(item.product) }}</h3>
                       <p class="text-gray-600 mb-1">{{ item.product.restaurant?.name || 'مطعم غير محدد' }}</p>
                       <p class="text-lg font-semibold text-red-600">{{ item.product.formatted_price }}</p>
                     </div>
@@ -248,6 +248,9 @@
 <script setup>
 import { computed } from 'vue'
 import { Link, router } from '@inertiajs/vue3'
+import { useProductLocale } from '@/composables/useProductLocale'
+
+const { getProductName } = useProductLocale()
 
 const props = defineProps({
   cartItems: Array,

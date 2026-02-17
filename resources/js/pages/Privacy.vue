@@ -324,33 +324,16 @@
             </p>
           </section>
 
-          <!-- Footer -->
-          <div class="border-t border-gray-200 pt-8 mt-12">
-            <div class="text-center">
-              <p class="text-gray-600 mb-4">
-                {{ $t('Thank you for trusting') }} <strong>{{ $t('Company Name') }}</strong>
-              </p>
-              <div class="flex justify-center gap-6" :class="currentLanguage === 'ar' ? 'flex-row-reverse' : ''">
-                <Link href="/" class="text-orange-600 hover:text-orange-700 font-medium">
-                  {{ $t('Home') }}
-                </Link>
-                <Link href="/terms" class="text-orange-600 hover:text-orange-700 font-medium">
-                  {{ $t('Terms & Conditions') }}
-                </Link>
-                <Link href="/contact" class="text-orange-600 hover:text-orange-700 font-medium">
-                  {{ $t('Contact Us') }}
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </main>
+    <AppFooter />
   </div>
 </template>
 
 <script setup>
 import { Link } from '@inertiajs/vue3'
+import AppFooter from '@/components/AppFooter.vue'
 import { computed, ref, watch, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 

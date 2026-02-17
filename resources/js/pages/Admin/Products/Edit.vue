@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from '@inertiajs/vue3'
+import { useForm, Link } from '@inertiajs/vue3'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 
 const props = defineProps({
@@ -10,7 +10,9 @@ const props = defineProps({
 
 const form = useForm({
   name: props.product.name,
+  name_ar: props.product.name_ar || '',
   description: props.product.description,
+  description_ar: props.product.description_ar || '',
   price: props.product.price,
   restaurant_id: props.product.restaurant_id,
   category_id: props.product.category_id,
@@ -21,41 +23,73 @@ const form = useForm({
 })
 
 const submit = () => {
-  form.post(route('admin.products.update', props.product.id), {
-    method: 'put'
-  })
+  form.transform((data) => {
+    const { image, ...rest } = data
+    return {
+      ...rest,
+      _method: 'put',
+      ...(image ? { image } : {})  // أرسل الصورة فقط لو المستخدم اختار صورة جديدة
+    }
+  }).post(route('admin.products.update', props.product.id))
 }
 </script>
 
 <template>
   <AdminLayout>
     <template #header>
-      <h1 class="text-2xl font-bold text-gray-900">تعديل المنتج</h1>
+      <div class="flex items-center gap-3">
+        <Link
+          :href="route('admin.products.index')"
+          class="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+        >
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+        </Link>
+        <h1 class="text-2xl font-bold text-gray-900">تعديل المنتج</h1>
+      </div>
     </template>
 
     <div class="max-w-4xl mx-auto">
-      <div class="bg-white shadow-sm rounded-lg">
-        <div class="px-6 py-4 border-b border-gray-200">
+      <div class="bg-white shadow-sm rounded-2xl border border-gray-100 overflow-hidden">
+        <div class="px-6 py-5 border-b border-gray-100 bg-gray-50/50">
           <h2 class="text-lg font-medium text-gray-900">معلومات المنتج</h2>
           <p class="mt-1 text-sm text-gray-500">تعديل معلومات المنتج: {{ product.name }}</p>
         </div>
 
         <form @submit.prevent="submit" class="p-6 space-y-6">
-          <!-- Basic Information -->
+          <!-- Basic Information - اسم المنتج -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">اسم المنتج *</label>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-2">اسم المنتج (إنجليزي) *</label>
               <input
                 id="name"
                 v-model="form.name"
                 type="text"
                 required
+                dir="ltr"
                 class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
                 :class="{ 'border-red-500': form.errors.name }"
               />
               <p v-if="form.errors.name" class="mt-1 text-sm text-red-600">{{ form.errors.name }}</p>
             </div>
 
+            <div>
+              <label for="name_ar" class="block text-sm font-medium text-gray-700 mb-2">اسم المنتج (عربي)</label>
+              <input
+                id="name_ar"
+                v-model="form.name_ar"
+                type="text"
+                dir="rtl"
+                placeholder="اسم المنتج بالعربية"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                :class="{ 'border-red-500': form.errors.name_ar }"
+              />
+              <p v-if="form.errors.name_ar" class="mt-1 text-sm text-red-600">{{ form.errors.name_ar }}</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label for="price" class="block text-sm font-medium text-gray-700 mb-2">السعر (ريال) *</label>
               <input
@@ -110,17 +144,33 @@ const submit = () => {
           </div>
 
           <!-- Description -->
-          <div>
-            <label for="description" class="block text-sm font-medium text-gray-700 mb-2">وصف المنتج *</label>
-            <textarea
-              id="description"
-              v-model="form.description"
-              rows="4"
-              required
-              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              :class="{ 'border-red-500': form.errors.description }"
-            ></textarea>
-            <p v-if="form.errors.description" class="mt-1 text-sm text-red-600">{{ form.errors.description }}</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="description" class="block text-sm font-medium text-gray-700 mb-2">وصف المنتج (إنجليزي) *</label>
+              <textarea
+                id="description"
+                v-model="form.description"
+                rows="4"
+                required
+                dir="ltr"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                :class="{ 'border-red-500': form.errors.description }"
+              ></textarea>
+              <p v-if="form.errors.description" class="mt-1 text-sm text-red-600">{{ form.errors.description }}</p>
+            </div>
+            <div>
+              <label for="description_ar" class="block text-sm font-medium text-gray-700 mb-2">وصف المنتج (عربي)</label>
+              <textarea
+                id="description_ar"
+                v-model="form.description_ar"
+                rows="4"
+                dir="rtl"
+                placeholder="وصف المنتج بالعربية"
+                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                :class="{ 'border-red-500': form.errors.description_ar }"
+              ></textarea>
+              <p v-if="form.errors.description_ar" class="mt-1 text-sm text-red-600">{{ form.errors.description_ar }}</p>
+            </div>
           </div>
 
           <!-- Current Image -->

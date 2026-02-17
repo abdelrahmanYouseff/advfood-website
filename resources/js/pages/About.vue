@@ -351,107 +351,7 @@
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" :class="currentLanguage === 'ar' ? 'text-right' : 'text-left'">
-          <!-- Company Info -->
-          <div class="space-y-4">
-            <p class="text-gray-300 leading-relaxed">
-              {{ $t('From local favorites to international cuisine, we bring the world\'s flavors to you.') }}
-            </p>
-            <div class="flex" :class="currentLanguage === 'ar' ? 'space-x-4 space-x-reverse' : 'space-x-4'">
-              <!-- Facebook -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-              </a>
-              <!-- Twitter -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                </svg>
-              </a>
-              <!-- Instagram -->
-              <a
-                href="#"
-                class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.718-1.297c-.875.807-2.026 1.297-3.323 1.297s-2.448-.49-3.323-1.297c-.807-.875-1.297-2.026-1.297-3.323s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Quick Links -->
-          <div class="space-y-4">
-            <h4 class="text-lg font-semibold text-white">{{ $t('Quick Links') }}</h4>
-            <div class="space-y-2">
-              <a href="/" class="block text-gray-300 hover:text-white transition-colors">{{ $t('Home') }}</a>
-              <a href="#" class="block text-gray-300 hover:text-white transition-colors">{{ $t('Restaurants') }}</a>
-              <a href="/about" class="block text-gray-300 hover:text-white transition-colors">{{ $t('About Us') }}</a>
-              <a href="#" class="block text-gray-300 hover:text-white transition-colors">{{ $t('Contact') }}</a>
-            </div>
-          </div>
-
-          <!-- Contact Info -->
-          <div class="space-y-4">
-            <h4 class="text-lg font-semibold text-white">{{ $t('Contact Us') }}</h4>
-            <div class="space-y-3">
-              <div class="text-gray-300">
-                <div class="font-medium">{{ $t('Address') }}</div>
-                <div class="text-sm">QM4G+F35, King Abdulaziz Rd, Al Muruj, Riyadh 12465, Saudi Arabia</div>
-              </div>
-
-              <div class="text-gray-300">
-                <div class="font-medium">{{ $t('Phone') }}</div>
-                <div class="text-sm">+966 50 784 4079</div>
-              </div>
-
-              <div class="text-gray-300">
-                <div class="font-medium">{{ $t('Email') }}</div>
-                <div class="text-sm">info@adv-line.sa</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Legal -->
-          <div class="space-y-4">
-            <h4 class="text-lg font-semibold text-white">{{ $t('Legal') }}</h4>
-            <div class="space-y-2">
-              <a href="#" class="block text-gray-300 hover:text-white transition-colors">{{ $t('Privacy Policy') }}</a>
-              <a href="#" class="block text-gray-300 hover:text-white transition-colors">{{ $t('Terms of Service') }}</a>
-              <a href="#" class="block text-gray-300 hover:text-white transition-colors">{{ $t('Cookies') }}</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="my-8 border-t border-gray-700"></div>
-
-        <!-- Bottom Section -->
-        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <div class="flex items-center space-x-2 space-x-reverse text-gray-300">
-            <span>© {{ new Date().getFullYear() }} {{ $t('All rights reserved') }}.</span>
-          </div>
-
-          <div class="flex items-center space-x-1 space-x-reverse text-gray-300">
-            <span>{{ $t('Made with') }}</span>
-            <svg class="w-4 h-4 text-red-500 fill-red-500 animate-pulse" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-            <span>{{ $t('for') }} {{ $t('food lovers') }}</span>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <AppFooter />
   </div>
 </template>
 
@@ -459,6 +359,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Link } from '@inertiajs/vue3'
+import AppFooter from '@/components/AppFooter.vue'
 
 const { t, locale } = useI18n()
 

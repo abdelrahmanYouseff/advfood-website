@@ -14,7 +14,9 @@ class Product extends Model
         'restaurant_id',
         'category_id',
         'name',
+        'name_ar',
         'description',
+        'description_ar',
         'price',
         'image',
         'is_available',
@@ -29,6 +31,8 @@ class Product extends Model
         'is_featured' => 'boolean',
         'options' => 'array',
     ];
+
+    protected $appends = ['image_url', 'formatted_price'];
 
     public function restaurant(): BelongsTo
     {
