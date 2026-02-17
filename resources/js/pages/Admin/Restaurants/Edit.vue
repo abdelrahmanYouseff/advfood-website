@@ -8,6 +8,7 @@ const props = defineProps({
 })
 
 const form = useForm({
+  _method: 'put',
   name: props.restaurant.name,
   description: props.restaurant.description || '',
   address: props.restaurant.address,
@@ -23,15 +24,7 @@ const form = useForm({
 })
 
 const submit = () => {
-  form.transform((data) => {
-    const { logo, cover_image, ...rest } = data
-    return {
-      ...rest,
-      _method: 'put',
-      ...(logo instanceof File ? { logo } : {}),
-      ...(cover_image instanceof File ? { cover_image } : {})
-    }
-  }).post(route('admin.restaurants.update', props.restaurant.id), {
+  form.post(route('admin.restaurants.update', props.restaurant.id), {
     forceFormData: true
   })
 }
