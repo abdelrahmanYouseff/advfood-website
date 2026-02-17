@@ -92,6 +92,26 @@ Route::get('/test-qr', function () {
     return response()->json(['message' => 'QR test route works']);
 });
 
+// تشخيص رفع الملفات - احذف هذا المسار بعد حل المشكلة
+Route::get('/upload-check', function () {
+    $storagePath = storage_path('app/public');
+    $storageWritable = is_writable($storagePath);
+    $productsDir = $storagePath . '/products/images';
+    $restaurantsDir = $storagePath . '/restaurants/covers';
+
+    return response()->json([
+        'upload_max_filesize' => ini_get('upload_max_filesize'),
+        'post_max_size' => ini_get('post_max_size'),
+        'storage_writable' => $storageWritable,
+        'storage_path' => $storagePath,
+        'products_dir_exists' => is_dir($productsDir),
+        'products_dir_writable' => is_dir($productsDir) ? is_writable($productsDir) : false,
+        'app_url' => config('app.url'),
+        'fix' => !$storageWritable ? 'chmod -R 775 storage && chown -R forge:forge storage' : null,
+        'php_upload_limit_note' => ini_get('upload_max_filesize') === '2M' ? 'قد يكون 2M صغير جداً - زوّد upload_max_filesize إلى 10M' : null,
+    ]);
+});
+
 // Restaurant routesss
 Route::get('/restaurants/{restaurant}', [RestaurantController::class, 'show'])->name('restaurants.show');
 

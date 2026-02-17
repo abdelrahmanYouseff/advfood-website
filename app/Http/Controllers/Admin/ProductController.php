@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Restaurant;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -70,6 +71,8 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('products/images', 'public');
             $validated['image'] = $imagePath;
+        } else {
+            Log::warning('Product create: no image file received', ['content_length' => $request->header('Content-Length')]);
         }
 
         Product::create($validated);
@@ -122,8 +125,10 @@ class ProductController extends Controller
             $imagePath = $request->file('image')->store('products/images', 'public');
             $validated['image'] = $imagePath;
         } else {
-            // احتفظ بالصورة الحالية - لا تغيير
             unset($validated['image']);
+            if ($request->header('Content-Length') > 100000) {
+                Log::warning('Product update: large request but no image received - تحقق من upload_max_filesize و post_max_size', ['product_id' => $product->id]);
+            }
         }
 
         $product->update($validated);
