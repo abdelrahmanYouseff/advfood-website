@@ -92,7 +92,8 @@ class ProductController extends Controller
         return Inertia::render('Admin/Products/Edit', [
             'product' => $productData,
             'restaurants' => $restaurants,
-            'categories' => $categories
+            'categories' => $categories,
+            'success' => session('success'),
         ]);
     }
 
@@ -127,7 +128,7 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect()->route('admin.products.index')
+        return redirect()->route('admin.products.edit', $product)
             ->with('success', 'تم تحديث المنتج بنجاح!');
     }
 
