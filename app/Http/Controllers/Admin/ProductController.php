@@ -20,7 +20,17 @@ class ProductController extends Controller
 
         // Add image_url to each product
         $products->each(function ($product) {
-            $product->image_url = $product->image ? asset('storage/' . $product->image) : null;
+            if ($product->image) {
+                if (str_starts_with($product->image, 'http')) {
+                    $product->image_url = $product->image;
+                } elseif (str_starts_with($product->image, 'menu/')) {
+                    $product->image_url = url($product->image);
+                } else {
+                    $product->image_url = url('storage/' . $product->image);
+                }
+            } else {
+                $product->image_url = null;
+            }
         });
 
         return Inertia::render('Admin/Products/Index', [
@@ -75,7 +85,9 @@ class ProductController extends Controller
 
         // Load product with relationships and convert to array
         $productData = $product->load(['restaurant', 'category'])->toArray();
-        $productData['image_url'] = $product->image ? asset('storage/' . $product->image) : null;
+        $productData['image_url'] = $product->image
+            ? (str_starts_with($product->image, 'http') ? $product->image : (str_starts_with($product->image, 'menu/') ? url($product->image) : url('storage/' . $product->image)))
+            : null;
 
         return Inertia::render('Admin/Products/Edit', [
             'product' => $productData,
@@ -121,8 +133,8 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        // Delete image if exists
-        if ($product->image) {
+        // Delete image from storage only if it was uploaded (products/ path)
+        if ($product->image && str_starts_with($product->image, 'products/')) {
             Storage::disk('public')->delete($product->image);
         }
 

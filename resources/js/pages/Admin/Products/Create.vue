@@ -22,7 +22,9 @@ const form = useForm({
 })
 
 const submit = () => {
-  form.post(route('admin.products.store'))
+  form.post(route('admin.products.store'), {
+    forceFormData: true
+  })
 }
 </script>
 

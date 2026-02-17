@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{-- Open Graph Meta Tags --}}
-        <meta property="og:title" content="ADVFood - منصة طلب الطعام">
+        <meta property="og:title" content="مرحبا بكم في الخط المتطور للمنتجات الغذائية">
         <meta property="og:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
         <meta property="og:image" content="{{ url('favicon_copy.png') }}?v={{ time() }}">
         <meta property="og:image:secure_url" content="{{ url('favicon_copy.png') }}?v={{ time() }}">
@@ -19,7 +19,7 @@
         <meta property="og:site_name" content="ADVFood">
 
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="ADVFood - منصة طلب الطعام">
+        <meta name="twitter:title" content="مرحبا بكم في الخط المتطور للمنتجات الغذائية">
         <meta name="twitter:description" content="اكتشف أفضل المطاعم واطلب طعامك المفضل مع ADVFood">
         <meta name="twitter:image" content="{{ url('favicon_copy.png') }}?v={{ time() }}">
         <meta name="twitter:image:alt" content="ADVFood Logo">
@@ -50,7 +50,7 @@
             }
         </style>
 
-        <title inertia>ADVFood - منصة طلب الطعام</title>
+        <title inertia>مرحبا بكم في الخط المتطور للمنتجات الغذائية</title>
 
         <link rel="icon" href="/favicon.ico?v={{ time() }}" sizes="any">
         <link rel="icon" href="/favicon_copy.png?v={{ time() }}" sizes="any">

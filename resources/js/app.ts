@@ -8,10 +8,10 @@ import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 import i18n from './i18n';
 
-const appName = import.meta.env.VITE_APP_NAME || 'ADVFood - منصة طلب الطعام';
+const appTitle = 'مرحبا بكم في الخط المتطور للمنتجات الغذائية';
 
 createInertiaApp({
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    title: () => appTitle,
     resolve: (name) => resolvePageComponent(`./pages/${name}.vue`, import.meta.glob<DefineComponent>('./pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })

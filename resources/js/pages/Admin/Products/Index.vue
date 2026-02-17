@@ -11,6 +11,10 @@ defineProps({
   error: String
 })
 
+const PLACEHOLDER_IMG = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="#e5e7eb" width="100" height="100"/><text x="50%" y="50%" fill="#9ca3af" font-size="12" text-anchor="middle" dy=".3em">صورة</text></svg>')
+
+const onImageError = (e) => { e.target.src = PLACEHOLDER_IMG }
+
 const handleDeleteClick = (product) => {
   if (confirm(`هل أنت متأكد من حذف منتج '${product.name}'؟ هذا الإجراء لا يمكن التراجع عنه.`)) {
     router.delete(route('admin.products.destroy', product.id))
@@ -71,6 +75,7 @@ const handleDeleteClick = (product) => {
             :src="product.image_url"
             :alt="getProductName(product)"
             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            @error="onImageError"
           />
           <div v-else class="w-full h-full flex items-center justify-center bg-gradient-to-br from-emerald-400 to-teal-500">
             <svg class="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
