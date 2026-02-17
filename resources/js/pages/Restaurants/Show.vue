@@ -3,9 +3,10 @@
     <!-- Cover Image - يشمل الهيدر من الأعلى -->
     <div class="relative w-full min-h-[32rem]">
       <img
-        :src="restaurant.cover_image_url || restaurant.logo_url || '/images/default-restaurant-cover.png'"
+        :src="coverImageSrc"
         :alt="restaurant.name"
         class="absolute inset-0 w-full h-full object-cover"
+        @error="onCoverImageError"
       />
       <div class="absolute inset-0 bg-black/40" />
 
@@ -264,6 +265,14 @@ const props = defineProps({
   categories: Array,
   products: Array,
 })
+
+const coverImageSrc = ref(
+  props.restaurant?.cover_image_url || props.restaurant?.logo_url || '/images/default-restaurant-cover.png'
+)
+
+const onCoverImageError = () => {
+  coverImageSrc.value = '/images/default-restaurant-cover.png'
+}
 
 // Helper functions
 const getWorkingHours = (workingHours) => {

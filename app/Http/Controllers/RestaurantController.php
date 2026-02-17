@@ -109,11 +109,15 @@ class RestaurantController extends Controller
 
         // Check if cover_image path starts with 'restaurants/' (uploaded via storage) or other paths (public/)
         if ($restaurant->cover_image) {
-            $restaurantData['cover_image_url'] = str_starts_with($restaurant->cover_image, 'restaurants/')
-                ? asset('storage/' . $restaurant->cover_image)
-                : asset($restaurant->cover_image);
+            if (str_starts_with($restaurant->cover_image, 'http://') || str_starts_with($restaurant->cover_image, 'https://')) {
+                $restaurantData['cover_image_url'] = $restaurant->cover_image;
+            } elseif (str_starts_with($restaurant->cover_image, 'restaurants/')) {
+                $restaurantData['cover_image_url'] = url('storage/' . $restaurant->cover_image);
+            } else {
+                $restaurantData['cover_image_url'] = url(ltrim($restaurant->cover_image, '/'));
+            }
         } else {
-            $restaurantData['cover_image_url'] = asset('images/default-restaurant-cover.png');
+            $restaurantData['cover_image_url'] = url('images/default-restaurant-cover.png');
         }
 
         return Inertia::render('Restaurants/Show', [
