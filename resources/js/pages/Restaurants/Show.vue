@@ -266,12 +266,21 @@ const props = defineProps({
   products: Array,
 })
 
+// Placeholder gradient عندما تفشل كل الصور (data URI يعمل دائماً)
+const PLACEHOLDER_IMAGE = 'data:image/svg+xml,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%236b7280"/><stop offset="100%" style="stop-color:%234b5563"/></linearGradient></defs><rect width="1200" height="400" fill="url(%23g)"/></svg>'
+)
+
 const coverImageSrc = ref(
   props.restaurant?.cover_image_url || props.restaurant?.logo_url || '/images/default-restaurant-cover.png'
 )
 
 const onCoverImageError = () => {
-  coverImageSrc.value = '/images/default-restaurant-cover.png'
+  if (coverImageSrc.value !== PLACEHOLDER_IMAGE) {
+    coverImageSrc.value = coverImageSrc.value === '/images/default-restaurant-cover.png'
+      ? PLACEHOLDER_IMAGE
+      : '/images/default-restaurant-cover.png'
+  }
 }
 
 // Helper functions
@@ -292,8 +301,14 @@ const getCategoryProducts = (categoryId) => {
   return props.products.filter(product => product.category_id === categoryId)
 }
 
+const DEFAULT_PRODUCT_IMG = 'data:image/svg+xml,' + encodeURIComponent(
+  '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><rect fill="#e5e7eb" width="80" height="80"/><text x="50%" y="50%" fill="#9ca3af" font-size="10" text-anchor="middle" dy=".3em">صورة</text></svg>'
+)
+
 const handleImageError = (event) => {
-  event.target.src = '/images/default-product.png'
+  const img = event.target
+  if (img.src?.includes('data:image')) return
+  img.src = img.src?.includes('default-product') ? DEFAULT_PRODUCT_IMG : '/images/default-product.png'
 }
 
 // Cart computed properties
