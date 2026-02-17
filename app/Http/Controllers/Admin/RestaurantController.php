@@ -84,7 +84,8 @@ class RestaurantController extends Controller
             : null;
 
         return Inertia::render('Admin/Restaurants/Edit', [
-            'restaurant' => $restaurantData
+            'restaurant' => $restaurantData,
+            'success' => session('success'),
         ]);
     }
 
@@ -126,14 +127,15 @@ class RestaurantController extends Controller
                 Storage::disk('public')->delete($restaurant->cover_image);
             }
             $validated['cover_image'] = $request->file('cover_image')->store('restaurants/covers', 'public');
+            Log::info('Restaurant cover image uploaded', ['path' => $validated['cover_image'], 'restaurant_id' => $restaurant->id]);
         } else {
             unset($validated['cover_image']);
         }
 
         $restaurant->update($validated);
 
-        return redirect()->route('admin.restaurants.index')
-            ->with('success', 'Restaurant updated successfully!');
+        return redirect()->route('admin.restaurants.edit', $restaurant)
+            ->with('success', 'تم تحديث المطعم بنجاح');
     }
 
     public function destroy(Restaurant $restaurant)

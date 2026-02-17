@@ -3,7 +3,8 @@ import { useForm, Link } from '@inertiajs/vue3'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 
 const props = defineProps({
-  restaurant: Object
+  restaurant: Object,
+  success: String
 })
 
 const form = useForm({
@@ -22,10 +23,17 @@ const form = useForm({
 })
 
 const submit = () => {
-  form.transform((data) => ({
-    ...data,
-    _method: 'put'
-  })).post(route('admin.restaurants.update', props.restaurant.id))
+  form.transform((data) => {
+    const { logo, cover_image, ...rest } = data
+    return {
+      ...rest,
+      _method: 'put',
+      ...(logo instanceof File ? { logo } : {}),
+      ...(cover_image instanceof File ? { cover_image } : {})
+    }
+  }).post(route('admin.restaurants.update', props.restaurant.id), {
+    forceFormData: true
+  })
 }
 </script>
 
@@ -52,6 +60,12 @@ const submit = () => {
           <p class="mt-1 text-sm text-gray-500">تعديل معلومات: {{ restaurant.name }}</p>
         </div>
 
+        <div v-if="success" class="mx-6 mt-6 mb-0 p-4 bg-green-50 border border-green-200 text-green-700 rounded-xl flex items-center gap-2">
+          <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+          </svg>
+          {{ success }}
+        </div>
         <form @submit.prevent="submit" class="p-6 space-y-6">
           <!-- الصور الحالية -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

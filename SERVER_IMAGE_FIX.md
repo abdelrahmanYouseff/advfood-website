@@ -57,7 +57,21 @@ echo 'الملف موجود؟ ' . (file_exists(storage_path('app/public/' . \$r-
 "
 ```
 
-## 5. اختبار الرابط المباشر
+## 5. حدود رفع الملفات في PHP
+
+إذا كان الرفع يظهر "تم" لكن الصورة لا تُحفظ، قد يكون حجم الملف أكبر من الحد المسموح:
+
+```bash
+php -i | grep -E "upload_max_filesize|post_max_size"
+```
+
+يفضّل أن تكون القيم على الأقل:
+- `upload_max_filesize = 10M`
+- `post_max_size = 12M`
+
+عدّل في `php.ini` أو `.user.ini` على السيرفر ثم أعد تشغيل PHP.
+
+## 6. اختبار الرابط المباشر
 
 افتح في المتصفح:
 - `https://adv-line.sa/images/default-restaurant-cover.png`
