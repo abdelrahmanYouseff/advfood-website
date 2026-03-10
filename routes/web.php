@@ -133,6 +133,30 @@ Route::get('/payment-failed/{order}', [App\Http\Controllers\CustomerOrderControl
 
 Route::get('/api/products/recent', [App\Http\Controllers\ProductController::class, 'recent'])->name('api.products.recent');
 
+// API منتجات مطعم ديلاوة: اسم، سعر، صورة فقط
+Route::get('/api/delawa/products', function () {
+    $restaurant = \App\Models\Restaurant::where('name', 'Delawa')->where('is_active', true)->first();
+    if (!$restaurant) {
+        return response()->json(['products' => [], 'message' => 'Restaurant not found'], 404);
+    }
+    $products = \App\Models\Product::where('restaurant_id', $restaurant->id)
+        ->where('is_available', true)
+        ->orderBy('sort_order')
+        ->get()
+        ->map(function ($product) {
+            $imageUrl = $product->image
+                ? (str_starts_with($product->image, 'menu/') ? url($product->image) : url('storage/' . $product->image))
+                : url('images/default-product.png');
+            return [
+                'id' => $product->id,
+                'name' => $product->name,
+                'price' => (float) $product->price,
+                'image' => $imageUrl,
+            ];
+        });
+    return response()->json(['products' => $products]);
+})->name('api.delawa.products');
+
 // API route for restaurants
 Route::get('/api/restaurants', function () {
     $restaurants = \App\Models\Restaurant::where('is_active', true)
