@@ -1,19 +1,26 @@
 <template>
   <Head title="Gather-us" />
   <div class="min-h-screen flex flex-col" dir="rtl">
-    <!-- Main Content - White Background -->
-    <div class="flex-1 flex flex-col items-center justify-center py-16 px-4 bg-white">
-      <!-- Logo - Circular -->
-      <div class="mb-8 w-40 h-40 rounded-full p-1 shadow-lg overflow-hidden border border-gray-200 bg-white">
+    <!-- Main Content -->
+    <div
+      class="flex-1 flex flex-col items-center justify-center py-16 px-4"
+      :style="{ backgroundColor: bgColor }"
+    >
+      <!-- Logo - Perfect Circle -->
+      <div
+        class="mb-8 w-40 aspect-square rounded-full overflow-hidden shadow-lg ring-1 ring-black/5 bg-white"
+        :class="isBrandBg ? 'ring-white/20' : 'border border-gray-200'"
+      >
         <img
           :src="logo"
           alt="Logo"
-          class="w-full h-full object-cover"
+          class="w-full h-full rounded-full object-cover object-center"
+          draggable="false"
         />
       </div>
 
       <!-- Heading -->
-      <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8" :class="isBrandBg ? 'text-white' : 'text-gray-800'">
         متواجدين في
       </h2>
 
@@ -22,7 +29,8 @@
         :href="linkUrl"
         target="_blank"
         rel="noopener noreferrer"
-        class="block transition-transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-gray-300 rounded-xl overflow-hidden shadow-xl"
+        class="block transition-transform hover:scale-105 focus:outline-none focus:ring-4 rounded-xl overflow-hidden shadow-xl"
+        :class="isBrandBg ? 'focus:ring-white/50' : 'focus:ring-gray-300'"
       >
         <img
           :src="appImage"
@@ -37,13 +45,18 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { Head } from '@inertiajs/vue3'
 import AppFooter from '@/components/AppFooter.vue'
 
-defineProps({
+const props = defineProps({
   logo: {
     type: String,
     default: '/images/gatherus-logo.png'
+  },
+  bgColor: {
+    type: String,
+    default: '#ffffff'
   },
   linkUrl: {
     type: String,
@@ -58,4 +71,6 @@ defineProps({
     default: 'ذا شيفز'
   }
 })
+
+const isBrandBg = computed(() => (props.bgColor || '').toLowerCase() === '#cf4823')
 </script>

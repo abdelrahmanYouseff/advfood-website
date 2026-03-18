@@ -45,6 +45,16 @@ Route::get('/gather-us/the-chefz', function () {
     return Inertia::render('GatherUs/TheChefz');
 })->name('gather-us.the-chefz');
 
+Route::get('/gatherus-jahez', function () {
+    return Inertia::render('GatherUs/TheChefz', [
+        'logo' => '/images/gatherus-logo.png',
+        'bgColor' => '#ffffff',
+        'linkUrl' => 'https://jahez.link/W836wlxUP0b',
+        'appImage' => '/images/jahez-logo.png',
+        'appImageAlt' => 'جاهز',
+    ]);
+})->name('gatherus.jahez');
+
 Route::get('/bakiza/gahez', function () {
     return Inertia::render('GatherUs/TheChefz', [
         'logo' => '/rest/bakiza-logo.png',
