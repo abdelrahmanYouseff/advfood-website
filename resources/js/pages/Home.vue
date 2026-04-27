@@ -522,6 +522,7 @@
                 <div class="flex-1">
                   <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $t('Phone') }}</h4>
                   <a href="tel:+966507844079" class="text-lg text-gray-600 hover:text-blue-600 transition-colors block" dir="ltr">+966 50 784 4079</a>
+                  <!-- Added secondary contact number -->
                   <a href="tel:+966502916946" class="text-lg text-gray-600 hover:text-blue-600 transition-colors block" dir="ltr">+966 50 291 6946</a>
                 </div>
               </div>
@@ -549,6 +550,7 @@
                 </div>
                 <div class="flex-1">
                   <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $t('Address') }}</h4>
+                  <!-- Updated contact address -->
                   <p class="text-lg text-gray-600">7117, King Abdulaziz Rd, Al Muruj, Riyadh 12282, Saudi Arabia</p>
                 </div>
               </div>
