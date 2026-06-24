@@ -41,6 +41,19 @@ Route::get('/privacy', function () {
     return Inertia::render('Privacy');
 })->name('privacy');
 
+Route::get('/portfolio', function () {
+    $filePath = public_path('pdf/بروفايل الخط المتطور الغذائية (5).pdf');
+
+    if (!file_exists($filePath)) {
+        abort(404, 'Portfolio PDF not found');
+    }
+
+    return response()->file($filePath, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="portfolio.pdf"',
+    ]);
+})->name('portfolio');
+
 Route::get('/gather-us/the-chefz', function () {
     return Inertia::render('GatherUs/TheChefz');
 })->name('gather-us.the-chefz');
