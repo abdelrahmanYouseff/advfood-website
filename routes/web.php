@@ -42,7 +42,7 @@ Route::get('/privacy', function () {
 })->name('privacy');
 
 Route::get('/portfolio', function () {
-    $filePath = public_path('pdf/التوريد بروفايل الخط المتطور الغذائية (1).pdf');
+    $filePath = public_path('pdf/التوريد بروفايل الخط المتطور الغذائية (2) (1).pdf');
 
     if (!file_exists($filePath)) {
         abort(404, 'Portfolio PDF not found');
